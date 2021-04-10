@@ -7,6 +7,7 @@ import { IniciarSesionComponent } from './components/pages/iniciar-sesion/inicia
 import { RegistrarseComponent } from './components/pages/registrarse/registrarse.component';
 import { NavbarComponent } from './components/partials/navbar/navbar.component';
 import { HomeComponent } from './components/pages/home/home.component';
+import { FormsModule }   from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HomeComponent } from './components/pages/home/home.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
