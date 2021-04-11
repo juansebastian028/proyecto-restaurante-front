@@ -3,7 +3,7 @@
  }
 
 #sidebar-wrapper {
-  min-height: 100vh;
+  min-height: calc(100vh - 54px);
   margin-left: -15rem;
   -webkit-transition: margin .25s ease-out;
   -moz-transition: margin .25s ease-out;
@@ -18,10 +18,6 @@
 
 #sidebar-wrapper .list-group {
   width: 15rem;
-}
-
-#page-content-wrapper {
-  min-width: 100vw;
 }
 
 #wrapper.toggled #sidebar-wrapper {

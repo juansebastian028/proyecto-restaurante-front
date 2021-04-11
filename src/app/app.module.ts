@@ -3,28 +3,36 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { IniciarSesionComponent } from './components/pages/iniciar-sesion/iniciar-sesion.component';
-import { RegistrarseComponent } from './components/pages/registrarse/registrarse.component';
+import { FormLoginComponent } from './components/partials/auth-forms/form-login/login.component';
+import { FormRegisterComponent } from './components/partials/auth-forms/form-register/form-register.component';
 import { NavbarComponent } from './components/partials/navbar/navbar.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { FormsModule }   from '@angular/forms';
 import { SideMenuComponent } from './components/partials/side-menu/side-menu.component';
 import { MatIconModule } from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeroImageComponent } from './components/partials/hero-image/hero-image.component';
+import { LoginComponent } from './components/pages/auth/login/login.component';
+import { RegisterComponent } from './components/pages/auth/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    IniciarSesionComponent,
-    RegistrarseComponent,
+    FormLoginComponent,
+    FormRegisterComponent,
     NavbarComponent,
     HomeComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    HeroImageComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,33 @@
+.auth-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.form-width {
+  width: 35%;
+}
+
+.image-width {
+  width: 65%;
+}
+
+@media only screen and (max-width: 600px) {
+  .image-width {
+    width: 40%;
+  }
+
+  .form-width  {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .image-width {
+    width: 50%;
+  }
+
+  .form-width {
+    width: 50%;
+  }
+}

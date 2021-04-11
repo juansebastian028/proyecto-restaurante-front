@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IniciarSesionComponent } from './iniciar-sesion.component';
+import { HeroImageComponent } from './hero-image.component';
 
-describe('IniciarSesionComponent', () => {
-  let component: IniciarSesionComponent;
-  let fixture: ComponentFixture<IniciarSesionComponent>;
+describe('HeroImageComponent', () => {
+  let component: HeroImageComponent;
+  let fixture: ComponentFixture<HeroImageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ IniciarSesionComponent ]
+      declarations: [ HeroImageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(IniciarSesionComponent);
+    fixture = TestBed.createComponent(HeroImageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

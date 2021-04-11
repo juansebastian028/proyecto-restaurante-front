@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
 
 @Component({
-  selector: 'app-iniciar-sesion',
-  templateUrl: './iniciar-sesion.component.html',
-  styleUrls: ['./iniciar-sesion.component.css']
+  selector: 'app-form-login',
+  templateUrl: './form-login.component.html',
+  styleUrls: ['./form-login.component.css', '../shared.css']
 })
-export class IniciarSesionComponent implements OnInit {
+export class FormLoginComponent implements OnInit {
 
   constructor() { }
 

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
 
 @Component({
-  selector: 'app-registrarse',
-  templateUrl: './registrarse.component.html',
-  styleUrls: ['./registrarse.component.css']
+  selector: 'app-form-register',
+  templateUrl: './form-register.component.html',
+  styleUrls: ['./form-register.component.css', '../shared.css']
 })
-export class RegistrarseComponent implements OnInit {
+export class FormRegisterComponent implements OnInit {
 
   constructor() { }
 
