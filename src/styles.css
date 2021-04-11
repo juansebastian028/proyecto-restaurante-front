@@ -2,3 +2,20 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body, .hero-image, .hero-image__color{
+    min-height: 100%;
+}
+
+.hero-image{
+    background: url('/../../../assets/images/background.jpg');
+	background-size: cover;
+}
+
+.hero-image__color{
+    background-color: rgba(235, 172, 31, .7);
+}
+
+.form-container{
+    min-width: 30%;
+    background-color: rgba(240, 240, 240, 0.5);
+}
