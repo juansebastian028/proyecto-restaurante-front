@@ -16,6 +16,7 @@ import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { UsersComponent } from './pages/users/users.component';
 import { TableComponent } from './components/table/table.component';
+import { MaterialModule } from './material/material.module';
 
 import {MatTableModule} from '@angular/material/table';
 
@@ -39,7 +40,7 @@ import {MatTableModule} from '@angular/material/table';
     FormsModule,
     MatIconModule,
     BrowserAnimationsModule,
-    MatTableModule
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
