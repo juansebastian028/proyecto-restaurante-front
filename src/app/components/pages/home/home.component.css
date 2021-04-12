@@ -1,3 +1,4 @@
-#page-content-wrapper {
-    min-width: 100vw;
+.card-background{
+    background: url("/../../../assets/images/wood.jpg");
+    background-size: cover;
 }
