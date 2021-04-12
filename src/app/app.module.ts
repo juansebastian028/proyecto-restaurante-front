@@ -15,6 +15,7 @@ import { HeroImageComponent } from './components/hero-image/hero-image.component
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { UsersComponent } from './pages/users/users.component';
+import { TableComponent } from './components/table/table.component';
 
 import {MatTableModule} from '@angular/material/table';
 
@@ -29,7 +30,8 @@ import {MatTableModule} from '@angular/material/table';
     HeroImageComponent,
     LoginComponent,
     RegisterComponent,
-    UsersComponent
+    UsersComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
