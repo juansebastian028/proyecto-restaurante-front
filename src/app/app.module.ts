@@ -16,6 +16,7 @@ import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { UsersComponent } from './pages/users/users.component';
 import { TableComponent } from './components/table/table.component';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { TableComponent } from './components/table/table.component';
     AppRoutingModule,
     FormsModule,
     MatIconModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
