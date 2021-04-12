@@ -13,11 +13,14 @@
 			<input type="password" id="password" name="password" class="form-control" ngModel required>
 		</div>
 
-		<input type="submit" name="submit" class="btn btn-info btn-block" value="Ingresar">
+		<div class="d-flex justify-content-center">
+			<input type="submit" name="submit" class="btn btn-info" value="Ingresar">
+        </div>		
 		
-		<div class="text-center mt-3">
-			<p class="text-secondary">¿No tienes cuenta?</p>
-			<a href="#" class="text-info text-center">Crear cuenta</a>
-		</div>
+		<p class="text-secondary mt-3 text-center">¿No tienes cuenta?</p>
+
+		<div class="d-flex justify-content-center">
+			<a routerLink="/register" class="text-info">Crear cuenta</a> 
+        </div>
 	</form>
 </div>

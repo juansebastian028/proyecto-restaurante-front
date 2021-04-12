@@ -1,0 +1,57 @@
+.hero-image {
+  background: url("/../../../assets/images/background.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.hero-image__color {
+  background-color: rgba(60, 60, 60, 0.5);
+  min-height: inherit;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-image__text {
+  font-size: 2.5rem;
+  color: #fff;
+}
+
+.hero-image__brand{
+  max-width: 15%;
+  display: block;
+  color: #fff;
+  margin-bottom: .5rem;
+}
+
+@media only screen and (max-width: 768px) {
+  
+  .hero-image__text {
+    font-size: 2rem;
+  }
+
+  .hero-image__brand{
+    max-width: 25%;
+  }
+
+}
+
+@media only screen and (max-width: 600px) {
+  
+  .hero-image__text {
+    font-size: 1rem;
+  }
+
+  .hero-image__brand{
+    max-width: 20%;
+  }
+
+}
+
+
+
+

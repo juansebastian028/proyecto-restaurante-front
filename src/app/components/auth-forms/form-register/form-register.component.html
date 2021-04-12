@@ -1,0 +1,39 @@
+<div class="form-content">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <h2 class="text-center text-info">Registrarse</h2>
+        <div class="form-group">
+            <label for="name" class="text-info">Nombre</label>
+            <input type="text" class="form-control" name="name" ngModel required>
+        </div>
+
+        <div class="form-group">
+            <label for="lastname" class="text-info">Apellido</label>
+            <input type="text" class="form-control" name="lastname" ngModel required>
+        </div>
+
+        <div class="form-group">
+            <label for="email" class="text-info">Correo</label>
+            <input type="email" class="form-control" name="email" ngModel required>
+        </div>
+
+        <div class="form-group">
+            <label for="username" class="text-info">Nombre de usuario</label>
+            <input type="text" class="form-control" name="username" ngModel required>
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="text-info">Contraseña</label>
+            <input type="password" class="form-control" name="password" ngModel required>
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="text-info">Comfirmar contraseña</label>
+            <input type="password" class="form-control" name="password"  ngModel required>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <input type="submit" class="btn btn-info" value="Registrarse">
+        </div>
+    </form>
+</div>
+
