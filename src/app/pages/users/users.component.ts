@@ -8,17 +8,75 @@ import { NgForm } from '@angular/forms';
 })
 export class UsersComponent implements OnInit {
 
-  dataUsers: any = [{
+  usersRows: any = [
+    {
     "Nombre": "Pepe",
     "Apellido": "Mendez",
     "Telefono": "3112254785"
-  },{
+    },
+    {
     "Nombre": "Larry",
     "Apellido": "Mesa",
     "Telefono": "3254875442"
-  }];
+    },
+    {
+      "Nombre": "Larry",
+      "Apellido": "Mesa",
+      "Telefono": "3254875442"
+    },
+    {
+      "Nombre": "Larry",
+      "Apellido": "Mesa",
+      "Telefono": "3254875442"
+    },
+    {
+      "Nombre": "Larry",
+      "Apellido": "Mesa",
+      "Telefono": "3254875442"
+    },
+    {
+      "Nombre": "Larry",
+      "Apellido": "Mesa",
+      "Telefono": "3254875442"
+    },
+    {
+      "Nombre": "Larry",
+      "Apellido": "Mesa",
+      "Telefono": "3254875442"
+    },
+    {
+      "Nombre": "Larry",
+      "Apellido": "Mesa",
+      "Telefono": "3254875442"
+    },
+    {
+      "Nombre": "Larry",
+      "Apellido": "Mesa",
+      "Telefono": "3254875442"
+    },
+    {
+      "Nombre": "Larry",
+      "Apellido": "Mesa",
+      "Telefono": "3254875442"
+    },
+    {
+      "Nombre": "Larry",
+      "Apellido": "Mesa",
+      "Telefono": "3254875442"
+    }, 
+    {
+      "Nombre": "Larry",
+      "Apellido": "Mesa",
+      "Telefono": "3254875442"
+    },
+    {
+      "Nombre": "Larry",
+      "Apellido": "Mesa",
+      "Telefono": "3254875442"
+    }
+];
   
-  keysData = Object.keys(this.dataUsers[0]);
+  usersColumns = Object.keys(this.usersRows[0]);
 
   constructor() { }
 

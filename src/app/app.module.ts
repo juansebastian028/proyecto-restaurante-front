@@ -19,6 +19,7 @@ import { TableComponent } from './components/table/table.component';
 import { MaterialModule } from './material/material.module';
 
 import {MatTableModule} from '@angular/material/table';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {MatTableModule} from '@angular/material/table';
     LoginComponent,
     RegisterComponent,
     UsersComponent,
-    TableComponent
+    TableComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
