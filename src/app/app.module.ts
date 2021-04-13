@@ -21,6 +21,9 @@ import { MaterialModule } from './material/material.module';
 import {MatTableModule} from '@angular/material/table';
 import { CardComponent } from './components/card/card.component';
 
+import { HelperService } from './services/helper.service';
+import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +37,8 @@ import { CardComponent } from './components/card/card.component';
     RegisterComponent,
     UsersComponent,
     TableComponent,
-    CardComponent
+    CardComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,7 @@ import { CardComponent } from './components/card/card.component';
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [ HelperService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
