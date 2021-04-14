@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HelperService } from 'src/app/services/helper.service';
 
 @Component({
   selector: 'app-side-menu',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./side-menu.component.css'],
 })
 export class SideMenuComponent implements OnInit {
+  class: string = "";
+  constructor(private helper: HelperService){  }
 
-  constructor(){
-
+  ngOnInit(): void {
+    this.helper.customMessage.subscribe(msg => this.class = msg);
   }
-
-  ngOnInit(): void {}
 }

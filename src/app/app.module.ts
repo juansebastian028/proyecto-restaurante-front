@@ -18,11 +18,13 @@ import { UsersComponent } from './pages/users/users.component';
 import { TableComponent } from './components/table/table.component';
 import { MaterialModule } from './material/material.module';
 
-import {MatTableModule} from '@angular/material/table';
 import { CardComponent } from './components/card/card.component';
 import { TabsComponent } from './components/tabs/tabs/tabs.component';
 import { TabComponent } from './components/tabs/tab/tab.component';
 import { EditUserComponent } from './components/user/edit-user/edit-user.component';
+
+import { HelperService } from './services/helper.service';
+import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { EditUserComponent } from './components/user/edit-user/edit-user.compone
     TabsComponent,
     TabComponent,
     EditUserComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,7 @@ import { EditUserComponent } from './components/user/edit-user/edit-user.compone
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [ HelperService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
