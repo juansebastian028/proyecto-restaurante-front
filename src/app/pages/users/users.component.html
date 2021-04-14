@@ -1,82 +1,11 @@
 <div class="container-fluid mt-5">
-	<h2>Usuarios</h2>
-	<ul class="nav nav-tabs">
-		<li class="nav-item">
-			<a class="nav-link active" data-toggle="tab" href="#home">Datos</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" data-toggle="tab" href="#info">Información</a>
-		</li>
-	</ul>
-
-	<div class="tab-content">
-		<div id="home" class="tab-pane active">
+	<app-tabs>
+		<app-tab [tabTitle]="'Usuarios'">
 			<app-table [columns]="usersColumns" [rows]="usersRows"></app-table>
-		</div>
-		<div id="info" class="tab-pane container">
-			<form #f="ngForm" (ngSubmit)="onSubmit(f)">
-				<div class="row">
-					<div class="col-6">
-						<div class="form-group">
-							<label for="nombre" class="text-info">Nombre</label>
-							<input type="text" class="form-control" id="nombre" name="nombre" ngModel autocomplete="off" required>
-						</div>
-					</div>
-					<div class="col-6">
-						<div class="form-group">
-							<label for="apellido" class="text-info">Apellido</label>
-							<input type="text" class="form-control" id="apellido" name="apellido" ngModel autocomplete="off" required>
-						</div>
-					</div>
-					<div class="col-6">
-						<div class="form-group">
-							<label for="perfil" class="text-info">Perfil</label>
-							<select name="perfil" class="form-control" id="perfil" ngModel required>
-								<option value="" disabled></option>
-							</select>
-						</div>
-					</div>
-					<div class="col-6">
-						<div class="form-group">
-							<label for="sucursal" class="text-info">Sucursal</label>
-							<select name="sucursal" class="form-control" id="sucursal" ngModel required>
-								<option value="" disabled></option>
-							</select>
-						</div>
-					</div>
-					<div class="col-6">
-						<div class="form-group">
-							<label for="username" class="text-info">Usuario</label>
-							<input type="text" class="form-control" id="username" name="username" ngModel autocomplete="off" required>
-						</div>
-					</div>
-					<div class="col-6">
-						<div class="form-group">
-							<label for="email" class="text-info">Email</label>
-							<input type="text" class="form-control" id="email" name="email" ngModel autocomplete="off" required>
-						</div>
-					</div>
-					<div class="col-6">
-						<div class="form-group">
-							<label for="password" class="text-info">Contraseña</label>
-							<input type="password" id="password" name="password" class="form-control" ngModel required>
-						</div>
-					</div>
-					<div class="col-6">
-						<div class="form-group">
-							<label for="confirmPassword" class="text-info">Confirmar Contraseña</label>
-							<input type="password" id="confirmPassword" name="confirmPassword" class="form-control" ngModel required>
-						</div>
-					</div>
-					<div class="col-6"></div>
-					<div class="col-3">
-						<input type="submit" name="submit" class="btn btn-success btn-block" value="Guardar">
-					</div>
-					<div class="col-3">
-						<button class="btn btn-danger btn-block">Cancelar</button>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
+		</app-tab>
+		<app-tab [tabTitle]="'Agregar'">
+			<app-edit-user></app-edit-user>
+		</app-tab>
+	</app-tabs>
 </div>
+

@@ -20,6 +20,9 @@ import { MaterialModule } from './material/material.module';
 
 import {MatTableModule} from '@angular/material/table';
 import { CardComponent } from './components/card/card.component';
+import { TabsComponent } from './components/tabs/tabs/tabs.component';
+import { TabComponent } from './components/tabs/tab/tab.component';
+import { EditUserComponent } from './components/user/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { CardComponent } from './components/card/card.component';
     RegisterComponent,
     UsersComponent,
     TableComponent,
-    CardComponent
+    CardComponent,
+    TabsComponent,
+    TabComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,

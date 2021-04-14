@@ -16,7 +16,9 @@ export class TableComponent implements OnInit {
 
   public dataSource = new MatTableDataSource<any>();
   
-  constructor() {}
+  constructor() {
+    
+  }
   
   public doFilter = (event: KeyboardEvent) => {
     const element = event.currentTarget as HTMLInputElement;
@@ -24,6 +26,7 @@ export class TableComponent implements OnInit {
     this.dataSource.filter = value.trim().toLocaleLowerCase();
   }
   ngOnInit(): void {
+    this.columns = [...this.columns, 'Acciones'];
     this.dataSource.data = this.rows;
     this.dataSource.paginator = this.paginator;
   }

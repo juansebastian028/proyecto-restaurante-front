@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-users',
@@ -81,11 +80,6 @@ export class UsersComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-
-  onSubmit(f: NgForm) {
-    console.log(f.value);
   }
 
 }

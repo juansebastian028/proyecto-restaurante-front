@@ -1,0 +1,14 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item" *ngFor="let tab of tabs" (click)="selectTab(tab)">
+    <a
+      class="nav-link"
+      [class.active]="tab.active"
+      href="#"
+      data-toggle="tab">
+      {{ tab.title }}
+    </a>
+  </li>
+</ul>
+<div class="tab-content">
+  <ng-content></ng-content>
+</div>
