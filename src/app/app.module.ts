@@ -22,7 +22,7 @@ import { MaterialModule } from './material/material.module';
 import { CardComponent } from './components/card/card.component';
 import { TabsComponent } from './components/tabs/tabs/tabs.component';
 import { TabComponent } from './components/tabs/tab/tab.component';
-import { EditUserComponent } from './components/user/edit-user/edit-user.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 import { HelperService } from './services/helper.service';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
@@ -30,6 +30,8 @@ import { ModalComponent } from './components/modal/modal.component';
 import { SelectCityComponent } from './components/select-city/select-city.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LayoutComponent } from './layout/layout.component';
+import { ProductsComponent } from './pages/products/products.component';
+import { EditProductComponent } from './components/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { LayoutComponent } from './layout/layout.component';
     ShoppingCartComponent,
     ModalComponent,
     SelectCityComponent,
-    LayoutComponent
+    LayoutComponent,
+    ProductsComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,
