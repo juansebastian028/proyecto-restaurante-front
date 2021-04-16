@@ -7,6 +7,7 @@ import { FormLoginComponent } from './components/auth-forms/form-login/login.com
 import { FormRegisterComponent } from './components/auth-forms/form-register/form-register.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './pages/home/home.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule }   from '@angular/forms';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -25,6 +26,10 @@ import { EditUserComponent } from './components/user/edit-user/edit-user.compone
 
 import { HelperService } from './services/helper.service';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { SelectCityComponent } from './components/select-city/select-city.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -43,15 +48,19 @@ import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.compo
     TabsComponent,
     TabComponent,
     EditUserComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    ModalComponent,
+    SelectCityComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
+    [NgSelectModule, FormsModule],
     MatIconModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    NgbModule
   ],
   providers: [ HelperService ],
   bootstrap: [AppComponent]

@@ -1,9 +1,9 @@
 <ul class="nav nav-tabs">
   <li class="nav-item" *ngFor="let tab of tabs" (click)="selectTab(tab)">
     <a
+      role="button"
       class="nav-link"
       [class.active]="tab.active"
-      href="#"
       data-toggle="tab">
       {{ tab.title }}
     </a>

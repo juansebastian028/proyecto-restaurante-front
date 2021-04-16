@@ -16,17 +16,17 @@
 			</a>
 		</li>
 		<li title="Shopping Cart" class="nav-item mr-2">
-			<a routerLink="/shoppingCart" class="text-reset text-decoration-none">
+			<a routerLink="/shopping-cart" class="text-reset text-decoration-none">
 				<span class="material-icons">shopping_cart</span>
 			</a>
 		</li>
-		<li title="User" class="nav-item dropdown">
-			<a class="text-reset text-decoration-none" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<li title="User" class="nav-item dropdown" ngbDropdown>
+			<a class="text-reset text-decoration-none" tabindex="0" ngbDropdownToggle id="navbarDropdown" role="button">
 				<span class="material-icons">account_circle</span>
 			</a>
-			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-			  <a routerLink="/login" class="dropdown-item">Iniciar sesión</a>
-			  <a routerLink="/register" class="dropdown-item">Registrarse</a>
+			<div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu aria-labelledby="navbarDropdown">
+			  <a ngbDropdownItem routerLink="/login" class="dropdown-item">Iniciar sesión</a>
+			  <a ngbDropdownItem routerLink="/register" class="dropdown-item">Registrarse</a>
 			</div>
 		</li>
 	</ul>

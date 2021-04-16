@@ -1,0 +1,4 @@
+<ng-select [(ngModel)]="selectedCityId">
+    <ng-option *ngFor="let city of cities" [value]="city.id">{{city.name}}</ng-option>
+</ng-select>
+
