@@ -12,8 +12,8 @@
 			<mat-cell *matCellDef="let element">
 				{{ element[column] }}
 				<ng-container *ngIf="column === 'Acciones'">
-					<button class="btn btn-sm btn-warning mr-2">Editar</button>
-					<button class="btn btn-sm btn-danger">Eliminar</button>
+					<button class="btn btn-sm btn-warning text-white mr-2"><span class="material-icons">edit</span></button>
+					<button class="btn btn-sm btn-danger"><span class="material-icons">delete</span></button>
 				</ng-container>
 			</mat-cell>
 		</ng-container>

@@ -8,6 +8,10 @@
     cursor:pointer;
 }
 
+.contentArrow{
+    width: 9% !important;
+}
+
 .inputSearch{
     width: 80% !important;
 }
