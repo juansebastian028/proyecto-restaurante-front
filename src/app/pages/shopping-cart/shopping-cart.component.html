@@ -1,27 +1,47 @@
-<div class="container mt-5">
-	<div>
-		<div class="row">
-			<div class="col-12">
-				<div class="row">
-					<div class="col-2">
-						<img src="../../../assets/images/background.jpg" class="rounded img-fluid float-left" alt="...">
+<div class="container-fluid mt-5">
+	<div class="row">
+		<div *ngFor="let a of [1 ,2,3,4,5,6,7,8,9,10]">
+			<div class="col-lg-9 col-md-12 col-sm-12 mb-3">
+				<div class="row border-bottom rounded content-cart">
+					<div class="col-2 p-0">
+						<img src="../../../assets/images/background.jpg" class="img-fluid d-block rounded">
 					</div>
-					<div class="col-8">
-						<h2><span class="badge badge-secondary">Nombre</span></h2>
-					</div>
-					<div class="col-2">
-						<div class="input-group">
-							<div class="input-group-prepend">
-								<button class="btn btn-danger">-</button>
+					<div class="col-9">
+						<div class="row">
+							<div class="col-lg-3 col-md-12 col-xs-12">
+								<h2 class="d-none d-lg-block">Producto</h2>
+								<span class="text-muted">Este es un producto de prueba</span><br>
 							</div>
-							<input type="number" class="form-control" readonly>
-							<div class="input-group-prepend">
-								<button class="btn btn-primary">+</button>
+							<div class="col-lg-2 col-md-12 col-xs-12">
+								<h2 class="d-none d-lg-block">Precio Unitario</h2>
+								<span class="text-muted">$15.000</span>
+							</div>
+							<div class="col-lg-2 col-md-12 col-xs-12">
+								<h2 class="d-none d-lg-block">Cantidad</h2>
+								<span class="text-muted">5</span>
+							</div>
+							<div class="col-lg-2 col-md-12 col-xs-12">
+								<h2 class="d-none d-lg-block">Total</h2>
+								<span class="text-muted">$15.000</span>
 							</div>
 						</div>
 					</div>
+					<div class="col-1 pl-0">
+						<button style="line-height: 0;" title="Quitar del carrito" class="btn btn-danger p-0"><span class="material-icons">close</span></button>
+					</div>
 				</div>
 			</div>
+		</div>
+		<div class="col-lg-3 col-md-12 content-buy">
+			<div class="card mb-4 shadow-sm">
+				<div class="card-header text-center">
+					<h2 class="m-0">Total</h2>
+				</div>
+				<div class="card-body text-center">
+				  <h1 class="card-title">$15.000</h1>
+				  <button type="button" class="btn btn-lg btn-block btn-primary" routerLink="/make-shopping">Proceder al pago</button>
+				</div>
+			  </div>
 		</div>
 	</div>
 </div>

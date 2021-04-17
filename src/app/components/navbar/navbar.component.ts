@@ -25,4 +25,21 @@ export class NavbarComponent implements OnInit {
     this.helper.changeMessage(this.class);
   }
 
+  classSide = "";
+  classUl = "d-flex";
+  classSearch = "d-none d-sm-block";
+  classArrow = "d-none";
+  changeNewClass(){
+    if(this.classSide == ""){
+      this.classSide = "d-none d-sm-block";
+      this.classSearch = "d-block d-sm-none inputSearch";
+      this.classUl = "d-none";
+      this.classArrow = "d-block";
+    }else{
+      this.classSide = "";
+      this.classSearch = "d-none d-sm-block"
+      this.classUl = "d-flex";
+      this.classArrow = "d-none";
+    }
+  }
 }

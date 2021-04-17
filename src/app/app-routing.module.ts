@@ -7,6 +7,7 @@ import { RegisterComponent } from './pages/auth/register/register.component';
 import { UsersComponent } from './pages/users/users.component';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { LayoutComponent } from './layout/layout.component';
+import { MakeShoppingComponent } from './pages/make-shopping/make-shopping.component';
 
 const routes: Routes = [
   {
@@ -14,8 +15,10 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: '', component: HomeComponent },
+      { path: 'users', component: UsersComponent },
       { path: 'products', component: UsersComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
+      { path: 'make-shopping', component: MakeShoppingComponent },
     ]
   },
   { path: 'login', component: LoginComponent },

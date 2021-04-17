@@ -1,15 +1,32 @@
 <nav class="navbar navbar-expand-lg bg-dark d-flex align-items-center justify-content-between">
-	
-	<button style="line-height: 0;" (click)="changeClass()" class="btn text-white p-0" id="menu-toggle">
+
+	<button style="line-height: 0;" (click)="changeClass()" class="btn text-white p-0 {{ classSide }}" id="menu-toggle">
 		<span class="material-icons">reorder</span>
 	</button>
 
-	<form class="form-inline">
-		<input class="form-control input-lg mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-		<button class="btn btn-outline-light my-2 my-sm-0 d-block" type="submit">Search</button>
-	</form>
+	<div class="{{ classArrow }}">
+		<a class="btn btn-sm text-white d-block d-sm-none" (click)="changeNewClass()">
+			<span class="material-icons">arrow_back</span>
+		</a>
+	</div>
 
-	<ul class="m-0 d-flex list-inline align-items-center text-center text-light">
+	<div class="{{ classSearch }}">
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="Search">
+			<div class="input-group-append">
+				<button class="btn btn-secondary" style="line-height: 0;">
+					<span class="material-icons">search</span>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<ul class="m-0 list-inline align-items-center text-center text-light {{ classUl }}">
+		<li title="Search" class="nav-item mr-2">
+			<a class="btnSearch btn btn-sm text-reset text-decoration-none d-block d-sm-none" (click)="changeNewClass()">
+				<span class="material-icons">search</span>
+			</a>
+		</li>
 		<li title="Home" class="nav-item mr-2">
 			<a routerLink="/" class="text-reset text-decoration-none">
 				<span class="material-icons">home</span>

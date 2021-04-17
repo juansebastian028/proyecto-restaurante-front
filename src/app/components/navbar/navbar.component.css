@@ -3,3 +3,11 @@
 }
 
 :focus {outline:0 !important;}
+
+.btnSearch{
+    cursor:pointer;
+}
+
+.inputSearch{
+    width: 80% !important;
+}

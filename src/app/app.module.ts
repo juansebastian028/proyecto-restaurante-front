@@ -30,6 +30,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { SelectCityComponent } from './components/select-city/select-city.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LayoutComponent } from './layout/layout.component';
+import { MakeShoppingComponent } from './pages/make-shopping/make-shopping.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { LayoutComponent } from './layout/layout.component';
     ShoppingCartComponent,
     ModalComponent,
     SelectCityComponent,
-    LayoutComponent
+    LayoutComponent,
+    MakeShoppingComponent
   ],
   imports: [
     BrowserModule,
