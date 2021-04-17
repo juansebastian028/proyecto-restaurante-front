@@ -33,6 +33,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { MakeShoppingComponent } from './pages/make-shopping/make-shopping.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
     LayoutComponent,
     MakeShoppingComponent,
     ProductsComponent,
-    EditProductComponent
+    EditProductComponent,
+    CategoriesComponent,
   ],
   imports: [
     BrowserModule,
