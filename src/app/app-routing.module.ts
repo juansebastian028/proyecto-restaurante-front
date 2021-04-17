@@ -8,6 +8,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { LayoutComponent } from './layout/layout.component';
 import { MakeShoppingComponent } from './pages/make-shopping/make-shopping.component';
+import { ProductsComponent } from './pages/products/products.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,7 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       { path: 'users', component: UsersComponent },
-      { path: 'products', component: UsersComponent },
+      { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'make-shopping', component: MakeShoppingComponent },
     ]

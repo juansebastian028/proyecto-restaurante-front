@@ -1,0 +1,38 @@
+<form class="mt-3" #f="ngForm" (ngSubmit)="onProductFormSubmit(f)">
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="name" class="text-info">Nombre</label>
+                <input type="text" class="form-control" id="name" name="name" ngModel autocomplete="off" required>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="state" class="text-info">Estado</label>
+                <select class="form-control" name="state" id="state">
+                    <option value="available" ngModel>Disponible</option>
+                    <option value="unavailable" ngModel>Agotado</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="price" class="text-info">Precio</label>
+                <input type="number" class="form-control" name="price" id="price" ngModel autocomplete="off" required>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="image" class="text-info">Imagen</label>
+                <input type="file" class="form-control-file" id="image">
+            </div>
+        </div>
+        <div class="col-6"></div>
+        <div class="col-3">
+            <input type="submit" name="submit" class="btn btn-success btn-block" value="Guardar">
+        </div>
+        <div class="col-3">
+            <button class="btn btn-danger btn-block">Cancelar</button>
+        </div>
+    </div>
+</form>
