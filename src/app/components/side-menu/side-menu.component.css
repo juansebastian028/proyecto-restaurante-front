@@ -1,14 +1,21 @@
 .wrapper {
     overflow-x: hidden;
+    display: flex;
  }
 
 .sidebar-wrapper {
   min-height: calc(100vh - 54px);
   margin-left: -15rem;
+  background-color: #F8F9FA;
+  border-right: 2px solid #E9ECEF;
   -webkit-transition: margin .25s ease-out;
   -moz-transition: margin .25s ease-out;
   -o-transition: margin .25s ease-out;
   transition: margin .25s ease-out;
+}
+
+.sidebar-group{
+  width: 15rem;
 }
 
 .sidebar-heading {
@@ -16,8 +23,31 @@
   font-size: 1.2rem;
 }
 
-.list-group {
-  width: 15rem;
+.sidebar-item{
+  display: flex;
+  background-color: #F8F9FA;
+  cursor: pointer;
+  width: 100%;
+  border-bottom: 2px solid #E9ECEF;
+}
+
+.sidebar-item:hover{
+  background-color: #E9ECEF;
+}
+
+.sidebar-link{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #4c4c4c;
+  width: 100%;
+  padding: 1rem;
+  font-size: .9rem;
+}
+
+.sidebar-icon{
+  padding-right: .5rem;
+  font-size: 1.5rem;
 }
 
 .wrapper.toggled .sidebar-wrapper {
