@@ -8,6 +8,10 @@ import { HelperService } from '../../services/helper.service';
 })
 export class NavbarComponent implements OnInit {
   public class = "";
+  public classSide = "";
+  public classUl = "d-flex";
+  public classSearch = "d-none d-sm-block";
+  public classArrow = "d-none";
 
   constructor(private helper: HelperService) { }
 
@@ -25,10 +29,6 @@ export class NavbarComponent implements OnInit {
     this.helper.changeMessage(this.class);
   }
 
-  classSide = "";
-  classUl = "d-flex";
-  classSearch = "d-none d-sm-block";
-  classArrow = "d-none";
   changeNewClass(){
     if(this.classSide == ""){
       this.classSide = "d-none d-sm-block";

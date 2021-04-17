@@ -3,21 +3,25 @@
 	  <input matInput type="text" (keyup)="doFilter($event)" placeholder="Filter">
 	</mat-form-field>
 </div>
-<div class="mat-elevation-z8">
-	<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-		<ng-container [matColumnDef]="column" *ngFor="let column of columns">
-			<mat-header-cell *matHeaderCellDef>
-				{{ column }}
-			</mat-header-cell>
-			<mat-cell *matCellDef="let element">
-				{{ element[column] }}
-				<ng-container *ngIf="column === 'Acciones'">
-					<button class="btn btn-sm btn-warning mr-2">Editar</button>
-					<button class="btn btn-sm btn-danger">Eliminar</button>
-				</ng-container>
-			</mat-cell>
-		</ng-container>
-
+<div class="example-container mat-elevation-z8">
+	<mat-table [dataSource]="dataSource">
+			<ng-container [matColumnDef]="column" *ngFor="let column of columns">
+				<mat-header-cell *matHeaderCellDef>
+					{{ column }}
+				</mat-header-cell>
+				<mat-cell *matCellDef="let element">
+					<span class="mobile-label">{{column}}: </span>
+					{{ element[column] }}
+					<ng-container *ngIf="column === 'Acciones'">
+						<button class="btn btn-sm btn-warning text-white mr-2">
+							<span class="material-icons">edit</span>
+						</button>
+						<button class="btn btn-sm btn-danger">
+							<span class="material-icons">delete</span>
+						</button>
+					</ng-container>
+				</mat-cell>
+			</ng-container>
 		<mat-header-row *matHeaderRowDef="columns"></mat-header-row>
 		<mat-row *matRowDef="let row; columns: columns"></mat-row>
 	</mat-table>

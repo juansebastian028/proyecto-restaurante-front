@@ -5,7 +5,7 @@
 
 .sidebar-wrapper {
   min-height: calc(100vh - 54px);
-  margin-left: -15rem;
+  margin-left: -17rem;
   background-color: #F8F9FA;
   border-right: 2px solid #E9ECEF;
   -webkit-transition: margin .25s ease-out;
@@ -15,7 +15,7 @@
 }
 
 .sidebar-group{
-  width: 15rem;
+  width: 17rem;
 }
 
 .sidebar-heading {
