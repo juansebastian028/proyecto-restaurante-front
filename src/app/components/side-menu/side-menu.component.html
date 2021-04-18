@@ -1,33 +1,38 @@
-<div class="wrapper {{ class }}">
-  <div class="sidebar-wrapper">
-    <div class="sidebar-heading">El Colombiano Hambriento</div>
-    <div class="sidebar-group">
+<div class="sidebar" [ngClass]="sideMenuClass">
+  <div class="sidebar-heading">El Colombiano Hambriento</div>
+  <div class="sidebar-group">
 
-      <div class="sidebar-item">     
-        <a routerLink="/users" class="sidebar-link">
-          <span class="sidebar-icon material-icons">person</span>
-          Usuarios
-        </a>
-      </div>
+    <div class="sidebar-item">     
+      <a routerLink="/users" class="sidebar-link">
+        <span class="sidebar-icon material-icons">person</span>
+        Usuarios
+      </a>
+    </div>
 
-      <div ngbDropdown placement="right" class="sidebar-item">
-        <a class="sidebar-link" id="dropdownBasic2" ngbDropdownToggle>
+    <div class="sidebar-item">
+      <a class="sidebar-link" (click)="displaySubMenu()">
         <span class="sidebar-icon material-icons">restaurant_menu</span>       
         Productos
+        <span class="down-arrow-icon material-icons">
+          keyboard_arrow_down
+        </span>
       </a>
-      <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-        <a  ngbDropdownItem routerLink="/products">Gestionar</a>
-        <a  ngbDropdownItem routerLink="/categories">Categorias</a>
-        <a  ngbDropdownItem href="#">Grupo Modificador</a>
-        <a  ngbDropdownItem href="#">Modificador</a>
-      </div>
-      </div>
+    </div>
 
-    </div>
-  </div>
-  <div class="page-content-wrapper w-100">
-    <div class="container-fluid">
-      <router-outlet></router-outlet>
-    </div>
+    <ul class="sub-menu" [ngClass]="{'active': subMenuStatus}">
+      <li class="sub-menu-item"> 
+        <a  class="sub-menu-link" routerLink="/products">Gestionar</a> 
+      </li>
+      <li class="sub-menu-item"> 
+        <a class="sub-menu-link" routerLink="/categories">Categorias</a> 
+      </li>
+      <li class="sub-menu-item"> 
+        <a class="sub-menu-link" href="#">Grupo Modificador</a>
+      </li>
+      <li class="sub-menu-item">
+        <a class="sub-menu-link" href="#">Modificador</a>
+      </li>
+    </ul>
+
   </div>
 </div>

@@ -7,10 +7,10 @@ import { HelperService } from '../../services/helper.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  public class = "";
-  public classSide = "";
+  public class = '';
+  public classSide = '';
   public classUl = "d-flex";
-  public classSearch = "d-none d-sm-block";
+  public classSearch = ["d-none","d-sm-block"];
   public classArrow = "d-none";
 
   constructor(private helper: HelperService) { }
@@ -32,12 +32,12 @@ export class NavbarComponent implements OnInit {
   changeNewClass(){
     if(this.classSide == ""){
       this.classSide = "d-none d-sm-block";
-      this.classSearch = "d-block d-sm-none inputSearch";
+      this.classSearch = ["d-block", "d-sm-none", "inputSearch"];
       this.classUl = "d-none";
       this.classArrow = "d-block";
     }else{
       this.classSide = "";
-      this.classSearch = "d-none d-sm-block"
+      this.classSearch = ["d-none", "d-sm-block"]
       this.classUl = "d-flex";
       this.classArrow = "d-none";
     }

@@ -7,10 +7,17 @@ import { HelperService } from 'src/app/services/helper.service';
   styleUrls: ['./side-menu.component.css'],
 })
 export class SideMenuComponent implements OnInit {
-  class: string = "";
+  
+  sideMenuClass: string = "";
+  subMenuStatus: boolean = false;
   constructor(private helper: HelperService){  }
 
   ngOnInit(): void {
-    this.helper.customMessage.subscribe(msg => this.class = msg);
+    this.helper.customMessage.subscribe(msg => this.sideMenuClass = msg);
   }
+
+  displaySubMenu(){
+    this.subMenuStatus = !this.subMenuStatus;  
+  }
+    
 }
