@@ -17,6 +17,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.helper.customMessage.subscribe(msg => this.class = msg);
+    console.log(this.classUl)
   }
 
   public changeClass(){
