@@ -9,9 +9,9 @@
         <div class="col-6">
             <div class="form-group">
                 <label for="state" class="text-info">Estado</label>
-                <select class="form-control" name="state" id="state">
-                    <option value="available" ngModel>Disponible</option>
-                    <option value="unavailable" ngModel>Agotado</option>
+                <select class="form-control" name="state" id="state" ngModel required>
+                    <option value="available">Disponible</option>
+                    <option value="unavailable">Agotado</option>
                 </select>
             </div>
         </div>
@@ -27,11 +27,10 @@
                 <input type="file" class="form-control-file" id="image">
             </div>
         </div>
-        <div class="col-6"></div>
-        <div class="col-3">
+        <div class="col-6">
             <input type="submit" name="submit" class="btn btn-success btn-block" value="Guardar">
         </div>
-        <div class="col-3">
+        <div class="col-6">
             <button class="btn btn-danger btn-block">Cancelar</button>
         </div>
     </div>

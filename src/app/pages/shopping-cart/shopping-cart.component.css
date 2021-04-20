@@ -1,16 +1,10 @@
-.content-cart{
-    display: flex;
-    align-items: center;
-}
-
 .content-buy{
 	position: fixed;
     right: 0;
     bottom: 0;
-    z-index: 1030;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
     .content-buy{
         position: relative;
     }
