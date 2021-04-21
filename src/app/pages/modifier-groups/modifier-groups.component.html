@@ -1,1 +1,11 @@
-<p>modifier-groups works!</p>
+<div class="container-fluid mt-5">
+	<app-tabs>
+		<app-tab [tabTitle]="'Grupo Modificador'">
+			<app-table [columns]="modifierGroupsColumns" [rows]="modifierGroupsRows"></app-table>
+		</app-tab>
+		<app-tab [tabTitle]="'Agregar'">
+            <app-edit-modifier-group></app-edit-modifier-group>
+		</app-tab>
+	</app-tabs>
+</div>
+

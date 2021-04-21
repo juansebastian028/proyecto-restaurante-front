@@ -41,6 +41,7 @@ import { EditCityComponent } from './components/edit-city/edit-city.component';
 import { ModifiersComponent } from './pages/modifiers/modifiers.component';
 import { ModifierGroupsComponent } from './pages/modifier-groups/modifier-groups.component';
 import { BranchesComponent } from './pages/branches/branches.component';
+import { EditModifierGroupComponent } from './components/edit-modifier-group/edit-modifier-group.component';
 
 
 
@@ -74,6 +75,7 @@ import { BranchesComponent } from './pages/branches/branches.component';
     ModifiersComponent,
     ModifierGroupsComponent,
     BranchesComponent,
+    EditModifierGroupComponent,
   ],
   imports: [
     BrowserModule,
