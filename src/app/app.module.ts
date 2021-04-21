@@ -39,6 +39,9 @@ import { CategoriesComponent } from './pages/categories/categories.component';
 import { CitiesComponent } from './pages/cities/cities.component';
 import { EditCityComponent } from './components/edit-city/edit-city.component';
 import { EditCategoryComponent } from './components/edit-category/edit-category.component';
+import { ModifiersComponent } from './pages/modifiers/modifiers.component';
+import { ModifierGroupsComponent } from './pages/modifier-groups/modifier-groups.component';
+import { BranchesComponent } from './pages/branches/branches.component';
 
 
 
@@ -69,7 +72,10 @@ import { EditCategoryComponent } from './components/edit-category/edit-category.
     CategoriesComponent,
     CitiesComponent,
     EditCityComponent,
-    EditCategoryComponent
+    EditCategoryComponent,
+    ModifiersComponent,
+    ModifierGroupsComponent,
+    BranchesComponent,
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,9 @@ import { MakeShoppingComponent } from './pages/make-shopping/make-shopping.compo
 import { ProductsComponent } from './pages/products/products.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { CitiesComponent } from './pages/cities/cities.component';
+import { ModifierGroupsComponent } from './pages/modifier-groups/modifier-groups.component';
+import { ModifiersComponent } from './pages/modifiers/modifiers.component';
+import { BranchesComponent } from './pages/branches/branches.component';
 
 const routes: Routes = [
   {
@@ -19,10 +22,13 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       { path: 'users', component: UsersComponent },
-      { path: 'products', component: ProductsComponent},
-      {path: 'categories', component: CategoriesComponent},
+      { path: 'products', component: ProductsComponent },
+      { path: 'categories', component: CategoriesComponent },
+      { path: 'modifier-groups', component: ModifierGroupsComponent },
+      { path: 'modifiers', component: ModifiersComponent},
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'make-shopping', component: MakeShoppingComponent },
+      { path: 'branches', component: BranchesComponent },
       { path: 'cities', component: CitiesComponent },
     ]
   },
