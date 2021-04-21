@@ -10,6 +10,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { MakeShoppingComponent } from './pages/make-shopping/make-shopping.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
+import { CitiesComponent } from './pages/cities/cities.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
       {path: 'categories', component: CategoriesComponent},
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'make-shopping', component: MakeShoppingComponent },
+      { path: 'cities', component: CitiesComponent },
     ]
   },
   { path: 'login', component: LoginComponent },

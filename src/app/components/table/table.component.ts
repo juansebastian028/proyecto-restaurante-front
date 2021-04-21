@@ -25,9 +25,11 @@ export class TableComponent implements OnInit {
     const value = element.value;
     this.dataSource.filter = value.trim().toLocaleLowerCase();
   }
+  
   ngOnInit(): void {
     this.columns = [...this.columns, 'Acciones'];
     this.dataSource.data = this.rows;
+    console.log(this.rows)
     this.dataSource.paginator = this.paginator;
   }
 }

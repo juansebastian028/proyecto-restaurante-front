@@ -14,7 +14,7 @@ export class ProductsComponent implements OnInit {
     "Estado": "Disponible",
     "Precio": 40000
     }
-];
+  ];
   
   productsColumns = Object.keys(this.productsRows[0]);
 

@@ -1,0 +1,12 @@
+<div class="container-fluid mt-5">
+	<ng-container *ngIf="citiesRows.length > 0">
+		<app-tabs>
+			<app-tab [tabTitle]="'Productos'">
+				<app-table [columns]="citiesColumns" [rows]="citiesRows"></app-table>
+			</app-tab>
+			<app-tab [tabTitle]="'Agregar'">
+				<app-edit-city></app-edit-city>
+			</app-tab>
+		</app-tabs>
+	</ng-container>
+</div>

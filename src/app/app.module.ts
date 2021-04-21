@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormLoginComponent } from './components/auth-forms/form-login/login.component';
@@ -34,6 +36,10 @@ import { MakeShoppingComponent } from './pages/make-shopping/make-shopping.compo
 import { ProductsComponent } from './pages/products/products.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
+import { CitiesComponent } from './pages/cities/cities.component';
+import { EditCityComponent } from './components/edit-city/edit-city.component';
+
+
 
 @NgModule({
   declarations: [
@@ -60,6 +66,8 @@ import { CategoriesComponent } from './pages/categories/categories.component';
     ProductsComponent,
     EditProductComponent,
     CategoriesComponent,
+    CitiesComponent,
+    EditCityComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +76,8 @@ import { CategoriesComponent } from './pages/categories/categories.component';
     MatIconModule,
     BrowserAnimationsModule,
     MaterialModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [ HelperService ],
   bootstrap: [AppComponent]
