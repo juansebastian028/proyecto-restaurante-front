@@ -11,16 +11,14 @@ export class CitiesComponent implements OnInit {
 
   citiesRows: City[] = [];
   
-  citiesColumns:any = [];
+  citiesColumns:Array<string> = [];
 
   constructor(private _city: CityService) { }
 
   ngOnInit(): void {
     this._city.getCities().subscribe(data => {
       this.citiesRows = data;
-      console.log(this.citiesRows)
       this.citiesColumns = Object.keys(this.citiesRows[0]);
-      console.log(this.citiesColumns)
     });
   }
 
