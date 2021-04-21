@@ -42,6 +42,8 @@ import { EditCategoryComponent } from './components/edit-category/edit-category.
 import { ModifiersComponent } from './pages/modifiers/modifiers.component';
 import { ModifierGroupsComponent } from './pages/modifier-groups/modifier-groups.component';
 import { BranchesComponent } from './pages/branches/branches.component';
+import { EditModifierComponent } from './components/edit-modifier/edit-modifier.component';
+import { EditBranchComponent } from './components/edit-branch/edit-branch.component';
 
 
 
@@ -76,6 +78,8 @@ import { BranchesComponent } from './pages/branches/branches.component';
     ModifiersComponent,
     ModifierGroupsComponent,
     BranchesComponent,
+    EditModifierComponent,
+    EditBranchComponent,
   ],
   imports: [
     BrowserModule,

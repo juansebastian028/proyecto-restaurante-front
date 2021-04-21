@@ -1,1 +1,22 @@
-<p>branches works!</p>
+<div class="container-fluid mt-5">
+	<ng-container>
+		<app-tabs>
+			<app-tab [tabTitle]="'Sucursales'">
+				<app-table [columns]="branchesColumns" [rows]="branchesRows"></app-table>
+			</app-tab>
+			<app-tab [tabTitle]="'Agregar'">
+				<app-edit-branch></app-edit-branch>
+			</app-tab>
+			<app-tab [tabTitle]="'Productos por Sucursal'">
+				<div class="my-3">
+					<label for="branh">Sucursal:</label>
+					<select class="form-control" name="branch" id="branch">
+						<option value="P">Restaurante hambriento Pereira</option>
+						<option value="C" selected>Restaurante hambriento Cali</option>
+					</select>
+				</div>
+				<app-table [columns]="productsColumns" [rows]="productsRows"></app-table>
+			</app-tab>
+		</app-tabs>
+	</ng-container>
+</div>

@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./modifiers.component.css']
 })
 export class ModifiersComponent implements OnInit {
+  
+  citiesRows: [] = [];
+  
+  citiesColumns:Array<string> = [];
 
   constructor() { }
 

@@ -7,6 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BranchesComponent implements OnInit {
 
+  branchesRows: [] = [];
+  
+  branchesColumns:Array<string> = [];
+
+  productsRows = [
+    {"name": "Helado"},
+    {"name": "Jugo"}
+  ];
+  
+  productsColumns:Array<string> = ["name"];
+
   constructor() { }
 
   ngOnInit(): void {
