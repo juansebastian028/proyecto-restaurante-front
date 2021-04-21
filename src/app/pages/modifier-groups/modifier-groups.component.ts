@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModifierGroupsComponent implements OnInit {
 
+  modifierGroupsRows: any = [];
+  
+  modifierGroupsColumns: any = [];
   constructor() { }
 
   ngOnInit(): void {

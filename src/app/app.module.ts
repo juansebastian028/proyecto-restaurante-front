@@ -44,6 +44,7 @@ import { ModifierGroupsComponent } from './pages/modifier-groups/modifier-groups
 import { BranchesComponent } from './pages/branches/branches.component';
 import { EditModifierComponent } from './components/edit-modifier/edit-modifier.component';
 import { EditBranchComponent } from './components/edit-branch/edit-branch.component';
+import { EditModifierGroupComponent } from './components/edit-modifier-group/edit-modifier-group.component';
 
 
 
@@ -80,6 +81,7 @@ import { EditBranchComponent } from './components/edit-branch/edit-branch.compon
     BranchesComponent,
     EditModifierComponent,
     EditBranchComponent,
+    EditModifierGroupComponent,
   ],
   imports: [
     BrowserModule,
