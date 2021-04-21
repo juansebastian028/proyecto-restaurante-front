@@ -1,1 +1,12 @@
-<p>categories works!</p>
+<div class="container-fluid mt-5">
+	<ng-container>
+		<app-tabs>
+			<app-tab [tabTitle]="'Categorias'">
+				<app-table [columns]="categoriesColumns" [rows]="categoriesRows"></app-table>
+			</app-tab>
+			<app-tab [tabTitle]="'Agregar'">
+				<app-edit-city></app-edit-city>
+			</app-tab>
+		</app-tabs>
+	</ng-container>
+</div>

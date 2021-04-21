@@ -38,6 +38,7 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { CitiesComponent } from './pages/cities/cities.component';
 import { EditCityComponent } from './components/edit-city/edit-city.component';
+import { EditCategoryComponent } from './components/edit-category/edit-category.component';
 
 
 
@@ -67,7 +68,8 @@ import { EditCityComponent } from './components/edit-city/edit-city.component';
     EditProductComponent,
     CategoriesComponent,
     CitiesComponent,
-    EditCityComponent
+    EditCityComponent,
+    EditCategoryComponent
   ],
   imports: [
     BrowserModule,
