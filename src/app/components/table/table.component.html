@@ -5,25 +5,31 @@
 </div>
 <div class="example-container mat-elevation-z8">
 	<mat-table [dataSource]="dataSource">
-			<ng-container [matColumnDef]="column" *ngFor="let column of columns">
+			<ng-container *ngFor="let column of dataColumns; let i = index" [matColumnDef]="column.key">
 				<mat-header-cell *matHeaderCellDef>
-					{{ column }}
+					{{ dataColumns[i]["display"] }}
 				</mat-header-cell>
 				<mat-cell *matCellDef="let element">
-					<span class="mobile-label">{{column}}: </span>
-					{{ element[column] }}
-					<ng-container *ngIf="column === 'Acciones'">
-						<button class="btn btn-sm btn-warning text-white mr-2">
-							<span class="material-icons">edit</span>
-						</button>
-						<button class="btn btn-sm btn-danger">
-							<span class="material-icons">delete</span>
-						</button>
+					<ng-container *ngIf="!column.config; else hasConfig">
+						<span class="mobile-label">{{ dataColumns[i]["display"] }}: </span>
+						{{ element[column.key] }}
 					</ng-container>
-				</mat-cell>
+					<ng-template #hasConfig>
+						<ng-container *ngIf="column.config.isAction">
+							<button
+								*ngFor="let action of column.config.actions"
+								class="btn-sm mx-1"
+								[ngClass]="action.class"
+								mat-button
+								>
+								<span class="material-icons text-white">{{action.icon}}</span>
+								</button>
+						</ng-container>	
+					</ng-template>
+				</mat-cell>		
 			</ng-container>
-		<mat-header-row *matHeaderRowDef="columns"></mat-header-row>
-		<mat-row *matRowDef="let row; columns: columns"></mat-row>
+		<mat-header-row *matHeaderRowDef="keys"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: keys"></mat-row>
 	</mat-table>
 	<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>

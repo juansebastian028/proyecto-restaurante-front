@@ -22,8 +22,14 @@
 					<input type="text" class="form-control" id="direccion" name="direccion" ngModel autocomplete="off" disabled required>
 				</div>
 			</div>
-			<button class="btn btn-success w-25 mr-2" disabled>Pagar</button>
-			<button class="btn btn-danger w-25" routerLink="/shopping-cart">Volver</button>
+			<div class="col-12 d-flex justify-content-center p-0">
+				<div class="col-6 pl-0">
+					<button class="btn btn-danger btn-block">Cancelar</button>
+				</div>
+				<div class="col-6 pr-0">
+					<button class="btn btn-success btn-block" disabled>Pagar</button>
+				</div>
+			</div>
 		</div>
 	</div>   
 </form>

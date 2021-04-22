@@ -9,7 +9,8 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 
 export class TableComponent implements OnInit {
-  @Input() columns: string[] = [];
+  @Input() columns: any[] = [];
+  dataColumns: any[] = [];
   @Input() rows: any[] = [];
   
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
@@ -25,11 +26,15 @@ export class TableComponent implements OnInit {
     const value = element.value;
     this.dataSource.filter = value.trim().toLocaleLowerCase();
   }
+
+
+  get keys() {
+    return this.columns.map(({ key }) => key);
+  }
   
   ngOnInit(): void {
-    this.columns = [...this.columns, 'Acciones'];
+    this.dataColumns = this.columns;
     this.dataSource.data = this.rows;
-    console.log(this.rows)
     this.dataSource.paginator = this.paginator;
   }
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ModalShoppingCartComponent } from '../modal-shopping-cart/modal-shopping-cart.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-card',
@@ -7,16 +9,18 @@ import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 })
 export class CardComponent implements OnInit {
 
-  constructor() { }
-
-  clickEvent !: boolean;
-
-  @Input() sendMessage = new EventEmitter();
-
-  onClick() {
-    this.clickEvent = !this.clickEvent;
-  }
+  productData = {
+    name: 'Bandeja Paisa',
+    img: 'https://bandejapaisa.us/wp-content/uploads/2016/12/Bandeja-Paisa.jpg',
+    price: 15000
+  };
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
+  }
+
+  openModal(){
+    const modalRef = this.modalService.open(ModalShoppingCartComponent);
+    modalRef.componentInstance.productData = this.productData;
   }
 }
