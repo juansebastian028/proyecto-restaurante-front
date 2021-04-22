@@ -1,5 +1,5 @@
 <div class="container mt-5">
-	<ng-container>
+	<ng-container *ngIf="branchesRows.length > 0">
 		<app-tabs>
 			<app-tab [tabTitle]="'Sucursales'">
 				<app-table [columns]="branchesColumns" [rows]="branchesRows"></app-table>
@@ -10,12 +10,11 @@
 			<app-tab [tabTitle]="'Productos por Sucursal'">
 				<div class="my-3">
 					<label for="branh">Sucursal:</label>
-					<select class="form-control" name="branch" id="branch">
-						<option value="P">Restaurante hambriento Pereira</option>
-						<option value="C" selected>Restaurante hambriento Cali</option>
+					<select class="form-control" name="branch" id="branch" #selectBranch (change)="changeBranch(selectBranch.value)">
+						<option *ngFor="let branch of branchesRows" [value]="branch.id">{{ branch.name }}</option>
 					</select>
 				</div>
-				<app-table [columns]="productsColumns" [rows]="productsRows"></app-table>
+				<app-table [columns]="branchesColumns" [rows]="branchesRows"></app-table>
 			</app-tab>
 		</app-tabs>
 	</ng-container>

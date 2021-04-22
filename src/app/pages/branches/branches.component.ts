@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BranchOffice } from 'src/app/interfaces/branch-office';
+import { BranchOfficeService } from 'src/app/services/branch-office/branch-office.service';
 
 @Component({
   selector: 'app-branches',
@@ -7,20 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BranchesComponent implements OnInit {
 
-  branchesRows: [] = [];
+  branchesRows: BranchOffice[] = [];
   
-  branchesColumns:Array<string> = [];
-
-  productsRows = [
-    {"name": "Helado"},
-    {"name": "Jugo"}
+  branchesColumns = [
+    { key: 'id', display: 'Sucursal id' },
+    { key: 'name', display: 'Nombre' },
+    { key: 'city', display: 'Ciudad' },
+    {
+      key: 'actions',
+      display: 'Acciones',
+      config: { isAction: true, actions: [
+        {class:['btn','btn-danger'], icon: 'delete'}, 
+        {class:['btn' ,'btn-warning'], icon:'edit'}] 
+      },
+    },
   ];
-  
-  productsColumns:Array<string> = ["name"];
 
-  constructor() { }
+  constructor(private _branch: BranchOfficeService) { }
 
   ngOnInit(): void {
+    this._branch.getBranches().subscribe(data => {
+      this.branchesRows = data;
+    });
+  }
+
+  changeBranch(value:string){
+    console.log(value);
   }
 
 }

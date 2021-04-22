@@ -1,5 +1,5 @@
 <div class="container mt-5">
-	<ng-container>
+	<ng-container *ngIf="categoriesRows.length > 0">
 		<app-tabs>
 			<app-tab [tabTitle]="'Categorias'">
 				<app-table [columns]="categoriesColumns" [rows]="categoriesRows"></app-table>

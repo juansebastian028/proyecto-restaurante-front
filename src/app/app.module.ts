@@ -26,7 +26,7 @@ import { TabsComponent } from './components/tabs/tabs/tabs.component';
 import { TabComponent } from './components/tabs/tab/tab.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 
-import { HelperService } from './services/helper.service';
+import { HelperToggleService } from './services/helper-toggle/helper-toggle.service';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { SelectCityComponent } from './components/select-city/select-city.component';
@@ -95,7 +95,7 @@ import { ModalShoppingCartComponent } from './components/modal-shopping-cart/mod
     NgbModule,
     HttpClientModule
   ],
-  providers: [ HelperService ],
+  providers: [ HelperToggleService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

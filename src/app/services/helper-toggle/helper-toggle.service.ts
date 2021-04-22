@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class HelperService {
+export class HelperToggleService {
 
   constructor() { }
 

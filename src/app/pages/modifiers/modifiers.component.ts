@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Modifier } from 'src/app/interfaces/modifier';
+import { ModifierService } from 'src/app/services/modifier/modifier.service';
 
 @Component({
   selector: 'app-modifiers',
@@ -7,13 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModifiersComponent implements OnInit {
   
-  citiesRows: [] = [];
+  modifiersRows: Modifier[] = [];
   
-  citiesColumns:Array<string> = [];
+  modifiersColumns = [
+    { key: 'id', display: 'Modificador id' },
+    { key: 'name', display: 'Nombre' },
+    { key: 'price', display: 'Precio' },
+    {
+      key: 'actions',
+      display: 'Acciones',
+      config: { isAction: true, actions: [
+        {class:['btn','btn-danger'], icon: 'delete'}, 
+        {class:['btn' ,'btn-warning'], icon:'edit'}] 
+      },
+    },
+  ];
 
-  constructor() { }
+  constructor(private _modifier: ModifierService) { }
 
   ngOnInit(): void {
+    this._modifier.getModifiers().subscribe(data => {
+      this.modifiersRows = data;
+    });
   }
-
 }

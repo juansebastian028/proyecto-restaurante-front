@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HelperService } from '../../services/helper.service';
+import { HelperToggleService } from '../../services/helper-toggle/helper-toggle.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   public classSearch = ["d-none","d-sm-block"];
   public classArrow = "d-none";
 
-  constructor(private helper: HelperService) { }
+  constructor(private helper: HelperToggleService) { }
 
   ngOnInit(): void {
     this.helper.customMessage.subscribe(msg => this.class = msg);

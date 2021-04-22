@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HelperService } from 'src/app/services/helper.service';
+import { HelperToggleService } from 'src/app/services/helper-toggle/helper-toggle.service';
 
 @Component({
   selector: 'app-side-menu',
@@ -10,7 +10,7 @@ export class SideMenuComponent implements OnInit {
   
   sideMenuClass: string = "";
   subMenuStatus: boolean = false;
-  constructor(private helper: HelperService){  }
+  constructor(private helper: HelperToggleService){  }
 
   ngOnInit(): void {
     this.helper.customMessage.subscribe(msg => this.sideMenuClass = msg);
