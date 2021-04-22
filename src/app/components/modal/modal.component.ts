@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -6,16 +6,27 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css']
 })
-export class ModalComponent implements AfterViewInit {
+export class ModalComponent implements AfterViewInit, OnChanges  {
 
   @Input('modalTitle') title!: string;
   @ViewChild('content') content: any;
-  closeResult = '';
 
+  @Input() prop!: boolean;
+  
+  closeResult = '';
+  
   constructor(private modalService: NgbModal) {}
+  
+  ngOnChanges() {
+    if(this.prop || !this.prop){
+      this.openModal();
+    }
+  }
 
   ngAfterViewInit() {
-    this.openModal();
+    if(!this.prop){
+      this.openModal();
+    }
   }
 
   openModal(){

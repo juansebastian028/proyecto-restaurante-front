@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -9,7 +9,14 @@ export class CardComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  clickEvent !: boolean;
+
+  @Input() sendMessage = new EventEmitter();
+
+  onClick() {
+    this.clickEvent = !this.clickEvent;
   }
 
+  ngOnInit(): void {
+  }
 }

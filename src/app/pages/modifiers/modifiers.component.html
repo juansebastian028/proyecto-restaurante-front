@@ -1,1 +1,12 @@
-<p>modifiers works!</p>
+<div class="container-fluid mt-5">
+	<ng-container>
+		<app-tabs>
+			<app-tab [tabTitle]="'Modificadores'">
+				<app-table [columns]="citiesColumns" [rows]="citiesRows"></app-table>
+			</app-tab>
+			<app-tab [tabTitle]="'Agregar'">
+				<app-edit-modifier></app-edit-modifier>
+			</app-tab>
+		</app-tabs>
+	</ng-container>
+</div>
