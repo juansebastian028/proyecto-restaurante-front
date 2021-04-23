@@ -11,7 +11,37 @@
                 <img class="img-fluid" [src]="productData?.img" alt="product">
             </div>
             <div class="col-12 col-lg-6">
-                <!--Aqui va el formulario-->
+                <h4 class="pt-2">{{ 15000 | currency }}</h4>
+                <div class="container-fluid py-2 px-0">
+                    <h5>Sabor</h5>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          Vainilla
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          Chocolate
+                        </label>
+                      </div>
+                </div>
+                <div class="container-fluid py-2 px-0">
+                    <h5>Adicionales</h5>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                          Chispitas de chocolate
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                        <label class="form-check-label" for="defaultCheck2">
+                          Salsa de piña
+                        </label>
+                      </div>
+                </div>
             </div>
         </div>
     </div>
