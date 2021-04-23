@@ -47,6 +47,8 @@ import { EditBranchComponent } from './components/edit-branch/edit-branch.compon
 import { EditModifierGroupComponent } from './components/edit-modifier-group/edit-modifier-group.component';
 import { ModalShoppingCartComponent } from './components/modal-shopping-cart/modal-shopping-cart.component';
 import { OrdersComponent } from './pages/orders/orders.component';
+import { ModalOrderComponent } from './components/modal-order/modal-order.component';
+import { MyAccountComponent } from './pages/my-account/my-account.component';
 
 
 
@@ -86,6 +88,8 @@ import { OrdersComponent } from './pages/orders/orders.component';
     EditModifierGroupComponent,
     ModalShoppingCartComponent,
     OrdersComponent,
+    ModalOrderComponent,
+    MyAccountComponent,
   ],
   imports: [
     BrowserModule,

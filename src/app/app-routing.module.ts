@@ -15,6 +15,7 @@ import { ModifierGroupsComponent } from './pages/modifier-groups/modifier-groups
 import { ModifiersComponent } from './pages/modifiers/modifiers.component';
 import { BranchesComponent } from './pages/branches/branches.component';
 import { OrdersComponent } from './pages/orders/orders.component';
+import { MyAccountComponent } from './pages/my-account/my-account.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,7 @@ const routes: Routes = [
       { path: 'branches', component: BranchesComponent },
       { path: 'cities', component: CitiesComponent },
       { path: 'orders', component: OrdersComponent },
+      { path: 'my-account', component: MyAccountComponent },
     ]
   },
   { path: 'login', component: LoginComponent },
