@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{orderData?.name}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <img class="img-fluid" [src]="orderData?.img" alt="product">
+            </div>
+            <div class="col-12 col-lg-6">
+                <!--Aqui va el formulario-->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-warning">Finalizar Pedido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
