@@ -5,6 +5,7 @@
 </div>
 <div class="example-container mat-elevation-z8">
 	<mat-table [dataSource]="dataSource">
+			<div *matNoDataRow class="p-2 text-center">{{infoMessage}}</div>
 			<ng-container *ngFor="let column of dataColumns; let i = index" [matColumnDef]="column.key">
 				<mat-header-cell *matHeaderCellDef>
 					{{ dataColumns[i]["display"] }}

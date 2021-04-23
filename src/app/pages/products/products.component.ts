@@ -16,7 +16,7 @@ export class ProductsComponent implements OnInit {
     }
   ];
   
-  productsColumns = Object.keys(this.productsRows[0]);
+  productsColumns: any = [];
 
   constructor() { }
 

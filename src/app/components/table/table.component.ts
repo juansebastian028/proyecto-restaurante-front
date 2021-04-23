@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 
@@ -8,14 +8,14 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./table.component.css']
 })
 
-export class TableComponent implements OnInit {
-  @Input() columns: any[] = [];
-  dataColumns: any[] = [];
-  @Input() rows: any[] = [];
+export class TableComponent implements OnInit, OnChanges {
   
+  @Input() dataColumns: any[] = [];
+  @Input() dataRows: any[] = []; 
+  @Output() RefreshColumns = new EventEmitter<any>();
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
-
-  public dataSource = new MatTableDataSource<any>();
+  dataSource = new MatTableDataSource<any>();
+  infoMessage:string = '';
   
   constructor() {
     
@@ -27,14 +27,22 @@ export class TableComponent implements OnInit {
     this.dataSource.filter = value.trim().toLocaleLowerCase();
   }
 
+  ngOnChanges(changes: SimpleChanges): void{
 
+    if(changes && changes.dataRows.currentValue){
+      this.infoMessage = 'No se encontraron registros';
+      this.dataSource = new MatTableDataSource(this.dataRows);
+      this.dataSource.paginator = this.paginator;
+    }
+  }
+  
+  
   get keys() {
-    return this.columns.map(({ key }) => key);
+    return this.dataColumns.map(({ key }) => key);
   }
   
   ngOnInit(): void {
-    this.dataColumns = this.columns;
-    this.dataSource.data = this.rows;
-    this.dataSource.paginator = this.paginator;
+    this.dataSource = new MatTableDataSource(this.dataRows);
+    this.infoMessage = 'Cargando...';
   }
 }

@@ -14,6 +14,7 @@ import { CitiesComponent } from './pages/cities/cities.component';
 import { ModifierGroupsComponent } from './pages/modifier-groups/modifier-groups.component';
 import { ModifiersComponent } from './pages/modifiers/modifiers.component';
 import { BranchesComponent } from './pages/branches/branches.component';
+import { OrdersComponent } from './pages/orders/orders.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
       { path: 'make-shopping', component: MakeShoppingComponent },
       { path: 'branches', component: BranchesComponent },
       { path: 'cities', component: CitiesComponent },
+      { path: 'orders', component: OrdersComponent },
     ]
   },
   { path: 'login', component: LoginComponent },

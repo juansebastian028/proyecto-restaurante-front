@@ -9,8 +9,7 @@ import { CityService } from 'src/app/services/city/city.service';
 })
 export class CitiesComponent implements OnInit {
 
-  citiesRows: City[] = [];
-
+  citiesRows: City[] = []; 
   citiesColumns = [
     { key: 'id', display: 'Ciudad id' },
     { key: 'name', display: 'Nombre' },
@@ -28,7 +27,7 @@ export class CitiesComponent implements OnInit {
 
   ngOnInit(): void {
     this._city.getCities().subscribe(data => {
-      this.citiesRows = data;
+      this.citiesRows =  data;
     });
   }
 }

@@ -1,12 +1,10 @@
 <div class="container mt-5">
-	<ng-container *ngIf="categoriesRows.length > 0">
-		<app-tabs>
-			<app-tab [tabTitle]="'Categorias'">
-				<app-table [columns]="categoriesColumns" [rows]="categoriesRows"></app-table>
-			</app-tab>
-			<app-tab [tabTitle]="'Agregar'">
-				<app-edit-category></app-edit-category>
-			</app-tab>
-		</app-tabs>
-	</ng-container>
+	<app-tabs>
+		<app-tab [tabTitle]="'Categorias'">
+			<app-table [dataColumns]="categoriesColumns" [dataRows]="categoriesRows"></app-table>
+		</app-tab>
+		<app-tab [tabTitle]="'Agregar'">
+			<app-edit-category></app-edit-category>
+		</app-tab>
+	</app-tabs>
 </div>

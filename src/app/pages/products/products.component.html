@@ -1,7 +1,7 @@
 <div class="container mt-5">
 	<app-tabs>
 		<app-tab [tabTitle]="'Productos'">
-			<app-table [columns]="productsColumns" [rows]="productsRows"></app-table>
+			<app-table [dataColumns]="productsColumns" [dataRows]="productsRows"></app-table>
 		</app-tab>
 		<app-tab [tabTitle]="'Agregar'">
 			<app-edit-product></app-edit-product>

@@ -1,12 +1,40 @@
 <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Product</h4>
+    <h4 class="modal-title" id="modal-basic-title">{{productData?.name}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body">
-    <img class="img-fluid" [src]="productData?.img" alt="product">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <img class="img-fluid" [src]="productData?.img" alt="product">
+            </div>
+            <div class="col-12 col-lg-6">
+                <!--Aqui va el formulario-->
+            </div>
+        </div>
+    </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="activeModal.close('Save click')">Save</button>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="d-flex justify-content-end">
+                    <div class="d-flex quantity-select mx-auto mx-md-0">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button class="btn btn-light d-flex align-items-center">
+                                <span class="material-icons">remove</span>
+                            </button>
+                            <button class="btn btn-light">1</button>
+                            <button class="btn btn-light d-flex align-items-center">
+                                <span class="material-icons">add</span>
+                            </button>
+                            <button type="button" class="btn btn-primary" (click)="activeModal.close('Save click')">Añadir al carrito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

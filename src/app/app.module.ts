@@ -28,7 +28,7 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 import { HelperToggleService } from './services/helper-toggle/helper-toggle.service';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
-import { ModalComponent } from './components/modal/modal.component';
+import { ModalSelectCityComponent } from './components/modal-select-city/modal-select-city.component';
 import { SelectCityComponent } from './components/select-city/select-city.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LayoutComponent } from './layout/layout.component';
@@ -46,6 +46,7 @@ import { EditModifierComponent } from './components/edit-modifier/edit-modifier.
 import { EditBranchComponent } from './components/edit-branch/edit-branch.component';
 import { EditModifierGroupComponent } from './components/edit-modifier-group/edit-modifier-group.component';
 import { ModalShoppingCartComponent } from './components/modal-shopping-cart/modal-shopping-cart.component';
+import { OrdersComponent } from './pages/orders/orders.component';
 
 
 
@@ -67,7 +68,7 @@ import { ModalShoppingCartComponent } from './components/modal-shopping-cart/mod
     TabComponent,
     EditUserComponent,
     ShoppingCartComponent,
-    ModalComponent,
+    ModalSelectCityComponent,
     SelectCityComponent,
     LayoutComponent,
     MakeShoppingComponent,
@@ -84,6 +85,7 @@ import { ModalShoppingCartComponent } from './components/modal-shopping-cart/mod
     EditBranchComponent,
     EditModifierGroupComponent,
     ModalShoppingCartComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,

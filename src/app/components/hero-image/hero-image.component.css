@@ -22,7 +22,7 @@
 }
 
 .hero-image-brand{
-  max-width: 15%;
+  width: 20%;
   display: block;
   color: #fff;
   margin-bottom: .5rem;
@@ -35,12 +35,20 @@
   }
 
   .hero-image-brand{
-    max-width: 25%;
+    width: 40%;
   }
 
 }
 
 @media only screen and (max-width: 600px) {
+  
+  .hero-image-text {
+    font-size: 1.5rem;
+  }
+
+}
+
+@media only screen and (max-width: 350px) {
   
   .hero-image-text {
     font-size: 1rem;

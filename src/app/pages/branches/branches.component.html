@@ -1,21 +1,19 @@
 <div class="container mt-5">
-	<ng-container *ngIf="branchesRows.length > 0">
-		<app-tabs>
-			<app-tab [tabTitle]="'Sucursales'">
-				<app-table [columns]="branchesColumns" [rows]="branchesRows"></app-table>
-			</app-tab>
-			<app-tab [tabTitle]="'Agregar'">
-				<app-edit-branch></app-edit-branch>
-			</app-tab>
-			<app-tab [tabTitle]="'Productos por Sucursal'">
-				<div class="my-3">
-					<label for="branh">Sucursal:</label>
-					<select class="form-control" name="branch" id="branch" #selectBranch (change)="changeBranch(selectBranch.value)">
-						<option *ngFor="let branch of branchesRows" [value]="branch.id">{{ branch.name }}</option>
-					</select>
-				</div>
-				<app-table [columns]="branchesColumns" [rows]="branchesRows"></app-table>
-			</app-tab>
-		</app-tabs>
-	</ng-container>
+	<app-tabs>
+		<app-tab [tabTitle]="'Sucursales'">
+			<app-table [dataColumns]="branchesColumns" [dataRows]="branchesRows"></app-table>
+		</app-tab>
+		<app-tab [tabTitle]="'Agregar'">
+			<app-edit-branch></app-edit-branch>
+		</app-tab>
+		<app-tab [tabTitle]="'Productos por Sucursal'">
+			<div class="my-3">
+				<label for="branh">Sucursal:</label>
+				<select class="form-control" name="branch" id="branch" #selectBranch (change)="changeBranch(selectBranch.value)">
+					<option *ngFor="let branch of branchesRows" [value]="branch.id">{{ branch.name }}</option>
+				</select>
+			</div>
+			<app-table [dataColumns]="branchesColumns" [dataRows]="branchesRows"></app-table>
+		</app-tab>
+	</app-tabs>
 </div>

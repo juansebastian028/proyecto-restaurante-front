@@ -2,11 +2,11 @@ import { Component, Input, ViewChild, AfterViewInit } from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.css']
+  selector: 'app-modal-select-city',
+  templateUrl: './modal-select-city.component.html',
+  styleUrls: ['./modal-select-city.component.css']
 })
-export class ModalComponent implements AfterViewInit {
+export class ModalSelectCityComponent implements AfterViewInit {
 
   @Input('modalTitle') title!: string;
   @ViewChild('content') content: any;
