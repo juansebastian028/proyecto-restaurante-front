@@ -9,7 +9,7 @@ import { NgForm } from '@angular/forms';
 export class EditProductComponent implements OnInit {
 
   constructor() { }
-  onProductFormSubmit(f: NgForm){
+  onFormSubmit(f: NgForm){
     console.log(f.value);
   }
   ngOnInit(): void {

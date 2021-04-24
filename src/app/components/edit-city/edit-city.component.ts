@@ -10,7 +10,7 @@ export class EditCityComponent implements OnInit {
 
   constructor() { }
 
-  onProductFormSubmit(f: NgForm){
+  onFormSubmit(f: NgForm){
     console.log(f.value);
   }
 

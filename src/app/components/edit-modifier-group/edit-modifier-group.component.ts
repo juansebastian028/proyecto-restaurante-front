@@ -10,7 +10,7 @@ export class EditModifierGroupComponent implements OnInit {
 
   constructor() { }
 
-  onModifierGroupFormSubmit(f: NgForm) {
+  onFormSubmit(f: NgForm) {
     console.log(f.value);
   }
 

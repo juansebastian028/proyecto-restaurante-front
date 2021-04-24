@@ -13,7 +13,7 @@ export class FormLoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(f: NgForm) {
+  onFormSubmit(f: NgForm) {
     console.log(f.value);
   }
 

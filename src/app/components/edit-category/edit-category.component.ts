@@ -10,7 +10,7 @@ export class EditCategoryComponent implements OnInit {
 
   constructor() { }
 
-  onProductFormSubmit(f: NgForm){
+  onFormSubmit(f: NgForm){
     console.log(f.value);
   }
 

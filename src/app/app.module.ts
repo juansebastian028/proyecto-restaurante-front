@@ -22,8 +22,8 @@ import { TableComponent } from './components/table/table.component';
 import { MaterialModule } from './material/material.module';
 
 import { CardComponent } from './components/card/card.component';
-import { TabsComponent } from './components/tabs/tabs/tabs.component';
-import { TabComponent } from './components/tabs/tab/tab.component';
+import { TabsComponent } from './components/tabs/tabs.component';
+import { TabComponent } from './components/tab/tab.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 import { HelperToggleService } from './services/helper-toggle/helper-toggle.service';

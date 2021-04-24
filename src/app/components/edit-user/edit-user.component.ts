@@ -11,7 +11,7 @@ export class EditUserComponent implements OnInit {
   constructor() { }
   
 
-  onUserFormSubmit(f: NgForm) {
+  onFormSubmit(f: NgForm) {
     console.log(f.value);
   }
   

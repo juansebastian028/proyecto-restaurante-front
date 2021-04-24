@@ -10,7 +10,7 @@ export class FormRegisterComponent implements OnInit {
 
   constructor() { }
 
-  onSubmit(f: NgForm) {
+  onFormSubmit(f: NgForm) {
     console.log(f.value);
   }
 
