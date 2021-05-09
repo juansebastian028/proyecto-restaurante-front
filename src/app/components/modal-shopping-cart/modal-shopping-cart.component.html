@@ -11,37 +11,28 @@
                 <img class="img-fluid" [src]="productData?.img" alt="product">
             </div>
             <div class="col-12 col-lg-6">
-                <h4 class="pt-2">{{ 15000 | currency }}</h4>
-                <div class="container-fluid py-2 px-0">
-                    <h5>Sabor</h5>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                          Vainilla
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                        <label class="form-check-label" for="flexRadioDefault2">
-                          Chocolate
-                        </label>
-                      </div>
-                </div>
-                <div class="container-fluid py-2 px-0">
-                    <h5>Adicionales</h5>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">
-                          Chispitas de chocolate
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                        <label class="form-check-label" for="defaultCheck2">
-                          Salsa de piña
-                        </label>
-                      </div>
-                </div>
+                <h4 class="pt-2">{{ productData?.price | currency }}</h4>
+                <ng-container *ngFor="let modifierGroup of productData?.category.modifier_groups">
+                    <div class="container-fluid py-2 px-0">
+                        <h5>{{modifierGroup?.name}}</h5>
+                        <ng-container *ngFor="let modifier of modifierGroup.modifier">
+                            <div *ngIf="modifierGroup?.selection_type === 'U'; else elseBlock" class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                  {{modifier?.name}}
+                                </label>
+                              </div>
+                              <ng-template #elseBlock>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        {{modifier?.name}}
+                                    </label>
+                                </div>
+                              </ng-template>
+                        </ng-container>
+                    </div>
+                </ng-container>
             </div>
         </div>
     </div>

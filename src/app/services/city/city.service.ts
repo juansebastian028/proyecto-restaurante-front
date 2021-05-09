@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { City } from '../../interfaces/city';
 import { Observable } from 'rxjs';
 
@@ -8,9 +8,11 @@ import { Observable } from 'rxjs';
 })
 export class CityService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private headers: HttpHeaders) {
+    this.headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("auth_token") });
+  }
 
   getCities():Observable<City[]>{
-    return this.http.get<City[]>('http://127.0.0.1:8000/api/cities');
+    return this.http.get<City[]>('http://127.0.0.1:8000/api/cities', {headers: this.headers});
   }
 }

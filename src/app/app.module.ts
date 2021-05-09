@@ -49,6 +49,7 @@ import { ModalShoppingCartComponent } from './components/modal-shopping-cart/mod
 import { OrdersComponent } from './pages/orders/orders.component';
 import { ModalOrderComponent } from './components/modal-order/modal-order.component';
 import { MyAccountComponent } from './pages/my-account/my-account.component';
+import { ConfigService } from 'src/app/services/config/config.service';
 
 
 
@@ -101,7 +102,7 @@ import { MyAccountComponent } from './pages/my-account/my-account.component';
     NgbModule,
     HttpClientModule
   ],
-  providers: [ HelperToggleService ],
+  providers: [ HelperToggleService, ConfigService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

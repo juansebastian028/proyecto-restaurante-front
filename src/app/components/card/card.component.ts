@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ModalShoppingCartComponent } from '../modal-shopping-cart/modal-shopping-cart.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -9,11 +9,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CardComponent implements OnInit {
 
-  productData = {
-    name: 'Bandeja Paisa',
-    img: 'https://bandejapaisa.us/wp-content/uploads/2016/12/Bandeja-Paisa.jpg',
-    price: 15000
-  };
+  @Input() public productData:any = {};
+
   constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {

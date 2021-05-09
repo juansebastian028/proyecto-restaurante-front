@@ -12,6 +12,7 @@ export class ModalShoppingCartComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
+    this.productData.img = 'https://bandejapaisa.us/wp-content/uploads/2016/12/Bandeja-Paisa.jpg';
     console.log(this.productData);
   }
 
