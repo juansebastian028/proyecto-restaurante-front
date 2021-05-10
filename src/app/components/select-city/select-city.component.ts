@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
+import { City } from 'src/app/interfaces/city';
 
 @Component({
   selector: 'app-select-city',
@@ -6,20 +7,23 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./select-city.component.css'],
 })
 
-export class SelectCityComponent implements OnInit {
+export class SelectCityComponent implements OnInit, OnChanges {
 
-  cities = [
-      { id: 1, name: 'Pereira' },
-      { id: 2, name: 'Manizales' },
-      { id: 3, name: 'Bogotá' },
-      { id: 4, name: 'Medellín' },
-  ];
+  @Input() cities:City[] = [];
 
-  selectedCityId = this.cities[0].id;
+  selectedCityId:number = 0;
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.cities);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void{
+
+    if(changes && changes.cities.currentValue){
+        this.selectedCityId = 1;
+    }
   }
 
 }
