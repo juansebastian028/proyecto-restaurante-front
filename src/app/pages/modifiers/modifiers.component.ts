@@ -28,8 +28,23 @@ export class ModifiersComponent implements OnInit {
   constructor(private _modifier: ModifierService) { }
 
   ngOnInit(): void {
+    
+  }
+
+  getModifiers(){
     this._modifier.getModifiers().subscribe(data => {
       this.modifiersRows = data;
+    });
+  }
+
+  postModifier(dataForm:any){
+    this._modifier.postModifier(dataForm).subscribe(data => {
+      if(data){
+        alert("Modificador guardado Exitosamente");
+        this.getModifiers();
+      } else {
+        console.log(data);
+      }
     });
   }
 }

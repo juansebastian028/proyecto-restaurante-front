@@ -1,7 +1,7 @@
 import { Component, Input, ViewChild, OnInit } from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { City } from 'src/app/interfaces/city';
-import { CityService } from 'src/app/services/city/city.service';
+// import { CityService } from 'src/app/services/city/city.service';
 
 @Component({
   selector: 'app-modal-select-city',
@@ -14,12 +14,12 @@ export class ModalSelectCityComponent implements OnInit {
   @Input('modalTitle') title!: string;
   @ViewChild('content') content: any;
 
-  constructor(private modalService: NgbModal, private _city: CityService) {}
+  constructor(private modalService: NgbModal /*, private _city: CityService*/) {}
     
   ngOnInit() {
-    this._city.getCities().subscribe(data => {
-      this.cities =  data;
-    });
+    // this._city.getCities().subscribe(data => {
+    //   this.cities =  data;
+    // });
   }
 
   ngAfterViewInit() {

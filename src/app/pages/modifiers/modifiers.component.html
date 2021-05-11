@@ -4,7 +4,7 @@
 				<app-table [dataColumns]="modifiersColumns" [dataRows]="modifiersRows"></app-table>
 			</app-tab>
 			<app-tab [tabTitle]="'Agregar'">
-				<app-edit-modifier></app-edit-modifier>
+				<app-edit-modifier (eventEmitter)="postModifier($event)"></app-edit-modifier>
 			</app-tab>
 		</app-tabs>
 </div>

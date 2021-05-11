@@ -27,8 +27,23 @@ export class CategoriesComponent implements OnInit {
   constructor(private _category: CategoryService) { }
 
   ngOnInit(): void {
+    this.getCategories();
+  }
+
+  getCategories(){
     this._category.getCategories().subscribe(data => {
       this.categoriesRows = data;
+    });
+  }
+
+  postCategory(dataForm:any){
+    this._category.postCategories(dataForm).subscribe(data => {
+      if(data){
+        alert("Categoria guardada Exitosamente");
+        this.getCategories();
+      } else {
+        console.log(data);
+      }
     });
   }
 
