@@ -1,7 +1,7 @@
 <div class="container mt-5">
 	<app-tabs>
 		<app-tab [tabTitle]="'Categorias'">
-			<app-table [dataColumns]="categoriesColumns" [dataRows]="categoriesRows"></app-table>
+			<app-table (onAction)="selectAction($event)" [dataColumns]="categoriesColumns" [dataRows]="categoriesRows"></app-table>
 		</app-tab>
 		<app-tab [tabTitle]="'Agregar'">
 			<app-edit-category (eventEmitter)="postCategory($event)"></app-edit-category>

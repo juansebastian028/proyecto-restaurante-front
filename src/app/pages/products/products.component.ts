@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/interfaces/product';
+import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
   selector: 'app-products',
@@ -8,19 +10,48 @@ import { Component, OnInit } from '@angular/core';
 
 export class ProductsComponent implements OnInit {
 
-  productsRows: any = [
-    {
-    "Nombre": "Bandeja Paisa",
-    "Estado": "Disponible",
-    "Precio": 40000
-    }
-  ];
+  productsRows: Product[] = [];
   
-  productsColumns: any = [];
+  productsColumns = [
+    { key: 'id', display: 'Producto id' },
+    { key: 'name', display: 'Nombre' },
+    { key: 'price', display: 'Precio' },
+    { key: 'category', display: 'Categoria' },
+    {
+      key: 'actions',
+      display: 'Acciones',
+      config: { isAction: true, actions: [
+        {class:['btn','btn-danger'], icon: 'delete', name: 'delete'}, 
+        {class:['btn' ,'btn-warning'], icon:'edit', name: 'edit'}] 
+      },
+    },
+  ];
 
-  constructor() { }
+  constructor(private _product: ProductService) { }
 
   ngOnInit(): void {
+    this.getProducts();
+  }
+
+  getProducts(){
+    this._product.getProducts().subscribe(data => {
+      this.productsRows = data;
+    });
+  }
+
+  postProduct(dataForm: Product){
+    this._product.postProduct(dataForm).subscribe(data => {
+      if(data){
+        alert("Producto guardado Exitosamente");
+        this.getProducts();
+      } else {
+        console.log(data);
+      }
+    });
+  }
+
+  selectAction(data: any){
+    console.log(data);
   }
 
 }

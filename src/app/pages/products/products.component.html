@@ -1,10 +1,10 @@
 <div class="container mt-5">
 	<app-tabs>
 		<app-tab [tabTitle]="'Productos'">
-			<app-table [dataColumns]="productsColumns" [dataRows]="productsRows"></app-table>
+			<app-table (onAction)="selectAction($event)" [dataColumns]="productsColumns" [dataRows]="productsRows"></app-table>
 		</app-tab>
 		<app-tab [tabTitle]="'Agregar'">
-			<app-edit-product></app-edit-product>
+			<app-edit-product (eventEmitter)="postProduct($event)"></app-edit-product>
 		</app-tab>
 	</app-tabs>
 </div>
