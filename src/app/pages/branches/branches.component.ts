@@ -28,6 +28,10 @@ export class BranchesComponent implements OnInit {
   constructor(private _branch: BranchOfficeService) { }
 
   ngOnInit(): void {
+    this.getBranches();
+  }
+  
+  getBranches(){
     this._branch.getBranches().subscribe(data => {
       this.branchesRows = data;
     });
@@ -36,6 +40,7 @@ export class BranchesComponent implements OnInit {
   onBranchFormSubmit(form:any){
     this._branch.postBranchOffice(form).subscribe((data:any) =>{
         console.log(data);
+        this.getBranches();
     });
   }
 

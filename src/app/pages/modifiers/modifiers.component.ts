@@ -28,7 +28,7 @@ export class ModifiersComponent implements OnInit {
   constructor(private _modifier: ModifierService) { }
 
   ngOnInit(): void {
-    
+    this.getModifiers();
   }
 
   getModifiers(){

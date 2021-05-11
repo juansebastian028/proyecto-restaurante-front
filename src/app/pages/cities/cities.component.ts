@@ -26,6 +26,10 @@ export class CitiesComponent implements OnInit {
   constructor(private _city: CityService) { }
 
   ngOnInit(): void {
+    this.getCities();
+  }
+  
+  getCities(){
     this._city.getCities().subscribe(data => {
       this.citiesRows =  data;
     });
@@ -34,12 +38,14 @@ export class CitiesComponent implements OnInit {
   onCityFormSubmit(form:any){
     this._city.postCity(form).subscribe((data:any) =>{
         console.log(data);
+        this.getCities();
     });
   }
 
   selectAction(data: any){
     console.log(data);
   }
+  
   onEditCity(city:any){
 
   }
