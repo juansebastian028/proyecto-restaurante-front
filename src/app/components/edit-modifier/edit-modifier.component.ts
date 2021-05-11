@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ModifierService } from 'src/app/services/modifier/modifier.service';
+import { ModifierGroups } from 'src/app/interfaces/modifier-groups';
+import { ModifierGroupsService } from 'src/app/services/modifier-groups/modifier-groups.service';
 
 @Component({
   selector: 'app-edit-modifier',
@@ -14,9 +15,9 @@ export class EditModifierComponent implements OnInit {
   public form:FormGroup = new FormGroup({});
 
   submitted = false;
-  modifierGroups: any;
+  modifierGroups: ModifierGroups[] = [];
 
-  constructor(private fb: FormBuilder, private _modifier: ModifierService) { }
+  constructor(private fb: FormBuilder, private _modifier: ModifierGroupsService) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -25,7 +26,7 @@ export class EditModifierComponent implements OnInit {
      modifier_group: new FormControl('', [Validators.required]),
     });
 
-    this._modifier.getModifierGroups().subscribe((data: any) => {
+    this._modifier.getModifierGroups().subscribe((data: ModifierGroups[]) => {
       this.modifierGroups = data;
     });
   }

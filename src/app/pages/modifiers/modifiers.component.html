@@ -1,7 +1,7 @@
 <div class="container mt-5">
 		<app-tabs>
 			<app-tab [tabTitle]="'Modificadores'">
-				<app-table [dataColumns]="modifiersColumns" [dataRows]="modifiersRows"></app-table>
+				<app-table (onAction)="selectAction($event)" [dataColumns]="modifiersColumns" [dataRows]="modifiersRows"></app-table>
 			</app-tab>
 			<app-tab [tabTitle]="'Agregar'">
 				<app-edit-modifier (eventEmitter)="postModifier($event)"></app-edit-modifier>

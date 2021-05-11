@@ -15,11 +15,11 @@
                 <ng-container *ngFor="let modifierGroup of productData?.category.modifier_groups">
                     <div class="container-fluid py-2 px-0">
                         <h5>{{modifierGroup?.name}}</h5>
-                        <ng-container *ngFor="let modifier of modifierGroup.modifier">
+                        <ng-container *ngFor="let modifier of modifierGroup.modifier; let i = index">
                             <div *ngIf="modifierGroup?.selection_type === 'U'; else elseBlock" class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault{{i}}">
                                 <div class="d-flex justify-content-between">
-                                    <label class="form-check-label" for="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault{{i}}">
                                       {{modifier?.name}}
                                     </label>
                                     <p>{{modifier?.price | currency}}</p>
@@ -27,9 +27,9 @@
                               </div>
                               <ng-template #elseBlock>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck{{i}}">
                                     <div class="d-flex justify-content-between">
-                                        <label class="form-check-label" for="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck{{i}}">
                                             {{modifier?.name}}
                                         </label>
                                         <p>{{modifier?.price | currency}}</p>

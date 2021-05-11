@@ -19,8 +19,8 @@ export class ModifiersComponent implements OnInit {
       key: 'actions',
       display: 'Acciones',
       config: { isAction: true, actions: [
-        {class:['btn','btn-danger'], icon: 'delete'}, 
-        {class:['btn' ,'btn-warning'], icon:'edit'}] 
+        {class:['btn','btn-danger'], icon: 'delete', name: 'delete'}, 
+        {class:['btn' ,'btn-warning'], icon:'edit', name: 'edit'}] 
       },
     },
   ];
@@ -46,5 +46,9 @@ export class ModifiersComponent implements OnInit {
         console.log(data);
       }
     });
+  }
+
+  selectAction(data: any){
+    console.log(data);
   }
 }

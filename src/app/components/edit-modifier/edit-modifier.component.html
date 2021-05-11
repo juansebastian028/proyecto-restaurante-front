@@ -3,13 +3,15 @@
 		<div class="col-6">
 			<div class="form-group">
 				<label for="name" class="text-info">Nombre</label>
-				<input type="text" class="form-control" id="name" name="name" formControlName="name" autocomplete="off" required>
+				<input type="text" class="form-control" id="name" name="name" formControlName="name" autocomplete="off">
+				<p class="text-danger" *ngIf="(form.get('name')?.touched || submitted) && form.get('name')?.errors?.required">El campo es obligatorio</p>
 			</div>
 		</div>
 		<div class="col-6">
 			<div class="form-group">
 				<label for="price" class="text-info">Precio</label>
-				<input type="number" class="form-control" id="price" name="price" formControlName="price" autocomplete="off" required>
+				<input type="number" class="form-control" id="price" name="price" formControlName="price" autocomplete="off">
+				<p class="text-danger" *ngIf="(form.get('price')?.touched || submitted) && form.get('price')?.errors?.required">El campo es obligatorio</p>
 			</div>
 		</div>
 		<div class="col-12">
@@ -18,6 +20,7 @@
 				<ng-select [multiple]="true" name="modifier_group" formControlName="modifier_group">
 					<ng-option *ngFor="let modifierGroup of modifierGroups" [value]="modifierGroup.id">{{ modifierGroup.name }}</ng-option>
 				</ng-select>
+				<p class="text-danger" *ngIf="(form.get('modifier_group')?.touched || submitted) && form.get('modifier_group')?.errors?.required">El campo es obligatorio</p>
 			</div>
 		</div>
 		<div class="col-12 d-flex justify-content-center">
