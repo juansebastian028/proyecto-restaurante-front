@@ -9,9 +9,21 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class ModalShoppingCartComponent implements OnInit {
 
   @Input() public productData:any = {};
+  count:number = 1;
+
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
+  }
+
+  increment(){
+    this.count++;
+  }
+
+  decrement(){
+    if(this.count > 1){
+      this.count--;
+    }
   }
 
 }

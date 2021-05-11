@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Login } from 'src/app/interfaces/login';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -11,17 +10,27 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class FormLoginComponent implements OnInit {
 
-  constructor(private _auth: AuthService, private router: Router) { }
-  login:Login[] = [];
+  public form:FormGroup = new FormGroup({});
+  submitted = false;
+
+  constructor(private _auth: AuthService, private router: Router, private fb: FormBuilder) {
+    this.form = this.fb.group({
+      username: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+     });
+  }
+  
   ngOnInit(): void {
   }
 
-  onFormSubmit(f: NgForm) {
-    this.login = f.value;
-    this._auth.login(this.login).subscribe((data:any) =>{
-      this.router.navigate(['']);
-      localStorage.setItem('auth_token', data.token);
-    });
+  onFormSubmit() {
+    this.submitted = true;
+    if(this.form.valid){
+      this._auth.login(this.form.value).subscribe((data:any) =>{
+        this.router.navigate(['']);
+        localStorage.setItem('auth_token', data.token);
+      });
+    }
   }
 
 }

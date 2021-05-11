@@ -3,7 +3,7 @@
 		<div class="col-12">
 			<div class="form-group">
 				<label for="name" class="text-info">Nombre</label>
-				<input type="text" class="form-control" id="name" name="name" formControlName="name" ngModel autocomplete="off">
+				<input type="text" class="form-control" id="name" name="name" formControlName="name" autocomplete="off">
 				<p class="text-danger" *ngIf="(form.get('name')?.touched || submitted) && form.get('name')?.errors?.required">El campo es obligatorio</p>
 			</div>
 		</div>

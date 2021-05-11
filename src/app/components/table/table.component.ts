@@ -46,4 +46,12 @@ export class TableComponent implements OnInit, OnChanges {
     this.dataSource = new MatTableDataSource(this.dataRows);
     this.infoMessage = 'Cargando...';
   }
+
+  handleEmitter(action_name: string, element: any): void {
+    if (action_name === 'edit' || action_name === 'delete'){
+      this.emitter.emit(element);
+    }else{
+      this.emitter.emit(action_name);
+    }
+  }
 }

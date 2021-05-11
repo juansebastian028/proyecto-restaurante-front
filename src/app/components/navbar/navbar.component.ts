@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
     console.log(this.classUl)
   }
 
-  public changeClass(){
+  changeClass(){
     if(this.class === ''){
       this.class = 'toggled';
     }else{

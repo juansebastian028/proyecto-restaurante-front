@@ -20,4 +20,8 @@ export class BranchOfficeService {
   getBranches():Observable<BranchOffice[]>{
     return this.http.get<BranchOffice[]>(`${this.path}/branches`, {headers: this.headers});
   }
+
+  postBranchOffice(branch: BranchOffice[]) {
+    return this.http.post<BranchOffice>(`${this.path}/branches`, branch, {headers: this.headers});
+  }
 }

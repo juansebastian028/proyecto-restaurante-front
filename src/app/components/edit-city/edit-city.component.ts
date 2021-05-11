@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./edit-city.component.css']
 })
 export class EditCityComponent implements OnInit {
+
+  @Input() city:any = {};
+  @Output() saveCity = new EventEmitter<any>();
 
   public form:FormGroup = new FormGroup({});
   submitted = false;
@@ -22,7 +25,7 @@ export class EditCityComponent implements OnInit {
   onFormSubmit(){
     this.submitted = true;
     if(this.form.valid){
-      console.log(this.form.value);
+      this.saveCity.emit(this.form.value);
     }
   }
 

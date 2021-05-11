@@ -33,6 +33,12 @@ export class BranchesComponent implements OnInit {
     });
   }
 
+  onBranchFormSubmit(form:any){
+    this._branch.postBranchOffice(form).subscribe((data:any) =>{
+        console.log(data);
+    });
+  }
+
   changeBranch(value:string){
     console.log(value);
   }

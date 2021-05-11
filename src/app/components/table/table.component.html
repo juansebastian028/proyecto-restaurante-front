@@ -21,7 +21,7 @@
 								*ngFor="let action of column.config.actions"
 								class="btn-sm mx-1"
 								[ngClass]="action.class"
-								(click)="emitter.emit(action)"
+								(click)="handleEmitter(action.name, element)"
 								mat-button
 							>
 								<span class="material-icons text-white">{{action.icon}}</span>

@@ -17,8 +17,8 @@ export class CitiesComponent implements OnInit {
       key: 'actions',
       display: 'Acciones',
       config: { isAction: true, actions: [
-        {class:['btn','btn-danger'], icon: 'delete'}, 
-        {class:['btn' ,'btn-warning'], icon:'edit'}] 
+        {class:['btn','btn-danger'], icon: 'delete', name: 'delete'}, 
+        {class:['btn' ,'btn-warning'], icon:'edit', name: 'edit'}] 
       },
     },
   ];
@@ -29,5 +29,18 @@ export class CitiesComponent implements OnInit {
     this._city.getCities().subscribe(data => {
       this.citiesRows =  data;
     });
+  }
+
+  onCityFormSubmit(form:any){
+    this._city.postCity(form).subscribe((data:any) =>{
+        console.log(data);
+    });
+  }
+
+  selectAction(data: any){
+    console.log(data);
+  }
+  onEditCity(city:any){
+
   }
 }

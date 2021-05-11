@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { City } from 'src/app/interfaces/city';
 import { CityService } from 'src/app/services/city/city.service';
@@ -11,6 +11,7 @@ import { CityService } from 'src/app/services/city/city.service';
 export class EditBranchComponent implements OnInit {
 
   public form:FormGroup = new FormGroup({});
+  @Output() saveBranch = new EventEmitter<any>();
   submitted = false;
   default = 1;
   cities: City[] = [];
@@ -36,8 +37,7 @@ export class EditBranchComponent implements OnInit {
   onFormSubmit(){
     this.submitted = true;
     if(this.form.valid){
-      console.log(this.form.value);
+      this.saveBranch.emit(this.form.value);
     }
   }
-
 }

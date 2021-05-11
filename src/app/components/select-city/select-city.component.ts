@@ -10,7 +10,7 @@ import { City } from 'src/app/interfaces/city';
 export class SelectCityComponent implements OnInit, OnChanges {
 
   @Input() cities:City[] = [];
-  @Output() newItemEvent = new EventEmitter<number>();
+  @Output() selectEvent = new EventEmitter<number>();
 
   selectedCityId:number = 0;
 
@@ -28,8 +28,8 @@ export class SelectCityComponent implements OnInit, OnChanges {
     }
   }
 
-  addNewItem(value: number) {
-    this.newItemEvent.emit(value);
+  addNewItem(city_id: number) {
+    this.selectEvent.emit(city_id);
   }
 
 }

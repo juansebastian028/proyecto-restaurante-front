@@ -53,15 +53,15 @@ export class OrdersComponent implements OnInit {
           {
             class:['btn','btn-info'], 
             icon: 'feed',
-            action: 'openModal'
+            name: 'openModal'
           }
         ] 
       },
     },
   ];
 
-  openModal(event: any) {
-    if(event.action === "openModal"){
+  openModal(action: any) {
+    if(action === "openModal"){
       const modalRef = this.modalService.open(ModalOrderComponent);
       modalRef.componentInstance.orderData = this.orderData;
     }

@@ -50,11 +50,11 @@
                 <div class="d-flex justify-content-end">
                     <div class="d-flex quantity-select mx-auto mx-md-0">
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <button class="btn btn-light d-flex align-items-center">
+                            <button class="btn btn-light d-flex align-items-center" (click)="decrement()">
                                 <span class="material-icons">remove</span>
                             </button>
-                            <button class="btn btn-light">1</button>
-                            <button class="btn btn-light d-flex align-items-center">
+                            <button class="btn btn-light">{{count}}</button>
+                            <button class="btn btn-light d-flex align-items-center" (click)="increment()">
                                 <span class="material-icons">add</span>
                             </button>
                             <button type="button" class="btn btn-primary" (click)="activeModal.close('Save click')">Añadir al carrito</button>

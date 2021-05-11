@@ -30,7 +30,7 @@ export class ModalSelectCityComponent implements OnInit {
     this.modalService.open(this.content, { centered: true});
   }
 
-  addItem(newItem: number) {
+  getProductsByCity(city_id: number) {
   }
 
 }
