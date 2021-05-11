@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-category',
@@ -8,13 +8,24 @@ import { NgForm } from '@angular/forms';
 })
 export class EditCategoryComponent implements OnInit {
 
-  constructor() { }
+  public form:FormGroup = new FormGroup({});
 
-  onFormSubmit(f: NgForm){
-    console.log(f.value);
-  }
+  submitted = false;
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+     name: new FormControl('', [Validators.required]),
+    });
   }
+
+  onFormSubmit(){
+    this.submitted = true;
+    if(this.form.valid){
+      console.log(this.form.value);
+    }
+  }
+
 
 }

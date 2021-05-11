@@ -10,7 +10,7 @@ import { FormRegisterComponent } from './components/auth-forms/form-register/for
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  }   from '@angular/forms';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -100,7 +100,8 @@ import { ConfigService } from 'src/app/services/config/config.service';
     BrowserAnimationsModule,
     MaterialModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule 
   ],
   providers: [ HelperToggleService, ConfigService ],
   bootstrap: [AppComponent]
