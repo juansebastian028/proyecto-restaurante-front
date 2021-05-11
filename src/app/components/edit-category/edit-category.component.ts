@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { CityService } from 'src/app/services/city/city.service';
 
 @Component({
   selector: 'app-edit-category',
@@ -26,6 +27,5 @@ export class EditCategoryComponent implements OnInit {
       console.log(this.form.value);
     }
   }
-
 
 }

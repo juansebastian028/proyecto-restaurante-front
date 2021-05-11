@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, Input, Output, EventEmitter } from '@angular/core';
 import { City } from 'src/app/interfaces/city';
 
 @Component({
@@ -10,20 +10,26 @@ import { City } from 'src/app/interfaces/city';
 export class SelectCityComponent implements OnInit, OnChanges {
 
   @Input() cities:City[] = [];
+  @Output() newItemEvent = new EventEmitter<number>();
 
   selectedCityId:number = 0;
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.cities);
+    
   }
 
   ngOnChanges(changes: SimpleChanges): void{
 
     if(changes && changes.cities.currentValue){
         this.selectedCityId = 1;
+        this.addNewItem(this.selectedCityId);
     }
+  }
+
+  addNewItem(value: number) {
+    this.newItemEvent.emit(value);
   }
 
 }

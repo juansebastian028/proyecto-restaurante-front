@@ -6,7 +6,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <app-select-city [cities]="cities"></app-select-city>
+    <app-select-city [cities]="cities" (newItemEvent)="addItem($event)"></app-select-city>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Guardar</button>

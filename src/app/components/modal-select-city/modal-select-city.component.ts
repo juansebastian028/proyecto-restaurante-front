@@ -26,11 +26,11 @@ export class ModalSelectCityComponent implements OnInit {
    this.openModal();
   }
 
-
   openModal(){
     this.modalService.open(this.content, { centered: true});
   }
 
-
+  addItem(newItem: number) {
+  }
 
 }

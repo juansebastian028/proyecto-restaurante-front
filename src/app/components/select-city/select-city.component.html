@@ -1,4 +1,4 @@
-<ng-select [(ngModel)]="selectedCityId">
+<ng-select [(ngModel)]="selectedCityId" (ngModelChange)="addNewItem(selectedCityId)">
     <ng-option *ngFor="let city of cities" [value]="city.id">{{city.name}}</ng-option>
 </ng-select>
 

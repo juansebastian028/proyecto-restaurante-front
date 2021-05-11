@@ -11,9 +11,8 @@ export class CityService {
 
   path: string = '';
   
-  constructor(private http: HttpClient, private headers: HttpHeaders, private config: ConfigService) {
+  constructor(private http: HttpClient, private config: ConfigService) {
     this.path = this.config.path;
-    this.headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("auth_token")});
   }
 
   getCities():Observable<City[]>{
