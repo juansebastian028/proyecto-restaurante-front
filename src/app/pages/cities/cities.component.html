@@ -1,7 +1,7 @@
 <div class="container mt-5">
 	<app-tabs>
 		<app-tab [tabTitle]="'Ciudades'">
-			<app-table (onAction)="selectAction($event)" [dataColumns]="citiesColumns" [dataRows]="citiesRows"></app-table>
+			<app-table (onAction)="executeAction($event)" [dataColumns]="citiesColumns" [dataRows]="citiesRows"></app-table>
 		</app-tab>
 		<app-tab [tabTitle]="'Agregar'">
 			<app-edit-city (saveCity)="onCityFormSubmit($event)"></app-edit-city>

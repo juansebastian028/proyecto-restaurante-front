@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { User } from 'src/app/interfaces/user';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-users',
@@ -6,33 +8,40 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent implements OnInit {
-  usersRows: any = [
-    { 
-      id: 1,
-      name: 'Pepe',
-      lastname: 'Mendez',
-      phone_number: '3112254785',
-    },
-  ];
+  usersRows: User[] = [];
 
   usersColumns = [
     { key: 'id', display: 'Usuario id' },
     { key: 'name', display: 'Nombre' },
     { key: 'lastname', display: 'Apellido' },
-    { key: 'phone_number', display: 'Telefono' },
+    { key: 'profile', display: 'Perfil' },
     {
       key: 'actions',
       display: 'Acciones',
       config: { isAction: true, actions: [
-        {class:['btn','btn-danger'], icon: 'delete'}, 
-        {class:['btn' ,'btn-warning'], icon:'edit'}] 
+        {class:['btn','btn-danger'], icon: 'delete', name: 'delete'}, 
+        {class:['btn' ,'btn-warning'], icon:'edit', name: 'edit'}] 
       },
     },
   ];
 
-  constructor() {}
+  constructor(private _user: UserService) {}
+
+  getUsers(){
+    this._user.getUsers().subscribe(data => {
+      this.usersRows =  data;
+    });
+  }
 
   ngOnInit(): void {
-    console.log(this.usersColumns);
+    this.getUsers();
+  }
+
+  executeAction(data: any){
+    console.log(data);
+  }
+
+  onUserFormSubmit(form:any){
+    console.log(form);
   }
 }

@@ -42,7 +42,7 @@ export class CitiesComponent implements OnInit {
     });
   }
 
-  selectAction(data: any){
+  executeAction(data: any){
     console.log(data);
   }
   
