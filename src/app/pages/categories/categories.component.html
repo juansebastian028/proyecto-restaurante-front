@@ -4,7 +4,7 @@
 			<app-table [dataColumns]="categoriesColumns" [dataRows]="categoriesRows"></app-table>
 		</app-tab>
 		<app-tab [tabTitle]="'Agregar'">
-			<app-edit-category></app-edit-category>
+			<app-edit-category (eventEmitter)="postCategory($event)"></app-edit-category>
 		</app-tab>
 	</app-tabs>
 </div>

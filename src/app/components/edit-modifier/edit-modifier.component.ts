@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ModifierService } from 'src/app/services/modifier/modifier.service';
 
 @Component({
   selector: 'app-edit-modifier',
@@ -8,13 +9,32 @@ import { NgForm } from '@angular/forms';
 })
 export class EditModifierComponent implements OnInit {
 
-  constructor() { }
+  @Output() eventEmitter = new EventEmitter();
 
-  onFormSubmit(f: NgForm){
-    console.log(f.value);
-  }
+  public form:FormGroup = new FormGroup({});
+
+  submitted = false;
+  modifierGroups: any;
+
+  constructor(private fb: FormBuilder, private _modifier: ModifierService) { }
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+     name: new FormControl('', [Validators.required]),
+     price: new FormControl('', [Validators.required]),
+     modifier_group: new FormControl('', [Validators.required]),
+    });
+
+    this._modifier.getModifierGroups().subscribe((data: any) => {
+      this.modifierGroups = data;
+    });
+  }
+
+  onFormSubmit(){
+    this.submitted = true;
+    if(this.form.valid){
+      this.eventEmitter.emit(this.form.value);
+    }
   }
 
 }

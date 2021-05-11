@@ -1,23 +1,22 @@
-<form class="mt-3" #f="ngForm" (ngSubmit)="onFormSubmit(f)">
+<form class="mt-3" [formGroup]="form" (ngSubmit)="onFormSubmit()">
 	<div class="row">
 		<div class="col-6">
 			<div class="form-group">
 				<label for="name" class="text-info">Nombre</label>
-				<input type="text" class="form-control" id="name" name="name" ngModel autocomplete="off" required>
+				<input type="text" class="form-control" id="name" name="name" formControlName="name" autocomplete="off" required>
 			</div>
 		</div>
 		<div class="col-6">
 			<div class="form-group">
 				<label for="price" class="text-info">Precio</label>
-				<input type="number" class="form-control" id="price" name="price" ngModel autocomplete="off" required>
+				<input type="number" class="form-control" id="price" name="price" formControlName="price" autocomplete="off" required>
 			</div>
 		</div>
 		<div class="col-12">
 			<div class="form-group">
 				<label for="group-modifier" class="text-info">Grupo modificador</label>
-				<ng-select [multiple]="true">
-					<ng-option [value]="1">Sabor Helado</ng-option>
-					<ng-option [value]="2">Sabor Jugo</ng-option>
+				<ng-select [multiple]="true" name="modifier_group" formControlName="modifier_group">
+					<ng-option *ngFor="let modifierGroup of modifierGroups" [value]="modifierGroup.id">{{ modifierGroup.name }}</ng-option>
 				</ng-select>
 			</div>
 		</div>
