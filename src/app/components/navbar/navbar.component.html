@@ -42,9 +42,14 @@
 				<span class="material-icons">account_circle</span>
 			</a>
 			<div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu aria-labelledby="navbarDropdown">
-			  <a ngbDropdownItem routerLink="/my-account" class="dropdown-item">Mi cuenta</a>
-			  <a ngbDropdownItem routerLink="/login" class="dropdown-item">Iniciar sesión</a>
-			  <a ngbDropdownItem routerLink="/register" class="dropdown-item">Registrarse</a>
+			  <ng-container *ngIf="isAuthenticated else isNotAuthenticated">
+				<a ngbDropdownItem routerLink="/my-account" class="dropdown-item">Mi cuenta</a>
+				<a ngbDropdownItem routerLink="/my-account" class="dropdown-item" (click)="onLogout()">Cerrar Sesión</a>
+			  </ng-container>
+			  <ng-template #isNotAuthenticated>
+				<a ngbDropdownItem routerLink="/login" class="dropdown-item">Iniciar sesión</a>
+				<a ngbDropdownItem routerLink="/register" class="dropdown-item">Registrarse</a>
+			  </ng-template>
 			</div>
 		</li>
 	</ul>

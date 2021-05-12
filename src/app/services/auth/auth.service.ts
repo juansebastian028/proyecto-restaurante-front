@@ -21,4 +21,16 @@ export class AuthService {
   register(register:Register[]) {
     return this.http.post(`${this.path}/register`, register);       
   }
+
+  getToken(){
+    return localStorage.getItem('auth_token');
+  }
+
+  isAuthenticated(): boolean {
+    return (this.getToken() !== null) ? true : false;
+  };
+
+  logout(): void {
+    localStorage.removeItem('auth_token');
+  }
 }

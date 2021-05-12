@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { HelperToggleService } from '../../services/helper-toggle/helper-toggle.service';
 
 @Component({
@@ -12,12 +14,13 @@ export class NavbarComponent implements OnInit {
   public classUl:string = 'd-flex';
   public classSearch:Array<string> = ['d-none','d-sm-block'];
   public classArrow:string = 'd-none';
+  isAuthenticated = false;
 
-  constructor(private helper: HelperToggleService) { }
+  constructor(private helper: HelperToggleService, private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.helper.customMessage.subscribe(msg => this.class = msg);
-    console.log(this.classUl)
+    this.isAuthenticated = this.auth.isAuthenticated();
   }
 
   changeClass(){
@@ -42,5 +45,10 @@ export class NavbarComponent implements OnInit {
       this.classUl = 'd-flex';
       this.classArrow = 'd-none';
     }
+  }
+
+  onLogout() {
+    this.auth.logout();
+    this.router.navigate(['login']);
   }
 }

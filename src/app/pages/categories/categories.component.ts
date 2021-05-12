@@ -18,7 +18,7 @@ export class CategoriesComponent implements OnInit {
       key: 'actions',
       display: 'Acciones',
       config: { isAction: true, actions: [
-        {class:['btn','btn-danger'], icon: 'delete', name: 'delete'}, 
+        {class:['btn','btn-danger'], icon:'delete', name: 'delete'}, 
         {class:['btn' ,'btn-warning'], icon:'edit', name: 'edit'}] 
       },
     },

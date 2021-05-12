@@ -25,7 +25,7 @@ export class ProductService {
     return this.http.post<Product[]>(`${this.path}/products`, data, { headers: this.headers});
   }
 
-  getProductsHome():Observable<ProductHome[]>{
-    return this.http.get<ProductHome[]>(`${this.path}/products/all`);
+  getProductsHome(city_id: number):Observable<ProductHome[]>{
+    return this.http.get<ProductHome[]>(`${this.path}/cities/${city_id}/products`);
   }
 }
