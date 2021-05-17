@@ -14,11 +14,17 @@ export class EditCityComponent implements OnInit {
   public form:FormGroup = new FormGroup({});
   submitted = false;
   
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      id: '',
+      name: new FormControl('', [Validators.required]),
+     });
+  }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-     name: new FormControl('', [Validators.required]),
+    this.form.setValue({
+      id: this.city.id || -1,
+      name: this.city.name || '',
     });
   }
 

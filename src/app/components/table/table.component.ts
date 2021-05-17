@@ -13,6 +13,7 @@ export class TableComponent implements OnInit, OnChanges {
   @Input() dataColumns: any[] = [];
   @Input() dataRows: any[] = []; 
   @Output("onAction") emitter = new EventEmitter();
+  @Output() add = new EventEmitter();
   @Output() RefreshColumns = new EventEmitter<any>();
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
   dataSource = new MatTableDataSource<any>();
@@ -39,7 +40,8 @@ export class TableComponent implements OnInit, OnChanges {
   
   
   get keys() {
-    return this.dataColumns.map(({ key }) => key);
+    let displayedColumns = this.dataColumns.filter(obj => obj.display !== 'hidden').map(({ key }) => key);
+    return displayedColumns;
   }
   
   ngOnInit(): void {

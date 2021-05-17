@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
 
   products: ProductHome[] = []; 
   categories: Category[] = [];
+  city_id:number = 1;
 
   constructor(private _product: ProductService, private _category: CategoryService) { }
 
@@ -27,13 +28,16 @@ export class HomeComponent implements OnInit {
   }
 
   getProductsByCity(city_id:number){
+    this.city_id = city_id;
     this._product.getProductsHome(city_id).subscribe(data =>{
       this.products = data;
     })
   }
 
-  showProductByCategory(category: Category){
-    console.log(category);
+  showProductsByCategory(category: Category){
+    this._category.getProductsByCategory(this.city_id, category.id).subscribe(data => {
+      this.products = data;
+    })
   }
 
 }

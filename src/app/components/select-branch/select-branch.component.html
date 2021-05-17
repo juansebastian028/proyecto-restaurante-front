@@ -1,0 +1,6 @@
+<form [formGroup]="form">
+    <label for="branch">Sucursal:</label>
+    <select class="form-control" name="branch" id="branch" formControlName="branch_id" (change)="onBranchChange()">
+        <option *ngFor="let branch of branchesRows" [ngValue]="branch.id">{{ branch.name }}</option>
+    </select>
+</form>

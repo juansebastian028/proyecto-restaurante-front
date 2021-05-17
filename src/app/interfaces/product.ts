@@ -9,5 +9,9 @@ export interface Product {
 }
 
 interface Branch {
-  branch_id: number;
+  id: number;
+  city_id: number;
+  name: string;
+  created_at: string;
+  updated_at: string;
 }

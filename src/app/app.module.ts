@@ -50,7 +50,8 @@ import { OrdersComponent } from './pages/orders/orders.component';
 import { ModalOrderComponent } from './components/modal-order/modal-order.component';
 import { MyAccountComponent } from './pages/my-account/my-account.component';
 import { ConfigService } from 'src/app/services/config/config.service';
-
+import { SelectBranchComponent } from './components/select-branch/select-branch.component';
+import { DynamicTabsDirective } from './components/tabs/dynamic-tabs.directive';
 
 
 @NgModule({
@@ -91,6 +92,8 @@ import { ConfigService } from 'src/app/services/config/config.service';
     OrdersComponent,
     ModalOrderComponent,
     MyAccountComponent,
+    SelectBranchComponent,
+    DynamicTabsDirective
   ],
   imports: [
     BrowserModule,
@@ -101,7 +104,7 @@ import { ConfigService } from 'src/app/services/config/config.service';
     MaterialModule,
     NgbModule,
     HttpClientModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule
   ],
   providers: [ HelperToggleService, ConfigService ],
   bootstrap: [AppComponent]

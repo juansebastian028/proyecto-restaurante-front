@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from 'src/app/interfaces/category';
+import { ProductHome } from 'src/app/interfaces/product-home';
 import { ConfigService } from '../config/config.service';
 
 @Injectable({
@@ -23,5 +24,9 @@ export class CategoryService {
 
   postCategories(data: Category):Observable<Category[]>{
     return this.http.post<Category[]>(`${this.config.path}/products/categories`, data, { headers: this.headers });
+  }
+
+  getProductsByCategory(city_id:number, category_id:number){
+    return this.http.get<ProductHome[]>(`${this.config.path}/cities/${city_id}/categories/${category_id}/products`);
   }
 }
