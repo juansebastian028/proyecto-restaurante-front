@@ -8,7 +8,19 @@
       {{ tab.title }}
     </a>
   </li>
+  <!-- dynamic tabs -->
+  <li *ngFor="let tab of dynamicTabs" (click)="selectTab(tab)" [class.active]="tab.active">
+    <a 
+      role="button"
+      class="nav-link"
+      [class.active]="tab.active"
+      data-toggle="tab">
+      {{tab.title}} 
+      <span class="tab-close" *ngIf="tab.isCloseable" (click)="closeTab(tab)">x</span>
+    </a>
+  </li>
 </ul>
 <div class="tab-content">
   <ng-content></ng-content>
+  <ng-template dynamic-tabs #container></ng-template>
 </div>

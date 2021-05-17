@@ -2,56 +2,60 @@
   <div class="sidebar-heading">El Colombiano Hambriento</div>
   <div class="sidebar-group">
 
-    <div class="sidebar-item">     
-      <a routerLink="/users" class="sidebar-link">
-        <span class="sidebar-icon material-icons">person</span>
-        Usuarios
-      </a>
-    </div>
+    <ng-container *ngIf="isSuperAdmin">
+      <div class="sidebar-item">     
+        <a routerLink="/users" class="sidebar-link">
+          <span class="sidebar-icon material-icons">person</span>
+          Usuarios
+        </a>
+      </div>
+      <div class="sidebar-item">
+        <a class="sidebar-link" (click)="displaySubMenu()">
+          <span class="sidebar-icon material-icons">restaurant_menu</span>       
+          Productos
+          <span class="down-arrow-icon material-icons">
+            keyboard_arrow_down
+          </span>
+        </a>
+      </div>
+      <ul class="sub-menu" [ngClass]="{'active': subMenuStatus}">
+        <li class="sub-menu-item"> 
+          <a  class="sub-menu-link" routerLink="/products">Gestionar</a> 
+        </li>
+        <li class="sub-menu-item"> 
+          <a class="sub-menu-link" routerLink="/categories">Categorias</a> 
+        </li>
+        <li class="sub-menu-item"> 
+          <a class="sub-menu-link" routerLink="/modifier-groups">Grupos Modificadores</a>
+        </li>
+        <li class="sub-menu-item">
+          <a class="sub-menu-link" routerLink="/modifiers">Modificadores</a>
+        </li>
+      </ul>
+      <div class="sidebar-item">     
+        <a routerLink="/cities" class="sidebar-link">
+          <span class="sidebar-icon material-icons">place</span>
+          Ciudades
+        </a>
+      </div>
+    </ng-container>
 
-    <div class="sidebar-item">
-      <a class="sidebar-link" (click)="displaySubMenu()">
-        <span class="sidebar-icon material-icons">restaurant_menu</span>       
-        Productos
-        <span class="down-arrow-icon material-icons">
-          keyboard_arrow_down
-        </span>
-      </a>
-    </div>
+    <ng-container *ngIf="isSuperAdmin || isAdmin">
+      <div class="sidebar-item">     
+        <a routerLink="/branches" class="sidebar-link">
+          <span class="sidebar-icon material-icons">business</span>
+          Sucursales
+        </a>
+      </div>
+    </ng-container>
 
-    <ul class="sub-menu" [ngClass]="{'active': subMenuStatus}">
-      <li class="sub-menu-item"> 
-        <a  class="sub-menu-link" routerLink="/products">Gestionar</a> 
-      </li>
-      <li class="sub-menu-item"> 
-        <a class="sub-menu-link" routerLink="/categories">Categorias</a> 
-      </li>
-      <li class="sub-menu-item"> 
-        <a class="sub-menu-link" routerLink="/modifier-groups">Grupos Modificadores</a>
-      </li>
-      <li class="sub-menu-item">
-        <a class="sub-menu-link" routerLink="/modifiers">Modificadores</a>
-      </li>
-    </ul>
-
-    <div class="sidebar-item">     
-      <a routerLink="/branches" class="sidebar-link">
-        <span class="sidebar-icon material-icons">business</span>
-        Sucursales
-      </a>
-    </div>
-    <div class="sidebar-item">     
-      <a routerLink="/cities" class="sidebar-link">
-        <span class="sidebar-icon material-icons">place</span>
-        Ciudades
-      </a>
-    </div>
-    <div class="sidebar-item">     
-      <a routerLink="/orders" class="sidebar-link">
-        <span class="sidebar-icon material-icons">list_alt</span>
-        Pedidos
-      </a>
-    </div>
-
+    <ng-container *ngIf="isSuperAdmin || isAdmin || isEcommerce">
+      <div class="sidebar-item">     
+        <a routerLink="/orders" class="sidebar-link">
+          <span class="sidebar-icon material-icons">list_alt</span>
+          Pedidos
+        </a>
+      </div>
+    </ng-container>
   </div>
 </div>

@@ -9,8 +9,13 @@
         <div class="col-sm-3 my-5">
             <ul class="list-group">
                 <h4>Categorías</h4>
+                <li class="list-group-item">
+                    <button class="btn btn-light"(click)="getProductsByCity(this.city_id)">
+                        Todos
+                    </button>
+                </li>
                 <li *ngFor="let category of categories" class="list-group-item">
-                    <button class="btn btn-light"(click)="showProductByCategory(category)">
+                    <button class="btn btn-light"(click)="showProductsByCategory(category)">
                         {{category.name}}
                     </button>
                 </li>

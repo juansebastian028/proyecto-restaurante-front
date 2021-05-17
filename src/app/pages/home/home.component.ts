@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   products: ProductHome[] = []; 
   categories: Category[] = [];
   selectedCity: any = "";
+  city_id:number = 1;
 
   constructor(private _product: ProductService, private _category: CategoryService) {}
 
@@ -38,8 +39,10 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  showProductByCategory(category: Category){
-    console.log(category);
+  showProductsByCategory(category: Category){
+    this._category.getProductsByCategory(this.selectedCity, category.id).subscribe(data => {
+      this.products = data;
+    })
   }
 
 }
