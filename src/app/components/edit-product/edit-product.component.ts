@@ -66,7 +66,7 @@ export class EditProductComponent implements OnInit {
     formData.append('price', this.form.get('price')?.value);
     formData.append('img', this.form.get('img')?.value);
     formData.append('category_id', this.form.get('category_id')?.value);
-    formData.append('branches_ids', this.form.get('branches_ids')?.value);
+    formData.append('branches_ids', JSON.stringify(this.form.get('branches_ids')?.value));
 
     if(this.form.valid){
       this.eventEmitter.emit(formData);

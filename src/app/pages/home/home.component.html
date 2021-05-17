@@ -1,4 +1,4 @@
-<app-modal-select-city (saveCity)="getProductsByCity($event)"></app-modal-select-city>
+<app-modal-select-city *ngIf="selectedCity === ''" (saveCity)="getProductsByCity($event)"></app-modal-select-city>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-9">

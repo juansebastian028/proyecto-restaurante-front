@@ -12,33 +12,38 @@
             </div>
             <div class="col-12 col-lg-6">
                 <h4 class="pt-2">{{ productData?.price | currency }}</h4>
-                <ng-container *ngFor="let modifierGroup of productData?.category.modifier_groups">
-                    <div class="container-fluid py-2 px-0">
-                        <h5>{{modifierGroup?.name}}</h5>
-                        <ng-container *ngFor="let modifier of modifierGroup.modifier; let i = index">
-                            <div *ngIf="modifierGroup?.selection_type === 'U'; else elseBlock" class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault{{i}}">
-                                <div class="d-flex justify-content-between">
-                                    <label class="form-check-label" for="flexRadioDefault{{i}}">
-                                      {{modifier?.name}}
-                                    </label>
-                                    <p>{{modifier?.price | currency}}</p>
-                                </div>
-                              </div>
-                              <ng-template #elseBlock>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck{{i}}">
+                <form class="mt-3" id="form" [formGroup]="form" (ngSubmit)="onFormSubmit()">
+                    <ng-container *ngFor="let modifierGroup of productData?.category.modifier_groups; let i = index">
+                        <div *ngIf="modifierGroup?.selection_type === 'U'">
+                            {{ addRadio("unique"+i) }}
+                        </div>
+                        <div class="container-fluid py-2 px-0">
+                            <h5>{{modifierGroup?.name}}</h5>
+                            <ng-container *ngFor="let modifier of modifierGroup.modifier; let j = index">
+                                <div *ngIf="modifierGroup?.selection_type === 'U'; else elseBlock" class="form-check">
+                                    <input class="form-check-input" type="radio" value="{{ modifier?.id }}" id="unique{{i + '' + j}}" formControlName="unique{{i}}">
                                     <div class="d-flex justify-content-between">
-                                        <label class="form-check-label" for="defaultCheck{{i}}">
+                                        <label class="form-check-label" for="unique{{i + '' + j}}">
                                             {{modifier?.name}}
                                         </label>
                                         <p>{{modifier?.price | currency}}</p>
                                     </div>
                                 </div>
-                              </ng-template>
-                        </ng-container>
-                    </div>
-                </ng-container>
+                                <ng-template #elseBlock>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{ modifier?.id }}" id="multiple{{i + '' + j}}" (change)="onCheckboxChange($event)">
+                                        <div class="d-flex justify-content-between">
+                                            <label class="form-check-label" for="multiple{{i + '' + j}}">
+                                                {{modifier?.name}}
+                                            </label>
+                                            <p>{{modifier?.price | currency}}</p>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </form>
             </div>
         </div>
     </div>
@@ -57,7 +62,7 @@
                             <button class="btn btn-light d-flex align-items-center" (click)="increment()">
                                 <span class="material-icons">add</span>
                             </button>
-                            <button type="button" class="btn btn-primary" (click)="activeModal.close('Save click')">Añadir al carrito</button>
+                            <button type="submit" class="btn btn-primary" form="form">Añadir al carrito</button>
                         </div>
                     </div>
                 </div>
