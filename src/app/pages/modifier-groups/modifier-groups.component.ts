@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ModifierGroups } from 'src/app/interfaces/modifier-groups';
-import { ModifierGroupsService } from 'src/app/services/modifier-groups/modifier-groups.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ModifierGroup } from 'src/app/interfaces/modifier-group';
+import { ModifierGroupService } from 'src/app/services/modifier-group/modifier-group.service';
+import { SnackbarService } from 'src/app/services/snackbar/snackbar.service';
+import {TabsComponent} from 'src/app/components/tabs/tabs.component';
 
 @Component({
   selector: 'app-modifier-groups',
@@ -9,12 +11,12 @@ import { ModifierGroupsService } from 'src/app/services/modifier-groups/modifier
 })
 export class ModifierGroupsComponent implements OnInit {
 
-  modifierGroupsRows: ModifierGroups[] = [];
+  modifierGroupsRows: ModifierGroup[] = [];
   
   modifierGroupsColumns = [
     { key: 'id', display: 'Grupo modificador id' },
     { key: 'name', display: 'Nombre' },
-    { key: 'category', display: 'Categoria' },
+    { key: 'selection_type', display: 'hidden' },
     {
       key: 'actions',
       display: 'Acciones',
@@ -25,31 +27,50 @@ export class ModifierGroupsComponent implements OnInit {
     },
   ];
 
-  constructor(private _modifierGroups: ModifierGroupsService) { }
+  @ViewChild('modifierGroupEdit') modifierGroupEditTemplate: any;
+  @ViewChild(TabsComponent) tabsComponent: any;
+
+  constructor(private _modifierGroup: ModifierGroupService,  private _snackbar: SnackbarService) { }
 
   ngOnInit(): void {
     this.getModifierGroups();
   }
 
   getModifierGroups(){
-    this._modifierGroups.getModifierGroups().subscribe(data => {
+    this._modifierGroup.getModifierGroups().subscribe(data => {
       this.modifierGroupsRows = data;
     });
   }
 
-  postModifierGroups(dataForm:any){
-    this._modifierGroups.postModifierGroups(dataForm).subscribe(data => {
-      if(data){
-        alert("Grupo Modificador guardado Exitosamente");
-        this.getModifierGroups();
-      } else {
-        console.log(data);
-      }
-    });
+  onModifierGroupFormSubmit(form:any){      
+    const {id, ...restForm } = form;
+    if(form.id > 0){
+      this._modifierGroup.putModifierGroup(id, restForm).subscribe(data => {
+          this.getModifierGroups();
+          this._snackbar.openSnackBar('Grupo Modificador actualizado exitosamente','bg-success','text-white');
+          this.tabsComponent.closeActiveTab();
+      });
+    }else{
+      this._modifierGroup.postModifierGroup(restForm).subscribe(data => {
+          this.getModifierGroups();
+          this._snackbar.openSnackBar('Grupo Modificador registrada exitosamente','bg-success','text-white');
+          this.tabsComponent.closeActiveTab();
+      });
+    }
+
+  }
+  
+  executeAction(obj:any){
+    let modifierGroup:ModifierGroup = obj.element;
+    if(obj.action === 'edit'){
+      this.tabsComponent.openTab(`Editar ${modifierGroup.name}`, this.modifierGroupEditTemplate, modifierGroup, true);    
+    }else{
+      console.log('Has seleccionado eliminar');
+    }
   }
 
-  selectAction(data: any){
-    console.log(data);
+  onAddGroupModifier(){
+    this.tabsComponent.openTab('Nuevo Grupo Modificador', this.modifierGroupEditTemplate, {}, true);
   }
 
 }

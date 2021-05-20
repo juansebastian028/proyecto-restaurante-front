@@ -22,8 +22,12 @@ export class CategoryService {
     return this.http.get<Category[]>(`${this.config.path}/products/categories`);
   }
 
-  postCategories(data: Category):Observable<Category[]>{
-    return this.http.post<Category[]>(`${this.config.path}/products/categories`, data, { headers: this.headers });
+  postCategory(category: Category):Observable<Category>{
+    return this.http.post<Category>(`${this.config.path}/products/categories`, category, { headers: this.headers });
+  }
+
+  putCategory(id:number, category: Category){
+    return this.http.put(`${this.path}/products/categories/${id}`, category, {headers: this.headers});
   }
 
   getProductsByCategory(city_id:number, category_id:number){

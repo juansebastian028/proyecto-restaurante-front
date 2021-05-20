@@ -40,10 +40,16 @@ export class CitiesComponent implements OnInit {
   }
 
   onCityFormSubmit(form:any){
+
+    const {id, ...restForm } = form;
+
     if(form.id > 0){
-      //EDITAR 
+      this._city.putCity(id, restForm).subscribe( (data:any) => {
+        this.getCities();
+        this._snackbar.openSnackBar('Ciudad actualizada exitosamente','bg-success','text-white');
+        this.tabsComponent.closeActiveTab();
+      });
     }else{
-      const {id, ...restForm } = form;
       this._city.postCity(restForm).subscribe((data:any) =>{
           this.getCities();
           this._snackbar.openSnackBar('Ciudad registrada exitosamente','bg-success','text-white');
@@ -52,12 +58,13 @@ export class CitiesComponent implements OnInit {
     }
   }
 
-  executeAction(city:City){
-    this.tabsComponent.openTab(`Editar ${city.name}`, this.editCityTemplate, city, true);    
-  }
-  
-  onEditCity(city:any){
-
+  executeAction(obj:any){
+    let city:City = obj.element;
+    if(obj.action === 'edit'){
+      this.tabsComponent.openTab(`Editar ${city.name}`, this.editCityTemplate, city, true);    
+    }else{
+      console.log('Has seleccionado eliminar');
+    }
   }
 
   onAddCity(){

@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { City } from 'src/app/interfaces/city';
 
 @Component({
   selector: 'app-edit-city',
@@ -8,7 +9,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class EditCityComponent implements OnInit {
 
-  @Input() city:any = {};
+  @Input() city!:City;
   @Output() saveCity = new EventEmitter<any>();
 
   public form:FormGroup = new FormGroup({});

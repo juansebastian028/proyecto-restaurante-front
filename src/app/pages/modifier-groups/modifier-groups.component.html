@@ -1,11 +1,16 @@
 <div class="container mt-5">
 	<app-tabs>
 		<app-tab [tabTitle]="'Grupo Modificador'">
-			<app-table (onAction)="selectAction($event)" [dataColumns]="modifierGroupsColumns" [dataRows]="modifierGroupsRows"></app-table>
-		</app-tab>
-		<app-tab [tabTitle]="'Agregar'">
-            <app-edit-modifier-group (eventEmitter)="postModifierGroups($event)"></app-edit-modifier-group>
+			<app-table 
+				(add)="onAddGroupModifier()"
+				(onAction)="executeAction($event)" 
+				[dataColumns]="modifierGroupsColumns" 
+				[dataRows]="modifierGroupsRows">
+			</app-table>
 		</app-tab>
 	</app-tabs>
+	<ng-template let-modifierGroup="data" #modifierGroupEdit>
+		<app-edit-modifier-group [modifierGroup]="modifierGroup" (saveModifierGroup)="onModifierGroupFormSubmit($event)"></app-edit-modifier-group>
+	</ng-template>
 </div>
 

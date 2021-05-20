@@ -60,8 +60,8 @@ export class OrdersComponent implements OnInit {
     },
   ];
 
-  openModal(action: any) {
-    if(action === "openModal"){
+  openModal(obj: any) {
+    if(obj.action === "openModal"){
       const modalRef = this.modalService.open(ModalOrderComponent);
       modalRef.componentInstance.orderData = this.orderData;
     }

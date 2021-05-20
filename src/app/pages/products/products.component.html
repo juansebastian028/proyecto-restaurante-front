@@ -1,10 +1,15 @@
 <div class="container mt-5">
 	<app-tabs>
 		<app-tab [tabTitle]="'Productos'">
-			<app-table (onAction)="selectAction($event)" [dataColumns]="productsColumns" [dataRows]="productsRows"></app-table>
-		</app-tab>
-		<app-tab [tabTitle]="'Agregar'">
-			<app-edit-product (eventEmitter)="postProduct($event)"></app-edit-product>
+			<app-table 
+				(add)="onAddProduct()"
+				(onAction)="executeAction($event)" 
+				[dataColumns]="productsColumns" 
+				[dataRows]="productsRows">
+			</app-table>
 		</app-tab>
 	</app-tabs>
+	<ng-template let-product="data" #productEdit>
+		<app-edit-product [product]="product" (saveProduct)="onProductFormSubmit($event)"></app-edit-product>
+	</ng-template>
 </div>

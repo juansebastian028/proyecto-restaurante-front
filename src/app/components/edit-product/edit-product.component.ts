@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BranchOffice } from 'src/app/interfaces/branch-office';
 import { Category } from 'src/app/interfaces/category';
@@ -12,64 +12,63 @@ import { CategoryService } from 'src/app/services/category/category.service';
 })
 export class EditProductComponent implements OnInit {
 
-  @Output() eventEmitter = new EventEmitter();
-
+  @Output() saveProduct = new EventEmitter<object>();
+  @Input() product:any;
   public form:FormGroup = new FormGroup({});
 
   submitted = false;
   categories: Category[] = [];
   branches: BranchOffice[] = [];
-  default = 1;
 
-  constructor(private fb: FormBuilder, private _category: CategoryService, private _branchOffice: BranchOfficeService) { }
+  constructor(private fb: FormBuilder, private _category: CategoryService, private _branchOffice: BranchOfficeService) {
+    this.form = this.fb.group({
+      id: '',
+      name: new FormControl('', [Validators.required]),
+      price: new FormControl('', [Validators.required, Validators.min(0)]),
+      img: new FormControl('', [Validators.required]),
+      category_id: new FormControl('', [Validators.required]),
+      branches_ids: new FormControl('', [Validators.required]),
+     });
+  }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-     name: new FormControl('', [Validators.required]),
-     state: new FormControl('A', [Validators.required]),
-     price: new FormControl('', [Validators.required]),
-     img: new FormControl('', [Validators.required]),
-     category_id: new FormControl('', [Validators.required]),
-     branches_ids: new FormControl('', [Validators.required]),
-    });
 
     this._category.getCategories().subscribe((data: any) => {
       this.categories = data;
+      this.form.setValue({
+        id: this.product.id || -1,
+        name: this.product.name || '',
+        price: this.product.price || '',
+        img: '',
+        category_id: this.product.category_id || this.categories[0].id,
+        branches_ids: this.product.branches ? this.product.branches.map((obj: { id: number; }) => obj.id) : ''
+      });
     });
 
     this._branchOffice.getBranches().subscribe((data: any) => {
       this.branches = data;
     });
 
-    this.form.get('category_id')?.setValue(this.default, {onlySelf: true});
   }
 
-  onFileChange(event: any) {
-    if (event.target.files && event.target.files.length > 0) {
+  onFileChange(event:any) {
+    if(event.target.files && event.target.files.length > 0){
       const file = event.target.files[0];
-      try {
-        this.form.patchValue({
-          img: file
-        });
-      } catch (error) {
-        console.log(error);
-      }
+      this.form.patchValue({img: file}); 
     }
   }
 
   onFormSubmit(){
     this.submitted = true;
-    const formData = new FormData();
-
-    formData.append('name', this.form.get('name')?.value);
-    formData.append('state', this.form.get('state')?.value);
-    formData.append('price', this.form.get('price')?.value);
-    formData.append('img', this.form.get('img')?.value);
-    formData.append('category_id', this.form.get('category_id')?.value);
-    formData.append('branches_ids', JSON.stringify(this.form.get('branches_ids')?.value));
+    const formDataProduct = new FormData();
+    formDataProduct.append('name', this.form.get('name')?.value);
+    formDataProduct.append('price', this.form.get('price')?.value);
+    formDataProduct.append('img', this.form.get('img')?.value);
+    formDataProduct.append('category_id', this.form.get('category_id')?.value);
+    formDataProduct.append('branches_ids', JSON.stringify(this.form.get('branches_ids')?.value));
 
     if(this.form.valid){
-      this.eventEmitter.emit(formData);
+      this.saveProduct.emit({id:this.form.get('id')?.value, formDataProduct});
     }
   }
 

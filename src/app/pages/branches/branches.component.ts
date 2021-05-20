@@ -38,8 +38,7 @@ export class BranchesComponent implements OnInit {
       key: 'actions',
       display: 'Acciones',
       config: { isAction: true, actions: [
-        {class:['btn','btn-danger'], icon: 'delete', name: 'delete'}, 
-        {class:['btn' ,'btn-warning'], icon:'edit', name: 'edit'}] 
+        {class:['btn','btn-success'], icon: 'check', name: 'activate'}] 
       },
     },
   ];
@@ -60,14 +59,18 @@ export class BranchesComponent implements OnInit {
   }
 
   onBranchFormSubmit(form:any){      
-      if(form.id > 0){
-        //EDITAR
-      }else{
-        const {id, ...restForm } = form;
-        this._branch.postBranchOffice(form).subscribe((data:any) =>{
-          this.getBranches();
-          this._snackbar.openSnackBar('Sucursal registrada exitosamente','bg-success','text-white');
-          this.tabsComponent.closeActiveTab();
+    const {id, ...restForm } = form;
+    if(form.id > 0){
+      this._branch.putBranchOffice(id, restForm).subscribe( (data:any) => {
+        this.getBranches();
+        this._snackbar.openSnackBar('Sucursal actualizada exitosamente','bg-success','text-white');
+        this.tabsComponent.closeActiveTab();
+      });
+    }else{
+      this._branch.postBranchOffice(restForm).subscribe((data:any) =>{
+        this.getBranches();
+        this._snackbar.openSnackBar('Sucursal registrada exitosamente','bg-success','text-white');
+        this.tabsComponent.closeActiveTab();
       });
     }
   }
@@ -78,9 +81,14 @@ export class BranchesComponent implements OnInit {
     });
 
   }
-
-  executeAction(branch:BranchOffice){
-    this.tabsComponent.openTab(`Editar ${branch.name}`, this.editBranchTemplate, branch, true);    
+  
+  executeAction(obj:any){
+    let branch:BranchOffice = obj.element;
+    if(obj.action === 'edit'){
+      this.tabsComponent.openTab(`Editar ${branch.name}`, this.editBranchTemplate, branch, true);    
+    }else{
+      console.log('Has seleccionado eliminar');
+    }
   }
   
   onEditCity(branch:any){
@@ -88,6 +96,6 @@ export class BranchesComponent implements OnInit {
   }
 
   onAddBranch(){
-    this.tabsComponent.openTab('Nueva Ciudad', this.editBranchTemplate, {}, true);
+    this.tabsComponent.openTab('Nueva Sucursal', this.editBranchTemplate, {}, true);
   }
 }

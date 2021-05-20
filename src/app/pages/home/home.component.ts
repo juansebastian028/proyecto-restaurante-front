@@ -13,15 +13,14 @@ export class HomeComponent implements OnInit {
 
   products: ProductHome[] = []; 
   categories: Category[] = [];
-  selectedCity: any = "";
-  city_id:number = 1;
+  selectedCity:any;
 
   constructor(private _product: ProductService, private _category: CategoryService) {}
 
   ngOnInit(): void {
     this.getCategories();
-    if(localStorage.getItem('selcetedCity')){
-      this.selectedCity = localStorage.getItem('selcetedCity');
+    if(localStorage.getItem('selected_city')){
+      this.selectedCity = localStorage.getItem('selected_city');
       this.getProductsByCity(JSON.parse(this.selectedCity));
     }
   }
@@ -33,8 +32,11 @@ export class HomeComponent implements OnInit {
   }
 
   getProductsByCity(city_id:number){
-    localStorage.setItem('selcetedCity', JSON.stringify(city_id));
-    this._product.getProductsHome(city_id).subscribe(data =>{
+    if (localStorage.getItem('selected_city') === null){
+      localStorage.setItem('selected_city', JSON.stringify(city_id));
+    }
+    this.selectedCity = city_id;
+    this._product.getProductsHome(this.selectedCity).subscribe(data =>{
       this.products = data;
     })
   }

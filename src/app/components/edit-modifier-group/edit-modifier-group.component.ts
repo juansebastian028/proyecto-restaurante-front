@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Category } from 'src/app/interfaces/category';
 import { CategoryService } from 'src/app/services/category/category.service';
@@ -10,7 +10,9 @@ import { CategoryService } from 'src/app/services/category/category.service';
 })
 export class EditModifierGroupComponent implements OnInit {
 
-  @Output() eventEmitter = new EventEmitter();
+  @Output() saveModifierGroup = new EventEmitter();
+  @Input() modifierGroup:any;
+
 
   public form:FormGroup = new FormGroup({});
 
@@ -18,26 +20,33 @@ export class EditModifierGroupComponent implements OnInit {
   categories: Category[] = [];
   default = 1;
 
-  constructor(private fb: FormBuilder, private _category: CategoryService) { }
+  constructor(private fb: FormBuilder, private _category: CategoryService) {
+    this.form = this.fb.group({
+      id: '',
+      name: new FormControl('', [Validators.required]),
+      selection_type: new FormControl('U', [Validators.required]),
+      category_id: new FormControl('', [Validators.required]),
+     });
+  }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-     name: new FormControl('', [Validators.required]),
-     selection_type: new FormControl('U', [Validators.required]),
-     category_id: new FormControl('', [Validators.required]),
-    });
-
     this._category.getCategories().subscribe((data: any) => {
       this.categories = data;
+      this.form.setValue({
+        id: this.modifierGroup.id || -1,
+        name: this.modifierGroup.name || '',
+        selection_type: this.modifierGroup.selection_type || 'U',
+        category_id: this.modifierGroup.category_id || this.categories[0].id
+      });
     });
 
-    this.form.get('category_id')?.setValue(this.default, {onlySelf: true});
+
   }
 
   onFormSubmit(){
     this.submitted = true;
     if(this.form.valid){
-      this.eventEmitter.emit(this.form.value);
+      this.saveModifierGroup.emit(this.form.value);
     }
   }
 

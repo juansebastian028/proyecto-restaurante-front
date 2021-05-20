@@ -26,8 +26,12 @@ export class BranchOfficeService {
     return this.http.get<Product[]>(`${this.path}/branches/${branch_id}/products`, {headers: this.headers});
   }
 
-  postBranchOffice(branch: BranchOffice[]) {
+  postBranchOffice(branch: BranchOffice):Observable<BranchOffice>{
     return this.http.post<BranchOffice>(`${this.path}/branches`, branch, {headers: this.headers});
+  }
+
+  putBranchOffice(id:number, branch: BranchOffice){
+    return this.http.put(`${this.path}/branches/${id}`, branch, {headers: this.headers});
   }
 
 }

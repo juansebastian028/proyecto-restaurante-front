@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { data } from 'jquery';
 import { ShoppingCart } from 'src/app/interfaces/shopping-cart';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
 
