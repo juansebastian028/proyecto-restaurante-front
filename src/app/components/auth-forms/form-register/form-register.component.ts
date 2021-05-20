@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
 
 @Component({
   selector: 'app-form-register',
@@ -13,7 +14,7 @@ export class FormRegisterComponent implements OnInit {
   public form:FormGroup = new FormGroup({});
   submitted = false;
   
-  constructor(private _auth: AuthService, private router: Router, private fb: FormBuilder) {
+  constructor(private _auth: AuthService, private router: Router, private fb: FormBuilder, private _shoppingCart: ShoppingCartService) {
     this.form = this.fb.group({
       name: new FormControl('', [Validators.required]),
       lastname: new FormControl('', [Validators.required]),
@@ -34,6 +35,9 @@ export class FormRegisterComponent implements OnInit {
       this._auth.register(formRegister).subscribe((data:any) =>{
         this.router.navigate(['']);
         localStorage.setItem('auth_token', data.token);
+        localStorage.setItem('current_user_profile', JSON.stringify(data.profile));
+        localStorage.setItem('current_user', JSON.stringify(data.user));
+        this._shoppingCart.addShoppingCartLocal();
       });
     }
   }

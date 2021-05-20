@@ -10,6 +10,7 @@ import { ConfigService } from 'src/app/services/config/config.service';
 export class AuthService {
   path: string = '';
   currentUserProfile:any;
+  currentUser:any;
   token:any;
 
   constructor(private http: HttpClient, private config: ConfigService) {
@@ -27,6 +28,7 @@ export class AuthService {
 
   initCurrentUser() {
      this.currentUserProfile = JSON.parse(localStorage.getItem('current_user_profile')!);
+     this.currentUser = JSON.parse(localStorage.getItem('current_user')!);
      this.token = localStorage.getItem('auth_token');
   }
 
@@ -39,6 +41,11 @@ export class AuthService {
     return this.currentUserProfile;
   }
 
+  getCurrentUser(){
+    this.initCurrentUser();
+    return this.currentUser;
+  }
+
   isAuthenticated(): boolean {
     this.initCurrentUser();
     return (this.getToken() !== null) ? true : false;
@@ -47,5 +54,6 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('auth_token');
     localStorage.removeItem('current_user_profile');
+    localStorage.removeItem('current_user');
   }
 }
