@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Category } from 'src/app/interfaces/category';
+import { SnackbarService } from 'src/app/services/snackbar/snackbar.service';
 import { CategoryService } from '../../services/category/category.service';
+import {TabsComponent} from 'src/app/components/tabs/tabs.component';
 
 @Component({
   selector: 'app-categories',
@@ -24,7 +26,10 @@ export class CategoriesComponent implements OnInit {
     },
   ];
 
-  constructor(private _category: CategoryService) { }
+  @ViewChild('categoryEdit') categoryEditTemplate: any;
+  @ViewChild(TabsComponent) tabsComponent: any;
+
+  constructor(private _category: CategoryService, private _snackbar: SnackbarService) { }
 
   ngOnInit(): void {
     this.getCategories();
@@ -36,19 +41,34 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
-  postCategory(dataForm:any){
-    this._category.postCategories(dataForm).subscribe(data => {
-      if(data){
-        alert("Categoria guardada Exitosamente");
+  onCategoryFormSubmit(form:any){    
+    const {id, ...restForm } = form;
+    if(form.id > 0){
+      this._category.putCategory(id, restForm).subscribe( (data:any) => {
         this.getCategories();
-      } else {
-        console.log(data);
-      }
-    });
+        this._snackbar.openSnackBar('Categoría actualizada exitosamente','bg-success','text-white');
+        this.tabsComponent.closeActiveTab();
+      });
+    }else{
+      this._category.postCategory(restForm).subscribe((data:any) =>{
+        this.getCategories();
+        this._snackbar.openSnackBar('Categoría registrada exitosamente','bg-success','text-white');
+        this.tabsComponent.closeActiveTab();
+      });
+    }
   }
 
-  selectAction(data: any){
-    console.log(data);
+  executeAction(obj:any){
+    let category:Category = obj.element;
+    if(obj.action === 'edit'){
+      this.tabsComponent.openTab(`Editar ${category.name}`, this.categoryEditTemplate, category, true);    
+    }else{
+      console.log('Has seleccionado eliminar');
+    }
+  }
+
+  onAddCategory(){
+    this.tabsComponent.openTab('Nueva Categoría', this.categoryEditTemplate, {}, true);
   }
 
 }

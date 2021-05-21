@@ -6,7 +6,9 @@
 </div>
 <div class="example-container mat-elevation-z8">
 	<mat-table [dataSource]="dataSource">
-			<div *matNoDataRow class="p-2 text-center">{{infoMessage}}</div>
+			<ng-container *ngIf="!isLoading">
+				<div *matNoDataRow class="p-2 text-center">No se encontraron registros</div>
+			</ng-container>
 			<ng-container *ngFor="let column of dataColumns; let i = index" [matColumnDef]="column.key">
 					<mat-header-cell *matHeaderCellDef>
 							{{ dataColumns[i]["display"] }}
@@ -34,6 +36,9 @@
 		<mat-header-row *matHeaderRowDef="keys"></mat-header-row>
 		<mat-row *matRowDef="let row; columns: keys" [class.d-none]="row.name === 'hidden'"></mat-row>
 	</mat-table>
+	<div *ngIf="isLoading" class="text-center p-2">
+		{{isLoading ? 'Cargando...' : ''}}
+	</div> 
 	<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
   

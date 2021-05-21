@@ -21,7 +21,11 @@ export class CityService {
     return this.http.get<City[]>(`${this.path}/cities`);
   }
 
-  postCity(city: City[]) {
+  postCity(city: City):Observable<City> {
     return this.http.post<City>(`${this.path}/cities`, city, {headers: this.headers});
+  }
+
+  putCity(id:number, city: City){
+    return this.http.put(`${this.path}/cities/${id}`, city, {headers: this.headers});
   }
 }

@@ -1,11 +1,16 @@
 <div class="container mt-5">
 	<app-tabs>
 		<app-tab [tabTitle]="'Usuarios'">
-			<app-table (onAction)="executeAction($event)" [dataColumns]="usersColumns" [dataRows]="usersRows"></app-table>
-		</app-tab>
-		<app-tab [tabTitle]="'Agregar'">
-			<app-edit-user (saveUser)="onUserFormSubmit($event)"></app-edit-user>
+			<app-table 
+				(add)="onAddUser()"
+				(onAction)="executeAction($event)" 
+				[dataColumns]="usersColumns" 
+				[dataRows]="usersRows">
+			</app-table>
 		</app-tab>
 	</app-tabs>
+	<ng-template let-user="data" #userEdit>
+		<app-edit-user [user]="user" (saveUser)="onUserFormSubmit($event)"></app-edit-user>
+	</ng-template>
 </div>
 

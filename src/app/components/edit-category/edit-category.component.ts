@@ -1,6 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { CityService } from 'src/app/services/city/city.service';
+import { Category } from 'src/app/interfaces/category';
 
 @Component({
   selector: 'app-edit-category',
@@ -9,23 +9,30 @@ import { CityService } from 'src/app/services/city/city.service';
 })
 export class EditCategoryComponent implements OnInit {
 
-  @Output() eventEmitter = new EventEmitter();
+  @Output() saveCategory = new EventEmitter();
+  @Input() category !: Category;
   public form:FormGroup = new FormGroup({});
 
   submitted = false;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      id: '',
+      name: new FormControl('', [Validators.required]),
+     });
+  }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-     name: new FormControl('', [Validators.required]),
+    this.form.setValue({
+      id: this.category.id || -1,
+      name: this.category.name || '',
     });
   }
 
   onFormSubmit(){
     this.submitted = true;
     if(this.form.valid){
-      this.eventEmitter.emit(this.form.value);
+      this.saveCategory.emit(this.form.value);
     }
   }
 

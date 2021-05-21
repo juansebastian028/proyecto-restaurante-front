@@ -1,27 +1,24 @@
 <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">{{orderData?.name}}</h4>
+    <h4 class="modal-title" id="modal-basic-title"> Total {{ 35000 | currency}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row" *ngFor="let product of orderData?.products">
             <div class="col-12 col-lg-6">
-                <img class="img-fluid" [src]="orderData?.img" alt="product">
+                <h4 class="pt-2">{{ product?.category?.name }}</h4>
+                <img class="img-fluid" [src]="product?.img" alt="product">
             </div>
             <div class="col-12 col-lg-6">
-                <h4 class="pt-2">{{ 15000 | currency }}</h4>
-                <div class="container-fluid py-2 px-0">
-                    <h5>Bebida</h5>
-                    <p>Jugo de mora</p>
-                </div>
-                <div class="container-fluid py-2 px-0">
-                    <h5>Adicionales</h5>
-                    <p>Morcilla</p>
-                    <p>Arepa</p>
+                <h4 class="pt-2">{{ product?.price | currency }} ({{ product?.pivot.quantity }})</h4>
+                <div class="container-fluid py-2 px-0" *ngFor="let modifierGroup of product?.category?.modifier_groups">
+                    <h5>{{ modifierGroup.name }}</h5>
+                    <p *ngFor="let modifier of modifierGroup.modifiers">{{ modifier.name }}</p>
                 </div>
             </div>
+            <hr class="w-100">
         </div>
     </div>
 </div>
@@ -29,8 +26,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <div class="d-flex justify-content-end">
-                    <button class="btn btn-warning">Finalizar Pedido</button>
+                <div class="d-flex justify-content-end" *ngIf="orderData.state == 'P'">
+                    <button class="btn btn-success mr-2" *ngIf="profile?.type !== 'e-commerce'">Finalizar Pedido</button>
+                    <button class="btn btn-warning" *ngIf="profile?.type === 'e-commerce' && orderData?.user_id === user.id">Cancelar Pedido</button>
                 </div>
             </div>
         </div>

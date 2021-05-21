@@ -12,7 +12,7 @@ export class EditBranchComponent implements OnInit {
 
   public form:FormGroup = new FormGroup({});
   @Output() saveBranch = new EventEmitter<any>();
-  @Input() branch:any = {};
+  @Input() branch:any;
   submitted = false;
   default = 1;
   cities: City[] = [];
@@ -28,15 +28,12 @@ export class EditBranchComponent implements OnInit {
   ngOnInit(): void {
     this._city.getCities().subscribe(data => {
       this.cities =  data;
+      this.form.setValue({
+        id: this.branch.id || -1,
+        name: this.branch.name || '',
+        city_id: this.branch.city_id || this.cities[0].id
+      });
     });
-
-    this.form.setValue({
-      id: this.branch.id || -1,
-      name: this.branch.name || '',
-      city_id: this.branch.city_id || this.default
-    });
-    
-
   }
 
   onFormSubmit(){

@@ -14,10 +14,9 @@ export class TableComponent implements OnInit, OnChanges {
   @Input() dataRows: any[] = []; 
   @Output("onAction") emitter = new EventEmitter();
   @Output() add = new EventEmitter();
-  @Output() RefreshColumns = new EventEmitter<any>();
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
   dataSource = new MatTableDataSource<any>();
-  infoMessage:string = '';
+  isLoading:boolean = false;
   
   constructor() {
     
@@ -31,10 +30,12 @@ export class TableComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void{
 
-    if(changes && changes.dataRows.currentValue){
-      this.infoMessage = 'No se encontraron registros';
+    if(changes.dataRows && !changes.dataRows.isFirstChange()){
       this.dataSource = new MatTableDataSource(this.dataRows);
       this.dataSource.paginator = this.paginator;
+      this.isLoading = false;
+    }else{
+      this.isLoading = true;
     }
   }
   
@@ -46,14 +47,9 @@ export class TableComponent implements OnInit, OnChanges {
   
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.dataRows);
-    this.infoMessage = 'Cargando...';
   }
 
-  handleEmitter(action_name: string, element: any): void {
-    if (action_name === 'edit' || action_name === 'delete'){
-      this.emitter.emit(element);
-    }else{
-      this.emitter.emit(action_name);
-    }
+  handleEmitter(action: string, element: any): void {
+    this.emitter.emit({action, element});
   }
 }

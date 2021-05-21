@@ -44,7 +44,7 @@
 			<div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu aria-labelledby="navbarDropdown">
 			  <ng-container *ngIf="isAuthenticated else isNotAuthenticated">
 				<a ngbDropdownItem routerLink="/my-account" class="dropdown-item">Mi cuenta</a>
-				<a ngbDropdownItem routerLink="/my-account" class="dropdown-item" (click)="onLogout()">Cerrar Sesión</a>
+				<button ngbDropdownItem class="dropdown-item" (click)="onLogout()">Cerrar Sesión</button>
 			  </ng-container>
 			  <ng-template #isNotAuthenticated>
 				<a ngbDropdownItem routerLink="/login" class="dropdown-item">Iniciar sesión</a>

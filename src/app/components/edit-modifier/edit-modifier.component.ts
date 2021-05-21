@@ -1,7 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ModifierGroups } from 'src/app/interfaces/modifier-groups';
-import { ModifierGroupsService } from 'src/app/services/modifier-groups/modifier-groups.service';
+import { ModifierGroup } from 'src/app/interfaces/modifier-group';
+import { ModifierGroupService } from 'src/app/services/modifier-group/modifier-group.service';
 
 @Component({
   selector: 'app-edit-modifier',
@@ -10,23 +10,31 @@ import { ModifierGroupsService } from 'src/app/services/modifier-groups/modifier
 })
 export class EditModifierComponent implements OnInit {
 
-  @Output() eventEmitter = new EventEmitter();
+  @Output() saveModifier = new EventEmitter();
+  @Input() modifier!:any;
 
   public form:FormGroup = new FormGroup({});
-
   submitted = false;
-  modifierGroups: ModifierGroups[] = [];
+  modifierGroups: ModifierGroup[] = [];
 
-  constructor(private fb: FormBuilder, private _modifier: ModifierGroupsService) { }
+  constructor(private fb: FormBuilder, private _modifierGroup: ModifierGroupService) {
+    this.form = this.fb.group({
+      id: '',
+      name: new FormControl('', [Validators.required]),
+      price: new FormControl('', [Validators.required, Validators.min(0)]),
+      modifier_group: new FormControl('', [Validators.required]),
+     });
+  }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-     name: new FormControl('', [Validators.required]),
-     price: new FormControl('', [Validators.required]),
-     modifier_group: new FormControl('', [Validators.required]),
+    this.form.setValue({
+      id: this.modifier.id || -1,
+      name: this.modifier.name || '',
+      price: this.modifier.price || 0,
+      modifier_group: this.modifier.modifier_group ? this.modifier.modifier_group.map((obj: { modifier_group_id: number; }) => obj.modifier_group_id) : '',
     });
 
-    this._modifier.getModifierGroups().subscribe((data: ModifierGroups[]) => {
+    this._modifierGroup.getModifierGroups().subscribe((data: ModifierGroup[]) => {
       this.modifierGroups = data;
     });
   }
@@ -34,8 +42,9 @@ export class EditModifierComponent implements OnInit {
   onFormSubmit(){
     this.submitted = true;
     if(this.form.valid){
-      this.eventEmitter.emit(this.form.value);
+      this.saveModifier.emit(this.form.value);
     }
   }
 
 }
+

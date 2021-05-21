@@ -42,10 +42,14 @@ export class OrdersComponent implements OnInit {
 
   openModal(obj: any) {
     console.log(obj);
-    // if(action === "openModal"){
-    //   const modalRef = this.modalService.open(ModalOrderComponent);
-    //   modalRef.componentInstance.orderData = this.orderData;
-    // }
+    if(obj.action === "openModal"){
+      const modalRef = this.modalService.open(ModalOrderComponent);
+      this._orders.getProductsOrder(obj.element.id).subscribe((data) => {
+        modalRef.componentInstance.orderData = data;
+      }, (error) => {
+        console.log(error)
+      });
+    }
   }
 
   ngOnInit(): void {

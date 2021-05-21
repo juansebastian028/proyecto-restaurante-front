@@ -20,8 +20,12 @@ export class ModifierService {
     return this.http.get<Modifier[]>(`${this.path}/products/modifiers`, {headers: this.headers});
   }
 
-  postModifier(data: Modifier):Observable<Modifier[]>{
-    return this.http.post<Modifier[]>(`${this.config.path}/products/modifiers`, data, { headers: this.headers });
+  postModifier(modifier: Modifier):Observable<Modifier>{
+    return this.http.post<Modifier>(`${this.config.path}/products/modifiers`, modifier, { headers: this.headers });
+  }
+
+  putModifier(id:number, modifier: Modifier){
+    return this.http.put(`${this.path}/products/modifiers/${id}`, modifier, {headers: this.headers});
   }
 
   getModifierGroups():any{

@@ -1,10 +1,15 @@
 <div class="container mt-5">
 	<app-tabs>
 		<app-tab [tabTitle]="'Categorias'">
-			<app-table (onAction)="selectAction($event)" [dataColumns]="categoriesColumns" [dataRows]="categoriesRows"></app-table>
-		</app-tab>
-		<app-tab [tabTitle]="'Agregar'">
-			<app-edit-category (eventEmitter)="postCategory($event)"></app-edit-category>
+			<app-table 
+				(add)="onAddCategory()"
+				(onAction)="executeAction($event)" 
+				[dataColumns]="categoriesColumns" 
+				[dataRows]="categoriesRows">
+			</app-table>
 		</app-tab>
 	</app-tabs>
+	<ng-template let-category="data" #categoryEdit>
+		<app-edit-category [category]="category" (saveCategory)="onCategoryFormSubmit($event)"></app-edit-category>
+	</ng-template>
 </div>

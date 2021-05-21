@@ -52,6 +52,7 @@ import { MyAccountComponent } from './pages/my-account/my-account.component';
 import { ConfigService } from 'src/app/services/config/config.service';
 import { SelectBranchComponent } from './components/select-branch/select-branch.component';
 import { DynamicTabsDirective } from './components/tabs/dynamic-tabs.directive';
+import { ModalDeleteComponent } from './components/modal-delete/modal-delete.component';
 
 
 @NgModule({
@@ -93,7 +94,8 @@ import { DynamicTabsDirective } from './components/tabs/dynamic-tabs.directive';
     ModalOrderComponent,
     MyAccountComponent,
     SelectBranchComponent,
-    DynamicTabsDirective
+    DynamicTabsDirective,
+    ModalDeleteComponent
   ],
   imports: [
     BrowserModule,

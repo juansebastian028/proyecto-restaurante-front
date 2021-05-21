@@ -1,4 +1,4 @@
-<app-modal-select-city *ngIf="selectedCity === ''" (saveCity)="getProductsByCity($event)"></app-modal-select-city>
+<app-modal-select-city *ngIf="!selectedCity" (saveCity)="getProductsByCity($event)"></app-modal-select-city>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-9">
@@ -10,7 +10,7 @@
             <ul class="list-group">
                 <h4>Categorías</h4>
                 <li class="list-group-item">
-                    <button class="btn btn-light"(click)="getProductsByCity(this.city_id)">
+                    <button class="btn btn-light" (click)="getProductsByCity(this.selectedCity)">
                         Todos
                     </button>
                 </li>

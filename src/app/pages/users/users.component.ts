@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from 'src/app/interfaces/user';
 import { UserService } from 'src/app/services/user/user.service';
+import { SnackbarService } from 'src/app/services/snackbar/snackbar.service';
+import {TabsComponent} from 'src/app/components/tabs/tabs.component';
 
 @Component({
   selector: 'app-users',
@@ -14,7 +16,10 @@ export class UsersComponent implements OnInit {
     { key: 'id', display: 'Usuario id' },
     { key: 'name', display: 'Nombre' },
     { key: 'lastname', display: 'Apellido' },
+    { key: 'profile_id', display: 'hidden'},
     { key: 'profile', display: 'Perfil' },
+    { key: 'branch_office_id', display: 'hidden'},
+    { key: 'branch', display: 'hidden'},
     {
       key: 'actions',
       display: 'Acciones',
@@ -25,7 +30,10 @@ export class UsersComponent implements OnInit {
     },
   ];
 
-  constructor(private _user: UserService) {}
+  @ViewChild('userEdit') userEditTemplate: any;
+  @ViewChild(TabsComponent) tabsComponent: any;
+
+  constructor(private _user: UserService, private _snackbar: SnackbarService) {}
 
   getUsers(){
     this._user.getUsers().subscribe(data => {
@@ -37,11 +45,35 @@ export class UsersComponent implements OnInit {
     this.getUsers();
   }
 
-  executeAction(data: any){
-    console.log(data);
+  onUserFormSubmit(form:any){      
+    const {id, ...restForm } = form;
+    if(form.id > 0){
+      this._user.putUser(id, restForm).subscribe(data => {
+        this.getUsers();
+        this._snackbar.openSnackBar('Usuario actualizado exitosamente','bg-success','text-white');
+        this.tabsComponent.closeActiveTab();
+    });
+    }else{
+      this._user.postUser(restForm).subscribe(data => {
+          this.getUsers();
+          this._snackbar.openSnackBar('Usuario registrada exitosamente','bg-success','text-white');
+          this.tabsComponent.closeActiveTab();
+      });
+    }
+
+  }
+  
+  executeAction(obj:any){
+    let user:User = obj.element;
+    if(obj.action === 'edit'){
+      this.tabsComponent.openTab(`Editar ${user.name}`, this.userEditTemplate, user, true);    
+    }else{
+      console.log('Has seleccionado eliminar');
+    }
   }
 
-  onUserFormSubmit(form:any){
-    console.log(form);
+
+  onAddUser(){
+    this.tabsComponent.openTab('Nuevo Usuario', this.userEditTemplate, {}, true);
   }
 }

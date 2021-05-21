@@ -21,7 +21,11 @@ export class UserService {
     return this.http.get<User[]>(`${this.path}/users`, {headers: this.headers});
   }
 
-  postUser(){
+  postUser(user: User):Observable<User>{
+    return this.http.post<User>(`${this.path}/users`, user, {headers: this.headers});
+  }
 
+  putUser(id:number, user: User){
+    return this.http.put(`${this.path}/users/${id}`, user, {headers: this.headers});
   }
 }
