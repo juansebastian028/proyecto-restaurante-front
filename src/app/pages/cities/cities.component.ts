@@ -3,6 +3,8 @@ import { City } from 'src/app/interfaces/city';
 import { CityService } from 'src/app/services/city/city.service';
 import { SnackbarService } from 'src/app/services/snackbar/snackbar.service';
 import {TabsComponent} from 'src/app/components/tabs/tabs.component';
+import { ModalDeleteComponent } from 'src/app/components/modal-delete/modal-delete.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-cities',
@@ -27,7 +29,7 @@ export class CitiesComponent implements OnInit {
   @ViewChild('cityEdit') editCityTemplate: any;
   @ViewChild(TabsComponent) tabsComponent: any;
 
-  constructor(private _city: CityService,  private _snackbar: SnackbarService) { }
+  constructor(private _city: CityService,  private _snackbar: SnackbarService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.getCities();
@@ -63,9 +65,21 @@ export class CitiesComponent implements OnInit {
     if(obj.action === 'edit'){
       this.tabsComponent.openTab(`Editar ${city.name}`, this.editCityTemplate, city, true);    
     }else{
-      console.log('Has seleccionado eliminar');
+      const modalRef = this.modalService.open(ModalDeleteComponent);
+      modalRef.componentInstance.data = city;
+      modalRef.componentInstance.modalRef = modalRef;
+
+      modalRef.componentInstance.eventEmitter.subscribe((isDeleted:boolean) => {
+        if(isDeleted){
+          this._city.deleteCity(city.id).subscribe((data:any)=> {
+            this.getCities();
+            this._snackbar.openSnackBar('Ciudad eliminada exitosamente','bg-success','text-white');
+          });
+        }
+      });
     }
   }
+  
 
   onAddCity(){
     this.tabsComponent.openTab('Nueva Ciudad', this.editCityTemplate, {}, true);

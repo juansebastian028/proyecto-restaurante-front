@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormLoginComponent } from './components/auth-forms/form-login/login.component';
+import { FormLoginComponent } from './components/auth-forms/form-login/form-login.component';
 import { FormRegisterComponent } from './components/auth-forms/form-register/form-register.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './pages/home/home.component';

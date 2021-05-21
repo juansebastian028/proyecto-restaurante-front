@@ -28,4 +28,8 @@ export class UserService {
   putUser(id:number, user: User){
     return this.http.put(`${this.path}/users/${id}`, user, {headers: this.headers});
   }
+
+  deleteUser(id:number){
+    return this.http.delete(`${this.path}/users/${id}`, {headers: this.headers});
+  }
 }

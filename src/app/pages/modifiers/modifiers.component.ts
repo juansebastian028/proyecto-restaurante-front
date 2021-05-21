@@ -3,6 +3,8 @@ import { Modifier } from 'src/app/interfaces/modifier';
 import { ModifierService } from 'src/app/services/modifier/modifier.service';
 import { SnackbarService } from 'src/app/services/snackbar/snackbar.service';
 import {TabsComponent} from 'src/app/components/tabs/tabs.component';
+import { ModalDeleteComponent } from 'src/app/components/modal-delete/modal-delete.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-modifiers',
@@ -31,7 +33,7 @@ export class ModifiersComponent implements OnInit {
   @ViewChild('modifierEdit') modifierEditTemplate: any;
   @ViewChild(TabsComponent) tabsComponent: any;
 
-  constructor(private _modifier: ModifierService, private _snackbar: SnackbarService) { }
+  constructor(private _modifier: ModifierService, private _snackbar: SnackbarService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.getModifiers();
@@ -66,7 +68,18 @@ export class ModifiersComponent implements OnInit {
     if(obj.action === 'edit'){
       this.tabsComponent.openTab(`Editar ${modifier.name}`, this.modifierEditTemplate, modifier, true);    
     }else{
-      console.log('Has seleccionado eliminar');
+      const modalRef = this.modalService.open(ModalDeleteComponent);
+      modalRef.componentInstance.data = modifier;
+      modalRef.componentInstance.modalRef = modalRef;
+
+      modalRef.componentInstance.eventEmitter.subscribe((isDeleted:boolean) => {
+        if(isDeleted){
+          this._modifier.deleteModifier(modifier.id).subscribe((data:any)=> {
+            this.getModifiers();
+            this._snackbar.openSnackBar('Modificador eliminado exitosamente','bg-success','text-white');
+          });
+        }
+      });
     }
   }
 

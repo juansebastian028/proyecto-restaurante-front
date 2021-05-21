@@ -3,6 +3,8 @@ import { Category } from 'src/app/interfaces/category';
 import { SnackbarService } from 'src/app/services/snackbar/snackbar.service';
 import { CategoryService } from '../../services/category/category.service';
 import {TabsComponent} from 'src/app/components/tabs/tabs.component';
+import { ModalDeleteComponent } from 'src/app/components/modal-delete/modal-delete.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-categories',
@@ -29,7 +31,7 @@ export class CategoriesComponent implements OnInit {
   @ViewChild('categoryEdit') categoryEditTemplate: any;
   @ViewChild(TabsComponent) tabsComponent: any;
 
-  constructor(private _category: CategoryService, private _snackbar: SnackbarService) { }
+  constructor(private _category: CategoryService, private _snackbar: SnackbarService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.getCategories();
@@ -63,7 +65,18 @@ export class CategoriesComponent implements OnInit {
     if(obj.action === 'edit'){
       this.tabsComponent.openTab(`Editar ${category.name}`, this.categoryEditTemplate, category, true);    
     }else{
-      console.log('Has seleccionado eliminar');
+      const modalRef = this.modalService.open(ModalDeleteComponent);
+      modalRef.componentInstance.data = category;
+      modalRef.componentInstance.modalRef = modalRef;
+
+      modalRef.componentInstance.eventEmitter.subscribe((isDeleted:boolean) => {
+        if(isDeleted){
+          this._category.deleteCategory(category.id).subscribe((data:any)=> {
+            this.getCategories();
+            this._snackbar.openSnackBar('Categoría eliminada exitosamente','bg-success','text-white');
+          });
+        }
+      });
     }
   }
 

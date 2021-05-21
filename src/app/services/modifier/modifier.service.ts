@@ -28,6 +28,10 @@ export class ModifierService {
     return this.http.put(`${this.path}/products/modifiers/${id}`, modifier, {headers: this.headers});
   }
 
+  deleteModifier(id:number){
+    return this.http.delete(`${this.path}/products/modifiers/${id}`, {headers: this.headers});
+  }
+
   getModifierGroups():any{
     return this.http.get(`${this.path}/products/group-modifiers`, {headers: this.headers});
   }
