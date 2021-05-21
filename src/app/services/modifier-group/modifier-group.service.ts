@@ -29,4 +29,8 @@ export class ModifierGroupService {
     return this.http.put(`${this.path}/products/group-modifiers/${id}`, modifierGroup, {headers: this.headers});
   }
 
+  deleteModifierGroup(id:number){
+    return this.http.delete(`${this.path}/products/group-modifiers/${id}`, {headers: this.headers});
+  }
+
 }

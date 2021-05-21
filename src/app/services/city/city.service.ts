@@ -28,4 +28,8 @@ export class CityService {
   putCity(id:number, city: City){
     return this.http.put(`${this.path}/cities/${id}`, city, {headers: this.headers});
   }
+
+  deleteCity(id:number){
+    return this.http.delete(`${this.path}/cities/${id}`, {headers: this.headers});
+  }
 }

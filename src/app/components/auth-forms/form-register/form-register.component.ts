@@ -32,8 +32,9 @@ export class FormRegisterComponent implements OnInit {
     if(this.form.valid) {
       let formRegister = {...this.form.value, profile_id:3};
       this._auth.register(formRegister).subscribe((data:any) =>{
-        this.router.navigate(['']);
         localStorage.setItem('auth_token', data.token);
+        localStorage.setItem('current_user_profile', JSON.stringify(data.profile));
+        this.router.navigate(['']);
       });
     }
   }

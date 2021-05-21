@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -8,11 +8,20 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModalDeleteComponent implements OnInit {
 
+  @Input() modalRef:any;
   @Input() data:any;
+  isDeleted:boolean = false;
+  @Output() eventEmitter = new EventEmitter<boolean>();
+  
   constructor(public modal: NgbActiveModal) { }
 
   ngOnInit(): void {
-    console.log(this.data);
+  }
+  
+  comfirmDelete(){
+    this.modalRef.close();
+    this.isDeleted = true;
+    this.eventEmitter.emit(this.isDeleted);
   }
 
 }

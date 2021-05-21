@@ -34,4 +34,8 @@ export class BranchOfficeService {
     return this.http.put(`${this.path}/branches/${id}`, branch, {headers: this.headers});
   }
 
+  deleteBranchOffice(id:number){
+    return this.http.delete(`${this.path}/branches/${id}`, {headers: this.headers});
+  }
+
 }

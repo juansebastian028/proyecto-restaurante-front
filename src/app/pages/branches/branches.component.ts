@@ -4,6 +4,8 @@ import { BranchOfficeService } from 'src/app/services/branch-office/branch-offic
 import { ProductsByBranch } from 'src/app/interfaces/product-by-branch';
 import { SnackbarService } from 'src/app/services/snackbar/snackbar.service';
 import {TabsComponent} from 'src/app/components/tabs/tabs.component';
+import { ModalDeleteComponent } from 'src/app/components/modal-delete/modal-delete.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -46,7 +48,7 @@ export class BranchesComponent implements OnInit {
   @ViewChild(TabsComponent) tabsComponent: any;
   @ViewChild('branchEdit') editBranchTemplate: any;
 
-  constructor(private _branch: BranchOfficeService, private _snackbar: SnackbarService) { }
+  constructor(private _branch: BranchOfficeService, private _snackbar: SnackbarService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.getBranches();
@@ -87,14 +89,21 @@ export class BranchesComponent implements OnInit {
     if(obj.action === 'edit'){
       this.tabsComponent.openTab(`Editar ${branch.name}`, this.editBranchTemplate, branch, true);    
     }else{
-      console.log('Has seleccionado eliminar');
+      const modalRef = this.modalService.open(ModalDeleteComponent);
+      modalRef.componentInstance.data = branch;
+      modalRef.componentInstance.modalRef = modalRef;
+
+      modalRef.componentInstance.eventEmitter.subscribe((isDeleted:boolean) => {
+        if(isDeleted){
+          this._branch.deleteBranchOffice(branch.id).subscribe((data:any)=> {
+            this.getBranches();
+            this._snackbar.openSnackBar('Sucursal eliminada exitosamente','bg-success','text-white');
+          })
+        }
+      });
     }
   }
   
-  onEditCity(branch:any){
-
-  }
-
   onAddBranch(){
     this.tabsComponent.openTab('Nueva Sucursal', this.editBranchTemplate, {}, true);
   }

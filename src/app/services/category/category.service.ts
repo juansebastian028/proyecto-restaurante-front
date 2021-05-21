@@ -30,6 +30,10 @@ export class CategoryService {
     return this.http.put(`${this.path}/products/categories/${id}`, category, {headers: this.headers});
   }
 
+  deleteCategory(id:number){
+    return this.http.delete(`${this.path}/products/categories/${id}`, {headers: this.headers});
+  }
+
   getProductsByCategory(city_id:number, category_id:number){
     return this.http.get<ProductHome[]>(`${this.config.path}/cities/${city_id}/categories/${category_id}/products`);
   }

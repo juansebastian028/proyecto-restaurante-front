@@ -12,7 +12,7 @@ export class SelectCityComponent implements OnInit, OnChanges {
   @Input() cities:City[] = [];
   @Output() selectEvent = new EventEmitter<number>();
 
-  selectedCityId:number = 0;
+  selectedCityId!:number;
 
   constructor() { }
 
@@ -22,8 +22,8 @@ export class SelectCityComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void{
 
-    if(changes && changes.cities.currentValue){
-        this.selectedCityId = 1;
+    if(changes.cities && !changes.cities.isFirstChange()){
+        this.selectedCityId = this.cities[0].id;
         this.addNewItem(this.selectedCityId);
     }
   }

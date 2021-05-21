@@ -29,6 +29,10 @@ export class ProductService {
     return this.http.put(`${this.path}/products/${id}`, product, {headers: this.headers});
   }
 
+  deleteProduct(id:number){
+    return this.http.delete(`${this.path}/products/${id}`, {headers: this.headers});
+  }
+
   getProductsHome(city_id: number):Observable<ProductHome[]>{
     return this.http.get<ProductHome[]>(`${this.path}/cities/${city_id}/products`);
   }

@@ -65,11 +65,22 @@ export class ProductsComponent implements OnInit {
     if(obj.action === 'edit'){
       this.tabsComponent.openTab(`Editar ${product.name}`, this.productEditTemplate, product, true);    
     }else{
-      console.log('Has seleccionado eliminar');
       const modalRef = this.modalService.open(ModalDeleteComponent);
       modalRef.componentInstance.data = product;
+      modalRef.componentInstance.modalRef = modalRef;
+
+      modalRef.componentInstance.eventEmitter.subscribe((isDeleted:boolean) => {
+        if(isDeleted){
+          this._product.deleteProduct(product.id).subscribe((data:any) => {
+            this.getProducts();
+            this._snackbar.openSnackBar('Producto eliminado exitosamente','bg-success','text-white');
+            this.tabsComponent.closeActiveTab();
+          });
+        }
+      });
     }
   }
+  
 
   onAddProduct(){
     this.tabsComponent.openTab('Nuevo Producto', this.productEditTemplate, {}, true);
