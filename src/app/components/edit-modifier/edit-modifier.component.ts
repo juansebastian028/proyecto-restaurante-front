@@ -22,7 +22,7 @@ export class EditModifierComponent implements OnInit {
       id: '',
       name: new FormControl('', [Validators.required]),
       price: new FormControl('', [Validators.required, Validators.min(0)]),
-      modifier_group: new FormControl('', [Validators.required]),
+      modifier_groups_ids: new FormControl('', [Validators.required]),
      });
   }
 
@@ -31,7 +31,7 @@ export class EditModifierComponent implements OnInit {
       id: this.modifier.id || -1,
       name: this.modifier.name || '',
       price: this.modifier.price || 0,
-      modifier_group: this.modifier.modifier_group ? this.modifier.modifier_group.map((obj: { modifier_group_id: number; }) => obj.modifier_group_id) : '',
+      modifier_groups_ids: this.modifier.modifier_group ? this.modifier.modifier_group.map((obj: { modifier_group_id: number; }) => obj.modifier_group_id) : '',
     });
 
     this._modifierGroup.getModifierGroups().subscribe((data: ModifierGroup[]) => {

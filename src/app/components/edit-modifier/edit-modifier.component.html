@@ -19,10 +19,10 @@
 		<div class="col-12">
 			<div class="form-group">
 				<label for="group-modifier" class="text-info">Grupo modificador</label>
-				<ng-select [multiple]="true" name="modifier_group" formControlName="modifier_group">
+				<ng-select [multiple]="true" name="modifier_groups_ids" formControlName="modifier_groups_ids">
 					<ng-option *ngFor="let modifierGroup of modifierGroups" [value]="modifierGroup.id">{{ modifierGroup.name }}</ng-option>
 				</ng-select>
-				<p class="text-danger" *ngIf="(form.get('modifier_group')?.touched || submitted) && form.get('modifier_group')?.errors?.required">El campo es obligatorio</p>
+				<p class="text-danger" *ngIf="(form.get('modifier_groups_ids')?.touched || submitted) && form.get('modifier_groups_ids')?.errors?.required">El campo es obligatorio</p>
 			</div>
 		</div>
 	</div>

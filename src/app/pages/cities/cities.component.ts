@@ -72,6 +72,9 @@ export class CitiesComponent implements OnInit {
       modalRef.componentInstance.eventEmitter.subscribe((isDeleted:boolean) => {
         if(isDeleted){
           this._city.deleteCity(city.id).subscribe((data:any)=> {
+            if(city.id === JSON.parse(localStorage.getItem('selected_city')!)){
+              localStorage.removeItem('selected_city');
+            }
             this.getCities();
             this._snackbar.openSnackBar('Ciudad eliminada exitosamente','bg-success','text-white');
           });
