@@ -36,6 +36,7 @@ export class MakeShoppingComponent implements OnInit {
       this.form.addControl('branch_id', this.fb.control(this.user.brach_id));
       this.form.addControl('shopping_cart_ids', this.fb.control(JSON.parse(localStorage.getItem('payShoppingCart')!)));
       this._order.payOrder(this.form.value).subscribe((data) => {
+        localStorage.removeItem('payShoppingCart');
         this._snackbar.openSnackBar('Pedido realizado exitosamente', 'bg-success','text-white');
         this.router.navigate(['']);
       }, (error) => {

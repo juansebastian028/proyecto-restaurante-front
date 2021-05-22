@@ -1,34 +1,50 @@
 <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title"> Total {{ 35000 | currency}}</h4>
+    <h4 class="modal-title" id="modal-basic-title"> Total: {{ total | currency}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body">
     <div class="container-fluid">
-        <div class="row" *ngFor="let product of orderData?.products">
+        <div class="row" *ngFor="let product of order?.products">
             <div class="col-12 col-lg-6">
-                <h4 class="pt-2">{{ product?.category?.name }}</h4>
+                <h4 class="pt-2">{{ product?.category?.name + ': ' + product?.name }}</h4>
                 <img class="img-fluid" [src]="product?.img" alt="product">
             </div>
             <div class="col-12 col-lg-6">
-                <h4 class="pt-2">{{ product?.price | currency }} ({{ product?.pivot.quantity }})</h4>
+                <h4 class="pt-2">{{ product?.pivot.unit_price | currency }} ({{ product?.pivot.quantity }})</h4>
                 <div class="container-fluid py-2 px-0" *ngFor="let modifierGroup of product?.category?.modifier_groups">
                     <h5>{{ modifierGroup.name }}</h5>
-                    <p *ngFor="let modifier of modifierGroup.modifiers">{{ modifier.name }}</p>
+                    <p *ngFor="let modifier of modifierGroup.modifiers">{{ modifier.name + ' (' + (modifier.unit_price_modifier | currency) + ')' }}</p>
                 </div>
             </div>
             <hr class="w-100">
         </div>
+        <div class="row" *ngIf="isCancelled">
+            <div class="col-12">
+                <form [formGroup]="form" id="form" (ngSubmit)="onFormSubmit()">
+                    <label for="cancellation_description">Motivo de cancelación</label>
+                    <textarea name="cancellation_description" id="cancellation_description" class="form-control" formControlName="cancellation_description"></textarea>
+                    <p class="text-danger" *ngIf="(form.get('cancellation_description')?.touched || submitted) && form.get('cancellation_description')?.errors?.required">El campo es obligatorio</p>
+                </form>
+            </div>
+        </div>
+        <div class="row" *ngIf="order?.cancellation_description !== null && order?.cancellation_description !== ''">
+            <div class="col-12">
+                <label><b>Motivo de cancelación:</b> </label> {{ order?.cancellation_description }}
+            </div>
+        </div>
     </div>
 </div>
+
 <div class="modal-footer">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <div class="d-flex justify-content-end" *ngIf="orderData.state == 'P'">
-                    <button class="btn btn-success mr-2" *ngIf="profile?.type !== 'e-commerce'">Finalizar Pedido</button>
-                    <button class="btn btn-warning" *ngIf="profile?.type === 'e-commerce' && orderData?.user_id === user.id">Cancelar Pedido</button>
+                <div class="d-flex justify-content-end" *ngIf="order?.state == 'P'">
+                    <button class="btn btn-success mr-2" *ngIf="profile?.type !== 'e-commerce'" (click)="finalizeOrder()">Finalizar Pedido</button>
+                    <button class="btn btn-warning" *ngIf="order?.user_id === user.id && !isCancelled" (click)="cancelOrder()">Cancelar Pedido</button>
+                    <button class="btn btn-info" type="submit" *ngIf="isCancelled" form="form">Cancelar Pedido</button>
                 </div>
             </div>
         </div>
