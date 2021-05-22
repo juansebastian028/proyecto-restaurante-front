@@ -9,30 +9,32 @@ import { ConfigService } from 'src/app/services/config/config.service';
 })
 export class ModifierService {
   path: string = '';
-  headers;
 
   constructor(private http: HttpClient, private config: ConfigService) {
     this.path = this.config.path;
-    this.headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("auth_token")});
+  }
+
+  getHeaders(){
+    return new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("auth_token")});
   }
   
   getModifiers():Observable<Modifier[]>{
-    return this.http.get<Modifier[]>(`${this.path}/products/modifiers`, {headers: this.headers});
+    return this.http.get<Modifier[]>(`${this.path}/products/modifiers`, {headers: this.getHeaders()});
   }
 
   postModifier(modifier: Modifier):Observable<Modifier>{
-    return this.http.post<Modifier>(`${this.config.path}/products/modifiers`, modifier, { headers: this.headers });
+    return this.http.post<Modifier>(`${this.config.path}/products/modifiers`, modifier, { headers: this.getHeaders() });
   }
 
   putModifier(id:number, modifier: Modifier){
-    return this.http.put(`${this.path}/products/modifiers/${id}`, modifier, {headers: this.headers});
+    return this.http.put(`${this.path}/products/modifiers/${id}`, modifier, {headers: this.getHeaders()});
   }
 
   deleteModifier(id:number){
-    return this.http.delete(`${this.path}/products/modifiers/${id}`, {headers: this.headers});
+    return this.http.delete(`${this.path}/products/modifiers/${id}`, {headers: this.getHeaders()});
   }
 
   getModifierGroups():any{
-    return this.http.get(`${this.path}/products/group-modifiers`, {headers: this.headers});
+    return this.http.get(`${this.path}/products/group-modifiers`, {headers: this.getHeaders()});
   }
 }

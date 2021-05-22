@@ -62,7 +62,6 @@ export class UsersComponent implements OnInit {
           this.tabsComponent.closeActiveTab();
       });
     }
-
   }
   
   executeAction(obj:any){

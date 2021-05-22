@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BranchOffice } from 'src/app/interfaces/branch-office';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { BranchOfficeService } from 'src/app/services/branch-office/branch-office.service';
 
 @Component({
@@ -13,12 +14,16 @@ export class EditUserComponent implements OnInit {
   @Output() saveUser = new EventEmitter<any>();
   @Input() user:any;
 
-  public form:FormGroup = new FormGroup({});
-
+  form:FormGroup = new FormGroup({});
   submitted = false;
   branches:BranchOffice[] = [];
+  currentProfile:any;
 
-  constructor(private fb: FormBuilder, private _branch: BranchOfficeService ) {
+  isAdmin: boolean = false;
+  isSuperAdmin: boolean = false;
+  isEcommerce: boolean = false;
+
+  constructor(private fb: FormBuilder, private _branch: BranchOfficeService, private _auth: AuthService) {
     this.form = this.fb.group({
       id: '',
       name: new FormControl('', [Validators.required]),
@@ -53,8 +58,9 @@ export class EditUserComponent implements OnInit {
         email: this.user.email || '',
         password: ''
       });
-    });    
-    this.validateRequiredPassword(); 
+    });     
+    this.validateRequiredPassword();
+    this.checkProfile();
   }
 
   validateRequiredPassword(){
@@ -62,6 +68,18 @@ export class EditUserComponent implements OnInit {
       this.form.get('password')?.clearValidators();
     } else {
       this.form.get('password')?.setValidators(Validators.required);
+    }
+  }
+
+  checkProfile() {
+    let currentUserProfile = this._auth.getCurrentUserProfile();
+
+    if(currentUserProfile?.type === 'super_admin'){
+      this.isSuperAdmin = true;
+    }else if(currentUserProfile?.type === 'admin'){
+      this.isAdmin = true;
+    }else{
+      this.isEcommerce = true;
     }
   }
 }

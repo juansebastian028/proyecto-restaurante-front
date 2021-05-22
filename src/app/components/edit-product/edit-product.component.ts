@@ -25,7 +25,7 @@ export class EditProductComponent implements OnInit {
       id: '',
       name: new FormControl('', [Validators.required]),
       price: new FormControl('', [Validators.required, Validators.min(0)]),
-      img: new FormControl('', [Validators.required]),
+      img: '',
       category_id: new FormControl('', [Validators.required]),
       branches_ids: new FormControl('', [Validators.required]),
      });
@@ -49,6 +49,15 @@ export class EditProductComponent implements OnInit {
       this.branches = data;
     });
 
+    this.validateRequiredImage();
+  }
+
+  validateRequiredImage(){
+    if(this.product.img) {
+      this.form.get('img')?.clearValidators();
+    } else {
+      this.form.get('img')?.setValidators(Validators.required);
+    }
   }
 
   onFileChange(event:any) {

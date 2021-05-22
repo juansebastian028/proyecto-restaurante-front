@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { ConfigService } from 'src/app/services/config/config.service';
 import { ShoppingCart } from 'src/app/interfaces/shopping-cart';
 import { AuthService } from '../auth/auth.service';
-import { data } from 'jquery';
 
 @Injectable({
   providedIn: 'root'
@@ -12,29 +11,31 @@ import { data } from 'jquery';
 export class ShoppingCartService {
 
   path: string = '';
-  headers;
   user: any;
 
   constructor(private _auth: AuthService, private http: HttpClient, private config: ConfigService) {
     this.path = this.config.path;
-    this.headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("auth_token")});
+  }
+
+  getHeaders(){
+    return new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("auth_token")});
   }
 
   getShoppingCart(id: number):Observable<ShoppingCart[]>{
-    return this.http.get<ShoppingCart[]>(`${this.path}/shopping-cart/user/${id}`, {headers: this.headers});
+    return this.http.get<ShoppingCart[]>(`${this.path}/shopping-cart/user/${id}`, {headers: this.getHeaders()});
   }
 
   addShoppingCart(shoppingcart: ShoppingCart[]) {
-    return this.http.post<ShoppingCart>(`${this.path}/shopping-cart`, shoppingcart, {headers: this.headers});
+    return this.http.post<ShoppingCart>(`${this.path}/shopping-cart`, shoppingcart, {headers: this.getHeaders()});
   }
 
   deleteShoppingCart(id: number){
-    return this.http.delete(`${this.path}/shopping-cart/${id}`, {headers: this.headers});
+    return this.http.delete(`${this.path}/shopping-cart/${id}`, {headers: this.getHeaders()});
   }
 
   addShoppingCartLocal(){
     if(this._auth.isAuthenticated()){
-      this.headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("auth_token")});
+      this.getHeaders();
       this.user = this._auth.getCurrentUser();
 
       let shoppingCart = this.getItemsLocal();
@@ -80,11 +81,10 @@ export class ShoppingCartService {
 
   getTotalProducts(){
     if(this._auth.isAuthenticated()){
-      this.headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("auth_token")});
+      this.getHeaders();
       this.user = this._auth.getCurrentUser();
 
       this.getShoppingCart(this.user.id).subscribe((data) => {
-        console.log(data.length)
         return data.length;
       });
 

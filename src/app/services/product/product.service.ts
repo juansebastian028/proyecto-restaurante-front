@@ -11,26 +11,29 @@ import { ConfigService } from 'src/app/services/config/config.service';
 export class ProductService {
 
   path: string = '';
-  headers;
+
   constructor(private http: HttpClient, private config: ConfigService) {
     this.path = this.config.path;
-    this.headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("auth_token")});
+  }
+
+  getHeaders(){
+    return new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("auth_token")});
   }
   
   getProducts():Observable<Product[]>{
-    return this.http.get<Product[]>(`${this.path}/products`, { headers: this.headers});
+    return this.http.get<Product[]>(`${this.path}/products`, { headers: this.getHeaders()});
   }
 
-  postProduct(product: any):Observable<Product>{
-    return this.http.post<any>(`${this.path}/products`, product, { headers: this.headers});
+  postProduct(product: Product):Observable<Product>{
+    return this.http.post<Product>(`${this.path}/products`, product, { headers: this.getHeaders()});
   }
 
   putProduct(id:number, product: Product){
-    return this.http.put(`${this.path}/products/${id}`, product, {headers: this.headers});
+    return this.http.put(`${this.path}/products/${id}`, product, {headers: this.getHeaders()});
   }
 
   deleteProduct(id:number){
-    return this.http.delete(`${this.path}/products/${id}`, {headers: this.headers});
+    return this.http.delete(`${this.path}/products/${id}`, {headers: this.getHeaders()});
   }
 
   getProductsHome(city_id: number):Observable<ProductHome[]>{
