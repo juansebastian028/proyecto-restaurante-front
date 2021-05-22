@@ -15,23 +15,28 @@
                 <p class="text-danger" *ngIf="(form.get('lastname')?.touched || submitted) && form.get('lastname')?.errors?.required">El campo es obligatorio</p>
             </div>
         </div>
-        <div class="col-6">
-            <div class="form-group">
-                <label for="perfil" class="text-info">Perfil</label>
-                <select name="perfil" class="form-control" id="perfil" formControlName="profile_id">
-                    <option value="1">Super Admin</option>
-                    <option value="2">Admin</option>
-                </select>
+        <ng-container *ngIf="isSuperAdmin">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="perfil" class="text-info">Perfil</label>
+                    <select name="perfil" class="form-control" id="perfil" formControlName="profile_id">
+                        <option value="1">Super Admin</option>
+                        <option value="2">Admin</option>
+                        <option value="3">E-commerce</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="col-6">
-            <div class="form-group">
-                <label for="branchOffice" class="text-info">Sucursal</label>
-                <select name="branchOffice" class="form-control" id="branchOffice" formControlName="branch_office_id">
-                    <option *ngFor="let branch_office of branches" [ngValue]="branch_office.id"> {{branch_office.name}} </option>
-                </select>
+        </ng-container>
+        <ng-container *ngIf="isSuperAdmin || isEcommerce">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="branchOffice" class="text-info">Sucursal</label>
+                    <select name="branchOffice" class="form-control" id="branchOffice" formControlName="branch_office_id">
+                        <option *ngFor="let branch_office of branches" [ngValue]="branch_office.id"> {{branch_office.name}} </option>
+                    </select>
+                </div>
             </div>
-        </div>
+        </ng-container>
         <div class="col-6">
             <div class="form-group">
                 <label for="username" class="text-info">Usuario</label>
@@ -39,7 +44,7 @@
                 <p class="text-danger" *ngIf="(form.get('username')?.touched || submitted) && form.get('username')?.errors?.required">El campo es obligatorio</p>
             </div>
         </div>
-        <div class="col-6">
+        <div [ngClass]="isSuperAdmin ? 'col-6':'col-12'">
             <div class="form-group">
                 <label for="email" class="text-info">Email</label>
                 <input type="text" class="form-control" id="email" name="email" formControlName="email" autocomplete="off">

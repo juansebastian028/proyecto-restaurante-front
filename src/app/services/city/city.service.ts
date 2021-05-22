@@ -10,11 +10,13 @@ import { ConfigService } from 'src/app/services/config/config.service';
 export class CityService {
 
   path: string = '';
-  headers;
 
   constructor(private http: HttpClient, private config: ConfigService) {
     this.path = this.config.path;
-    this.headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("auth_token")});
+  }
+
+  getHeaders(){
+    return new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("auth_token")});
   }
 
   getCities():Observable<City[]>{
@@ -22,14 +24,14 @@ export class CityService {
   }
 
   postCity(city: City):Observable<City> {
-    return this.http.post<City>(`${this.path}/cities`, city, {headers: this.headers});
+    return this.http.post<City>(`${this.path}/cities`, city, {headers: this.getHeaders()});
   }
 
   putCity(id:number, city: City){
-    return this.http.put(`${this.path}/cities/${id}`, city, {headers: this.headers});
+    return this.http.put(`${this.path}/cities/${id}`, city, {headers: this.getHeaders()});
   }
 
   deleteCity(id:number){
-    return this.http.delete(`${this.path}/cities/${id}`, {headers: this.headers});
+    return this.http.delete(`${this.path}/cities/${id}`, {headers: this.getHeaders()});
   }
 }

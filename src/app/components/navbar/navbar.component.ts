@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HelperToggleService } from '../../services/helper-toggle/helper-toggle.service';
@@ -15,6 +15,8 @@ export class NavbarComponent implements OnInit {
   public classSearch:Array<string> = ['d-none','d-sm-block'];
   public classArrow:string = 'd-none';
   isAuthenticated = false;
+
+  @ViewChild('content') modalCity:any;
 
   constructor(private helper: HelperToggleService, private auth: AuthService, private router: Router) {}
 
@@ -52,3 +54,4 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['login']);
   }
 }
+

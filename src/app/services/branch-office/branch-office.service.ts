@@ -11,31 +11,32 @@ import { ConfigService } from 'src/app/services/config/config.service';
 export class BranchOfficeService {
 
   path: string = '';
-  headers;
 
   constructor(private http: HttpClient, private config: ConfigService) {
     this.path = this.config.path;
-    this.headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("auth_token")});
+  }
+
+  getHeaders(){
+    return new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("auth_token")});
   }
 
   getBranches():Observable<BranchOffice[]>{
-    return this.http.get<BranchOffice[]>(`${this.path}/branches`, {headers: this.headers});
+    return this.http.get<BranchOffice[]>(`${this.path}/branches`, {headers: this.getHeaders()});
   }
 
   getProductsByBranch(branch_id:number):Observable<Product[]>{
-    return this.http.get<Product[]>(`${this.path}/branches/${branch_id}/products`, {headers: this.headers});
+    return this.http.get<Product[]>(`${this.path}/branches/${branch_id}/products`, {headers: this.getHeaders()});
   }
 
   postBranchOffice(branch: BranchOffice):Observable<BranchOffice>{
-    return this.http.post<BranchOffice>(`${this.path}/branches`, branch, {headers: this.headers});
+    return this.http.post<BranchOffice>(`${this.path}/branches`, branch, {headers: this.getHeaders()});
   }
 
   putBranchOffice(id:number, branch: BranchOffice){
-    return this.http.put(`${this.path}/branches/${id}`, branch, {headers: this.headers});
+    return this.http.put(`${this.path}/branches/${id}`, branch, {headers: this.getHeaders()});
   }
 
   deleteBranchOffice(id:number){
-    return this.http.delete(`${this.path}/branches/${id}`, {headers: this.headers});
+    return this.http.delete(`${this.path}/branches/${id}`, {headers: this.getHeaders()});
   }
-
 }

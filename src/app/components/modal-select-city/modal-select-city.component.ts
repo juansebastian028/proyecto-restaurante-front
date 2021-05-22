@@ -27,7 +27,7 @@ export class ModalSelectCityComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-   this.openModal();
+    this.openModal();
   }
 
   openModal(){

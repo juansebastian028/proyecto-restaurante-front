@@ -20,7 +20,6 @@ export class ShoppingCartComponent implements OnInit {
 
   ngOnInit(): void {
     this.getShoppingCart();
-    console.log(this._shoppingCart.getTotalProducts());
   }
 
   getShoppingCart(){

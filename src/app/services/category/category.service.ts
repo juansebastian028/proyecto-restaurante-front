@@ -11,11 +11,13 @@ import { ConfigService } from '../config/config.service';
 export class CategoryService {
 
   path: string = '';
-  headers;
 
   constructor(private http: HttpClient, private config: ConfigService) {
     this.path = this.config.path;
-    this.headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("auth_token")});
+  }
+
+  getHeaders(){
+    return new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("auth_token")});
   }
   
   getCategories():Observable<Category[]>{
@@ -23,15 +25,15 @@ export class CategoryService {
   }
 
   postCategory(category: Category):Observable<Category>{
-    return this.http.post<Category>(`${this.config.path}/products/categories`, category, { headers: this.headers });
+    return this.http.post<Category>(`${this.config.path}/products/categories`, category, {headers: this.getHeaders()});
   }
 
   putCategory(id:number, category: Category){
-    return this.http.put(`${this.path}/products/categories/${id}`, category, {headers: this.headers});
+    return this.http.put(`${this.path}/products/categories/${id}`, category, {headers: this.getHeaders()});
   }
 
   deleteCategory(id:number){
-    return this.http.delete(`${this.path}/products/categories/${id}`, {headers: this.headers});
+    return this.http.delete(`${this.path}/products/categories/${id}`, {headers: this.getHeaders()});
   }
 
   getProductsByCategory(city_id:number, category_id:number){

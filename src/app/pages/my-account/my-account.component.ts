@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { SnackbarService } from 'src/app/services/snackbar/snackbar.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-my-account',
@@ -7,10 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyAccountComponent implements OnInit {
 
-  
-  constructor() { }
+  currentUser:any;
+
+  constructor(private _auth: AuthService, private _user: UserService, private _snackbar: SnackbarService) { }
 
   ngOnInit(): void {
+    this.currentUser = this._auth.getCurrentUser();
   }
 
+  getUser(){
+    let id = this.currentUser.id;
+    this._user.getUser(id).subscribe(data =>{
+      localStorage.setItem('current_user', JSON.stringify(data));
+    });
+  }
+
+  onUserFormSubmit(form:any){      
+    const {id, ...restForm } = form;
+    if(form.id > 0){
+      this._user.putUser(id, restForm).subscribe(data => {
+        this.getUser();
+        this._snackbar.openSnackBar('Usuario actualizado exitosamente','bg-success','text-white');
+      });
+    }
+  }
 }
