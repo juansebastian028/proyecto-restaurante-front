@@ -84,6 +84,7 @@ export class ModalShoppingCartComponent implements OnInit {
         this._snackbar.openSnackBar('Producto agregado al carrito','bg-success','text-white');
         this.activeModal.close();
       }
+      this._shoppingCart.getTotalProducts();
     }
   }
 }

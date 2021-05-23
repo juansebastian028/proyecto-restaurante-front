@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ConfigService } from 'src/app/services/config/config.service';
 import { ShoppingCart } from 'src/app/interfaces/shopping-cart';
 import { AuthService } from '../auth/auth.service';
@@ -12,6 +12,8 @@ export class ShoppingCartService {
 
   path: string = '';
   user: any;
+  private countCart = new BehaviorSubject<number>(0);
+  public totalCart = this.countCart.asObservable();
 
   constructor(private _auth: AuthService, private http: HttpClient, private config: ConfigService) {
     this.path = this.config.path;
@@ -35,7 +37,6 @@ export class ShoppingCartService {
 
   addShoppingCartLocal(){
     if(this._auth.isAuthenticated()){
-      this.getHeaders();
       this.user = this._auth.getCurrentUser();
 
       let shoppingCart = this.getItemsLocal();
@@ -74,26 +75,23 @@ export class ShoppingCartService {
 
     if(shoppingCart !== null){
       shoppingCart = shoppingCart.filter((item: any) => item.product_id !== id );
-
       localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
     }
   }
 
-  getTotalProducts(){
+  getTotalProducts() {
     if(this._auth.isAuthenticated()){
-      this.getHeaders();
       this.user = this._auth.getCurrentUser();
 
       this.getShoppingCart(this.user.id).subscribe((data) => {
-        return data.length;
+        this.countCart.next(data.length);
       });
 
     } else {
       let shoppingCart = this.getItemsLocal();
       if (shoppingCart !== null){
-        return shoppingCart.length;
+        this.countCart.next(shoppingCart.length);
       }
-      return 0;
     }
   }
 }

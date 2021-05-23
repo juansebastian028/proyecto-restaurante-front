@@ -15,3 +15,15 @@
 .inputSearch{
     width: 80% !important;
 }
+
+.cart-basket {
+    font-size: .6rem;
+    position: absolute;
+    top: 5px;
+    right: 45px;
+    width: 15px;
+    height: 15px;
+    color: #fff;
+    background-color: #418deb;
+    border-radius: 50%;
+  }
