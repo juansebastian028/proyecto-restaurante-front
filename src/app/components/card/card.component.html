@@ -2,7 +2,7 @@
     <img class="card-img-top" src="{{productData.img}}" alt="Card image cap">
     <div class="card-body rounded-bottom card-background d-flex justify-content-center flex-column align-items-center">
         <p class="card-text h5 text-light">{{productData.name}}</p>
-        <h4 class="card-title text-light"> {{productData.price | currency}} </h4>
+        <h4 class="card-title text-light"> {{productData.price | currency:'COP' }} </h4>
         <a class="btn btn-outline-light" (click)="openModal()">Agregar</a>
     </div>
 </div>

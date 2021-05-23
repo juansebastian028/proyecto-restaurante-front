@@ -14,6 +14,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./branches.component.css']
 })
 export class BranchesComponent implements OnInit {
+  branch_id: number = -1;
   branchesRows: BranchOffice[] = [];
   branchesColumns = [
     { key: 'id', display: 'Sucursal id' },
@@ -35,12 +36,12 @@ export class BranchesComponent implements OnInit {
     { key: 'id', display: 'Producto id' },
     { key: 'name', display: 'Nombre' },
     { key: 'price', display: 'Precio' },
-    { key: 'category', display: 'Categoria' },
+    { key: 'state', display: 'Estado'},
     {
       key: 'actions',
-      display: 'Acciones',
+      display: 'Cambiar estado',
       config: { isAction: true, actions: [
-        {class:['btn','btn-success'], icon: 'check', name: 'activate'}] 
+        {class:['btn','btn-primary'], icon: 'change_circle', name: 'change_state'}] 
       },
     },
   ];
@@ -78,8 +79,9 @@ export class BranchesComponent implements OnInit {
   }
 
   getProductsByBranch(branch_id:number){
+    this.branch_id = branch_id;
     this._branch.getProductsByBranch(branch_id).subscribe(data => {
-      this.productsRows = data;
+      this.productsRows = data.filter(obj => obj.state === 'A' ? obj.state = 'Activo' : obj.state = 'Inactivo');
     });
 
   }
@@ -106,5 +108,23 @@ export class BranchesComponent implements OnInit {
   
   onAddBranch(){
     this.tabsComponent.openTab('Nueva Sucursal', this.editBranchTemplate, {}, true);
+  }
+
+  changeProductState(obj:any){
+    const productId = obj.element.id;
+    const currentBranchId = obj.element.branch_id;
+    const productState = obj.element.state;
+    let newState;
+
+    if(productState === 'Activo'){
+      newState = {state:'I'};
+    }else{
+      newState = {state:'A'};
+    }
+
+    this._branch.putProductState(currentBranchId, productId, newState)
+    .subscribe(data => {
+      this.getProductsByBranch(currentBranchId);
+    });
   }
 }

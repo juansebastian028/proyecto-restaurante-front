@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
   products: ProductHome[] = []; 
   categories: Category[] = [];
   selectedCity:any;
+  page:number = 1;
+  pageSize:number = 6;
 
   constructor(private _product: ProductService, private _category: CategoryService) {}
 
@@ -21,7 +23,7 @@ export class HomeComponent implements OnInit {
     this.getCategories();
     if(localStorage.getItem('selected_city')){
       this.selectedCity = localStorage.getItem('selected_city');
-      this.getProductsByCity(JSON.parse(this.selectedCity));
+      this.getAllProductsByCity(JSON.parse(this.selectedCity));
     }
   }
   
@@ -31,14 +33,18 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  getProductsByCity(city_id:number){
+  getAllProductsByCity(city_id:number){
     if (localStorage.getItem('selected_city') === null){
       localStorage.setItem('selected_city', JSON.stringify(city_id));
     }
     this.selectedCity = city_id;
-    this._product.getProductsHome(this.selectedCity).subscribe(data =>{
+    this._product.getAllProductsHome(this.selectedCity).subscribe(data =>{
       this.products = data;
-    })
+    });
+  }
+
+  onPageChange(page:number){
+    this.page = page;
   }
 
   showProductsByCategory(category: Category){
