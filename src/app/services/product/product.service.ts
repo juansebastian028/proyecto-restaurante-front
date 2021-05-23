@@ -39,4 +39,8 @@ export class ProductService {
   getAllProductsHome(city_id: number):Observable<ProductHome[]>{
     return this.http.get<ProductHome[]>(`${this.path}/cities/${city_id}/products`);
   }
+
+  getSearchProducts(city_id: number, search: any):Observable<ProductHome[]>{
+    return this.http.post<ProductHome[]>(`${this.path}/cities/${city_id}/products`, search);
+  }
 }

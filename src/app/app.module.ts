@@ -53,6 +53,7 @@ import { ConfigService } from 'src/app/services/config/config.service';
 import { SelectBranchComponent } from './components/select-branch/select-branch.component';
 import { DynamicTabsDirective } from './components/tabs/dynamic-tabs.directive';
 import { ModalDeleteComponent } from './components/modal-delete/modal-delete.component';
+import { SearchProductsComponent } from './components/search-products/search-products.component';
 
 
 @NgModule({
@@ -95,7 +96,8 @@ import { ModalDeleteComponent } from './components/modal-delete/modal-delete.com
     MyAccountComponent,
     SelectBranchComponent,
     DynamicTabsDirective,
-    ModalDeleteComponent
+    ModalDeleteComponent,
+    SearchProductsComponent
   ],
   imports: [
     BrowserModule,

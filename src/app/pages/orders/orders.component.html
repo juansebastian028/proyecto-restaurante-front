@@ -1,7 +1,12 @@
 <div class="container mt-5">
 	<app-tabs>
 		<app-tab [tabTitle]="'Pedidos'">
-			<app-table [dataColumns]="ordersColumns" [dataRows]="ordersRows" (onAction)="openModal($event)"></app-table>
+			<app-table 
+				[dataColumns]="ordersColumns" 
+				[dataRows]="ordersRows" 
+				[isBtnAddRequired]="false" 
+				(onAction)="openModal($event)">
+			</app-table>
 		</app-tab>
 	</app-tabs>
 </div>

@@ -2,8 +2,14 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-9">
+            <div class="d-flex justify-content-center"> 
+                <app-search-products (eventEmmiter)="getSearchProducts($event)"></app-search-products>
+            </div>
             <div class="d-flex align-items-center justify-content-center flex-wrap"> 
-                    <app-card *ngFor="let product of products | slice: (page-1) * pageSize : page * pageSize" [productData]="product"></app-card>
+                <app-card *ngFor="let product of products | slice: (page-1) * pageSize : page * pageSize" [productData]="product"></app-card>
+                <div class="alert alert-warning mt-5" *ngIf="!products.length">
+                    No se encontraron productos.
+                </div>
             </div>
             <div class="d-flex justify-content-center">
                 <ngb-pagination 

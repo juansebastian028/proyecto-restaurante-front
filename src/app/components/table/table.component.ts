@@ -12,6 +12,7 @@ export class TableComponent implements OnInit, OnChanges {
   
   @Input() dataColumns: any[] = [];
   @Input() dataRows: any[] = []; 
+  @Input() isBtnAddRequired: boolean = true;
   @Output("onAction") emitter = new EventEmitter();
   @Output() add = new EventEmitter();
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;

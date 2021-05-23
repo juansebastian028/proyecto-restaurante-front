@@ -15,7 +15,8 @@
 			<app-table
 				(onAction)="changeProductState($event)"  
 				[dataColumns]="productsColumns"
-				[dataRows]="productsRows">
+				[dataRows]="productsRows"
+				[isBtnAddRequired]="false">
 			</app-table>
 		</app-tab>
 	</app-tabs>

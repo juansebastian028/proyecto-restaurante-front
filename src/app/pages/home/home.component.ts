@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   categories: Category[] = [];
   selectedCity:any;
   page:number = 1;
-  pageSize:number = 6;
+  pageSize:number = 8;
 
   constructor(private _product: ProductService, private _category: CategoryService) {}
 
@@ -51,6 +51,12 @@ export class HomeComponent implements OnInit {
     this._category.getProductsByCategory(this.selectedCity, category.id).subscribe(data => {
       this.products = data;
     })
+  }
+
+  getSearchProducts(search: any){
+    this._product.getSearchProducts(this.selectedCity, search).subscribe(data =>{
+      this.products = data;
+    });
   }
 
 }
