@@ -12,7 +12,11 @@
 			<div class="my-3">
 				<app-select-branch (saveBranch)="getProductsByBranch($event)" [branchesRows]="branchesRows"></app-select-branch>
 			</div>
-			<app-table [dataColumns]="productsColumns" [dataRows]="productsRows"></app-table>
+			<app-table
+				(onAction)="changeProductState($event)"  
+				[dataColumns]="productsColumns"
+				[dataRows]="productsRows">
+			</app-table>
 		</app-tab>
 	</app-tabs>
 	<ng-template let-branch="data" #branchEdit>

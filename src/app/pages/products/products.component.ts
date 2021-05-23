@@ -49,7 +49,12 @@ export class ProductsComponent implements OnInit {
 
   onProductFormSubmit(obj:any){  
     if(obj.id > 0){
-      
+      obj.formDataProduct.append('_method', 'PUT');
+      this._product.putProduct(obj.id, obj.formDataProduct).subscribe(data => {
+        this.getProducts();
+        this._snackbar.openSnackBar('Producto actualizado exitosamente','bg-success','text-white');
+        this.tabsComponent.closeActiveTab();
+      });
     }else{
       this._product.postProduct(obj.formDataProduct).subscribe(data => {
           this.getProducts();

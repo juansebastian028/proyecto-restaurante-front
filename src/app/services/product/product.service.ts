@@ -29,14 +29,14 @@ export class ProductService {
   }
 
   putProduct(id:number, product: Product){
-    return this.http.put(`${this.path}/products/${id}`, product, {headers: this.getHeaders()});
+    return this.http.post(`${this.path}/products/${id}`, product, {headers: this.getHeaders()});
   }
 
   deleteProduct(id:number){
     return this.http.delete(`${this.path}/products/${id}`, {headers: this.getHeaders()});
   }
 
-  getProductsHome(city_id: number):Observable<ProductHome[]>{
+  getAllProductsHome(city_id: number):Observable<ProductHome[]>{
     return this.http.get<ProductHome[]>(`${this.path}/cities/${city_id}/products`);
   }
 }
