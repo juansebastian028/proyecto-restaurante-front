@@ -8,4 +8,5 @@ export interface User {
   profile: string;
   branch_office_id: number;
   branch: string;
+  city_id: number;
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { OrderService } from 'src/app/services/order/order.service';
+import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
 import { SnackbarService } from 'src/app/services/snackbar/snackbar.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class MakeShoppingComponent implements OnInit {
   public form:FormGroup = new FormGroup({});
   submitted = false;
 
-  constructor(private _order: OrderService, private _auth: AuthService, private fb: FormBuilder, private router: Router, private _snackbar: SnackbarService) {}
+  constructor(private _order: OrderService, private _auth: AuthService, private fb: FormBuilder, private router: Router, private _snackbar: SnackbarService, private _shoppingCart: ShoppingCartService) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -33,10 +34,11 @@ export class MakeShoppingComponent implements OnInit {
     this.submitted = true;
     if(this.form.valid){
       this.form.addControl('user_id', this.fb.control(this.user.id));
-      this.form.addControl('branch_id', this.fb.control(this.user.brach_id));
+      this.form.addControl('branch_id', this.fb.control(this.user.branch_office_id));
       this.form.addControl('shopping_cart_ids', this.fb.control(JSON.parse(localStorage.getItem('payShoppingCart')!)));
       this._order.payOrder(this.form.value).subscribe((data) => {
         localStorage.removeItem('payShoppingCart');
+        this._shoppingCart.getTotalProducts();
         this._snackbar.openSnackBar('Pedido realizado exitosamente', 'bg-success','text-white');
         this.router.navigate(['']);
       }, (error) => {

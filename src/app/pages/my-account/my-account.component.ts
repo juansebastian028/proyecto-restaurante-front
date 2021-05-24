@@ -22,6 +22,9 @@ export class MyAccountComponent implements OnInit {
     let id = this.currentUser.id;
     this._user.getUser(id).subscribe(data =>{
       localStorage.setItem('current_user', JSON.stringify(data));
+      if(data.city_id){
+        localStorage.setItem('selected_city', JSON.stringify(data.city_id));
+      }
     });
   }
 

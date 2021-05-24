@@ -6,7 +6,7 @@ import { SnackbarService } from 'src/app/services/snackbar/snackbar.service';
 import {TabsComponent} from 'src/app/components/tabs/tabs.component';
 import { ModalDeleteComponent } from 'src/app/components/modal-delete/modal-delete.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-branches',
@@ -46,13 +46,18 @@ export class BranchesComponent implements OnInit {
     },
   ];
 
+  isAdmin: boolean = false;
+  isSuperAdmin: boolean = false;
+  isEcommerce: boolean = false;
+
   @ViewChild(TabsComponent) tabsComponent: any;
   @ViewChild('branchEdit') editBranchTemplate: any;
 
-  constructor(private _branch: BranchOfficeService, private _snackbar: SnackbarService, private modalService: NgbModal) { }
+  constructor(private _branch: BranchOfficeService, private _snackbar: SnackbarService, private modalService: NgbModal, private _auth: AuthService) { }
 
   ngOnInit(): void {
     this.getBranches();
+    this.checkProfile();
   }
   
   getBranches(){
@@ -74,6 +79,8 @@ export class BranchesComponent implements OnInit {
         this.getBranches();
         this._snackbar.openSnackBar('Sucursal registrada exitosamente','bg-success','text-white');
         this.tabsComponent.closeActiveTab();
+      }, (error) => {
+        this._snackbar.openSnackBar(error.error.message, 'bg-warning','text-white');
       });
     }
   }
@@ -126,5 +133,20 @@ export class BranchesComponent implements OnInit {
     .subscribe(data => {
       this.getProductsByBranch(currentBranchId);
     });
+  }
+
+  checkProfile() {
+    let currentUserProfile = this._auth.getCurrentUserProfile();
+
+    if(currentUserProfile?.type === 'super_admin'){
+      this.isSuperAdmin = true;
+    }else if(currentUserProfile?.type === 'admin'){
+      this.isAdmin = true;
+      
+      let currentUser = this._auth.getCurrentUser();
+      this.getProductsByBranch(currentUser.branch_office_id);
+    }else{
+      this.isEcommerce = true;
+    }
   }
 }

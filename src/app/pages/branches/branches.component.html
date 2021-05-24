@@ -1,15 +1,22 @@
 <div class="container mt-5">
 	<app-tabs>
-		<app-tab [tabTitle]="'Sucursales'">
-			<app-table 
-				(add)="onAddBranch()"
-				(onAction)="executeAction($event)" 
-				[dataColumns]="branchesColumns" 
-				[dataRows]="branchesRows">
-			</app-table>
-		</app-tab>
+		<ng-container *ngIf="isSuperAdmin">
+			<app-tab [tabTitle]="'Sucursales'">
+				<app-table 
+					(add)="onAddBranch()"
+					(onAction)="executeAction($event)" 
+					[dataColumns]="branchesColumns" 
+					[dataRows]="branchesRows">
+				</app-table>
+			</app-tab>
+
+			<ng-template let-branch="data" #branchEdit>
+				<app-edit-branch [branch]="branch" (saveBranch)="onBranchFormSubmit($event)"></app-edit-branch>
+			</ng-template>
+		</ng-container>
+		
 		<app-tab [tabTitle]="'Productos por Sucursal'">
-			<div class="my-3">
+			<div *ngIf="isSuperAdmin" class="my-3">
 				<app-select-branch (saveBranch)="getProductsByBranch($event)" [branchesRows]="branchesRows"></app-select-branch>
 			</div>
 			<app-table
@@ -20,7 +27,4 @@
 			</app-table>
 		</app-tab>
 	</app-tabs>
-	<ng-template let-branch="data" #branchEdit>
-		<app-edit-branch [branch]="branch" (saveBranch)="onBranchFormSubmit($event)"></app-edit-branch>
-	</ng-template>
 </div>

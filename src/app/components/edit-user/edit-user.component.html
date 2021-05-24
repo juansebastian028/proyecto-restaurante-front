@@ -27,8 +27,8 @@
                 </div>
             </div>
         </ng-container>
-        <ng-container *ngIf="isSuperAdmin">
-            <div class="col-6">
+        <ng-container *ngIf="!isAdmin">
+            <div [ngClass]="isSuperAdmin ? 'col-6':'col-12'">
                 <div class="form-group">
                     <label for="branchOffice" class="text-info">Sucursal</label>
                     <select name="branchOffice" class="form-control" id="branchOffice" formControlName="branch_office_id">
@@ -37,7 +37,7 @@
                 </div>
             </div>
         </ng-container>
-        <div class="col-6">
+        <div [ngClass]="isSuperAdmin ? 'col-6':'col-12'">
             <div class="form-group">
                 <label for="username" class="text-info">Usuario</label>
                 <input type="text" class="form-control" id="username" name="username" formControlName="username" autocomplete="off">

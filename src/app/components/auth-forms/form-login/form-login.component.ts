@@ -33,6 +33,9 @@ export class FormLoginComponent implements OnInit {
         localStorage.setItem('auth_token', data.token);
         localStorage.setItem('current_user_profile', JSON.stringify(data.profile));
         localStorage.setItem('current_user', JSON.stringify(data.user));
+        if(data.user.city_id){
+          localStorage.setItem('selected_city', JSON.stringify(data.user.city_id));
+        }
         this._shoppingCart.addShoppingCartLocal();
         this.router.navigate(['']);
         

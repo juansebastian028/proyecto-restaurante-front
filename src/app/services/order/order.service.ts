@@ -32,7 +32,7 @@ export class OrderService {
   }
 
   getOrdersByBranch(id: number): Observable<Order[]>{
-    return this.http.get<Order[]>(`${this.path}/orders/user/${id}`, {headers: this.getHeaders()});
+    return this.http.get<Order[]>(`${this.path}/orders/branch/${id}`, {headers: this.getHeaders()});
   }
 
   payOrder(order: Order[]) {
