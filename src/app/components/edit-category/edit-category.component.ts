@@ -1,17 +1,21 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Category } from 'src/app/interfaces/category';
 
 @Component({
   selector: 'app-edit-category',
   templateUrl: './edit-category.component.html',
-  styleUrls: ['./edit-category.component.css']
+  styleUrls: ['./edit-category.component.css'],
 })
 export class EditCategoryComponent implements OnInit {
-
   @Output() saveCategory = new EventEmitter();
-  @Input() category !: Category;
-  public form:FormGroup = new FormGroup({});
+  @Input() category!: Category;
+  form: FormGroup = new FormGroup({});
 
   submitted = false;
 
@@ -19,7 +23,7 @@ export class EditCategoryComponent implements OnInit {
     this.form = this.fb.group({
       id: '',
       name: new FormControl('', [Validators.required]),
-     });
+    });
   }
 
   ngOnInit(): void {
@@ -29,11 +33,10 @@ export class EditCategoryComponent implements OnInit {
     });
   }
 
-  onFormSubmit(){
+  onFormSubmit() {
     this.submitted = true;
-    if(this.form.valid){
+    if (this.form.valid) {
       this.saveCategory.emit(this.form.value);
     }
   }
-
 }

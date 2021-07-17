@@ -5,18 +5,16 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  styleUrls: ['./card.component.css'],
 })
 export class CardComponent implements OnInit {
+  @Input() productData: any = {};
 
-  @Input() public productData:any = {};
+  constructor(private modalService: NgbModal) {}
 
-  constructor(private modalService: NgbModal) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
-  openModal(){
+  openModal() {
     const modalRef = this.modalService.open(ModalShoppingCartComponent);
     modalRef.componentInstance.productData = this.productData;
   }

@@ -1,43 +1,72 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-//Components
-import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './pages/auth/login/login.component';
-import { RegisterComponent } from './pages/auth/register/register.component';
-import { UsersComponent } from './pages/users/users.component';
-import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { LayoutComponent } from './layout/layout.component';
-import { MakeShoppingComponent } from './pages/make-shopping/make-shopping.component';
-import { ProductsComponent } from './pages/products/products.component';
-import { CategoriesComponent } from './pages/categories/categories.component';
-import { CitiesComponent } from './pages/cities/cities.component';
-import { ModifierGroupsComponent } from './pages/modifier-groups/modifier-groups.component';
-import { ModifiersComponent } from './pages/modifiers/modifiers.component';
-import { BranchesComponent } from './pages/branches/branches.component';
-import { OrdersComponent } from './pages/orders/orders.component';
-import { MyAccountComponent } from './pages/my-account/my-account.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
+    canActivateChild: [AuthGuard],
     children: [
-      { path: '', component: HomeComponent },
-      { path: 'users', component: UsersComponent },
-      { path: 'products', component: ProductsComponent },
-      { path: 'categories', component: CategoriesComponent },
-      { path: 'modifier-groups', component: ModifierGroupsComponent },
-      { path: 'modifiers', component: ModifiersComponent},
-      { path: 'shopping-cart', component: ShoppingCartComponent },
-      { path: 'make-shopping', component: MakeShoppingComponent },
-      { path: 'branches', component: BranchesComponent },
-      { path: 'cities', component: CitiesComponent },
-      { path: 'orders', component: OrdersComponent },
-      { path: 'my-account', component: MyAccountComponent },
+      { path: '', 
+        loadChildren: () => import('./modules/home/home.module').then(mod => mod.HomeModule),
+        data: {}
+      },
+      { path: 'shopping-cart', 
+        loadChildren: () => import('./modules/shopping-cart/shopping-cart.module').then(mod => mod.ShoppingCartModule),
+        data: {} 
+      },
+      { path: 'users', 
+        loadChildren: () => import('./modules/users/users.module').then(mod => mod.UsersModule),
+        data: {
+          allowedProfiles: ['super_admin']
+        } 
+      },
+      { path: 'cities', 
+        loadChildren: () => import('./modules/cities/cities.module').then(mod => mod.CitiesModule),
+        data: {
+          allowedProfiles: ['super_admin']
+        }
+      },
+      { path: 'products',  
+        loadChildren: () => import('./modules/products/products.module').then(mod => mod.ProductsModule),
+        data: {
+          allowedProfiles: ['super_admin']
+        }
+      },
+      { path: 'branches', 
+        loadChildren: () => import('./modules/branches/branches.module').then(mod => mod.BranchesModule),
+        data: {
+        allowedProfiles: ['super_admin', 'admin']
+        }
+      },
+      { path: 'make-shopping', 
+        loadChildren: () => import('./modules/make-shopping/make-shopping.module').then(mod => mod.MakeShoppingModule),
+        data: {
+          allowedProfiles: ['super_admin', 'admin', 'e-commerce']
+        }
+      },
+      { path: 'orders', 
+        loadChildren: () => import('./modules/orders/orders.module').then(mod => mod.OrdersModule),
+        data: {
+          allowedProfiles: ['super_admin', 'admin', 'e-commerce']
+        }
+      },
+      { path: 'my-account', 
+        loadChildren: () => import('./modules/my-account/my-account.module').then(mod => mod.MyAccountModule),
+        data: {
+          allowedProfiles: ['super_admin', 'admin', 'e-commerce']
+        }
+      },     
     ]
   },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'login',
+    loadChildren: () => import('./modules/login/login.module').then(mod => mod.LoginModule),
+  },
+  { path: 'register',
+    loadChildren: () => import('./modules/register/register.module').then(mod => mod.RegisterModule),
+  },
 
 ];
 

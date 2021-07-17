@@ -8,17 +8,24 @@
     <div class="container-fluid">
         <div class="row" *ngFor="let product of order?.products">
             <div class="col-12 col-lg-6">
-                <h4 class="pt-2">{{ product?.category?.name + ': ' + product?.name }}</h4>
+                <h4 class="pt-2">{{ product?.name }}</h4>
                 <img class="img-fluid" [src]="product?.img" alt="product">
             </div>
             <div class="col-12 col-lg-6">
                 <h4 class="pt-2">{{ product?.pivot.unit_price | currency }} ({{ product?.pivot.quantity }})</h4>
                 <div class="container-fluid py-2 px-0" *ngFor="let modifierGroup of product?.category?.modifier_groups">
                     <h5>{{ modifierGroup.name }}</h5>
-                    <p *ngFor="let modifier of modifierGroup.modifiers">{{ modifier.name + ' (' + (modifier.unit_price_modifier | currency) + ')' }}</p>
+                    <ng-container *ngIf="modifierGroup.modifiers == 0 else: elseBlock">
+                        <p>Ningun@</p>
+                    </ng-container>
+                    <ng-template #elseBlock>
+                        <p *ngFor="let modifier of modifierGroup?.modifiers">{{ modifier?.name + ' (' + (modifier?.unit_price_modifier | currency) + ')' }}</p>
+                    </ng-template>
                 </div>
             </div>
-            <hr class="w-100">
+            <ng-container *ngIf="order?.products.length > 1 && product !== order.products[order?.products.length-1]">
+                <hr class="w-100">
+            </ng-container>
         </div>
         <div class="row" *ngIf="isCancelled">
             <div class="col-12">

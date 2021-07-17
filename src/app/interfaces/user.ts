@@ -7,6 +7,6 @@ export interface User {
   profile_id: number;
   profile: string;
   branch_office_id: number;
-  branch: string;
   city_id: number;
+  branch: string;
 }

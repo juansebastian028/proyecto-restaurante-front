@@ -7,20 +7,24 @@ import { HelperToggleService } from '../../services/helper-toggle/helper-toggle.
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  public class:string = '';
-  public classSide:string = '';
+  class: string = '';
+  classSide: string = '';
   isAuthenticated = false;
   totalItemsCart = 0;
+  @ViewChild('content') modalCity: any;
 
-  @ViewChild('content') modalCity:any;
-
-  constructor(private helper: HelperToggleService, private auth: AuthService, private router: Router, private _shoppingCart: ShoppingCartService) {}
+  constructor(
+    private helper: HelperToggleService,
+    private auth: AuthService,
+    private router: Router,
+    private _shoppingCart: ShoppingCartService
+  ) {}
 
   ngOnInit(): void {
-    this.helper.customMessage.subscribe(msg => this.class = msg);
+    this.helper.customMessage.subscribe((msg) => (this.class = msg));
     this.isAuthenticated = this.auth.isAuthenticated();
     this._shoppingCart.getTotalProducts();
     this._shoppingCart.totalCart.subscribe((data) => {
@@ -28,10 +32,10 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  changeClass(){
-    if(this.class === ''){
+  changeClass() {
+    if (this.class === '') {
       this.class = 'toggled';
-    }else{
+    } else {
       this.class = '';
     }
 
@@ -43,4 +47,3 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['login']);
   }
 }
-

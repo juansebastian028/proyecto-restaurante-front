@@ -7,56 +7,79 @@ import { CategoryService } from '../../services/category/category.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-
-  products: ProductHome[] = []; 
+  products: ProductHome[] = [];
   categories: Category[] = [];
-  selectedCity:any;
-  page:number = 1;
-  pageSize:number = 8;
+  selectedCity: any;
+  page: number = 1;
+  pageSize: number = 8;
 
-  constructor(private _product: ProductService, private _category: CategoryService) {}
+  constructor(
+    private _product: ProductService,
+    private _category: CategoryService
+  ) {}
 
   ngOnInit(): void {
     this.getCategories();
-    if(localStorage.getItem('selected_city')){
+    if (localStorage.getItem('selected_city')) {
       this.selectedCity = localStorage.getItem('selected_city');
       this.getAllProductsByCity(JSON.parse(this.selectedCity));
     }
   }
-  
-  getCategories(){
-    this._category.getCategories().subscribe(data => {
-      this.categories = data;
-    });
+
+  getCategories() {
+    this._category.getCategories().subscribe(
+      (data) => {
+        this.categories = data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
-  getAllProductsByCity(city_id:number){
-    if (localStorage.getItem('selected_city') === null){
+  getAllProductsByCity(city_id: number) {
+    if (localStorage.getItem('selected_city') === null) {
       localStorage.setItem('selected_city', JSON.stringify(city_id));
     }
     this.selectedCity = city_id;
-    this._product.getAllProductsHome(this.selectedCity).subscribe(data =>{
-      this.products = data;
-    });
+    this._product.getAllProductsHome(this.selectedCity).subscribe(
+      (data) => {
+        this.products = data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
-  onPageChange(page:number){
+  onPageChange(page: number) {
     this.page = page;
   }
 
-  showProductsByCategory(category: Category){
-    this._category.getProductsByCategory(this.selectedCity, category.id).subscribe(data => {
-      this.products = data;
-    })
+  showProductsByCategory(category: Category) {
+    this._category
+      .getProductsByCategory(this.selectedCity, category.id)
+      .subscribe(
+        (data) => {
+          this.products = data;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
-  getSearchProducts(search: any){
-    this._product.getSearchProducts(this.selectedCity, search).subscribe(data =>{
-      this.products = data;
-    });
+  getSearchProducts(search: any) {
+    this._product.getSearchProducts(this.selectedCity, search).subscribe(
+      (data) => {
+        this.products = data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
-
 }

@@ -1,9 +1,7 @@
-export interface ShoppingCart {
+export interface ShoppingCartProduct {
   id: number;
   quantity: number;
-  user_id: number;
-  product_id: number;
-  product: string;
+  name: string;
   price: number;
-  image: string;
+  img: string;
 }

@@ -1,16 +1,16 @@
 <div class="container-fluid mt-5">
 	<div class="row">
-		<div *ngFor="let product of shoppingCart">
+		<div *ngFor="let product of shoppingCartProducts">
 			<div class="col-lg-9 col-md-12 col-sm-12">
 				<div class="row m-2 border-bottom border-top d-flex align-items-center">
 					<div class="col-2 p-0 thumbnail">
-						<img src="{{ product?.image }}" class="img-fluid d-block">
+						<img src="{{ product?.img }}" class="img-fluid d-block">
 					</div>
 					<div class="col-9">
 						<div class="row">
 							<div class="col-lg-3 col-md-12 col-xs-12">
 								<h5 class="d-none d-lg-block">Producto</h5>
-								<p class="text-muted my-2">{{ product?.product }}</p>
+								<p class="text-muted my-2">{{ product?.name }}</p>
 							</div>
 							<div class="col-lg-3 col-md-12 col-xs-12">
 								<h5 class="d-none d-lg-block">Precio Unitario</h5>
@@ -26,13 +26,13 @@
 							</div>
 						</div>
 					</div>
-					<button style="line-height: 0;" class="btn btn-danger p-0" (click)="removeItem( (_auth.isAuthenticated()) ? product.id : product.product_id, product!.product)">
+					<button style="line-height: 0;" class="btn btn-danger p-0" (click)="removeItem( _auth.isAuthenticated() ? product.id : product.id, product!.name)">
 						<span class="material-icons">close</span>
 					</button>
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-3 col-md-12 content-buy" *ngIf="shoppingCart.length > 0; else template">
+		<div class="col-lg-3 col-md-12 content-buy" *ngIf="shoppingCartProducts.length > 0; else template">
 			<div class="card mb-4 shadow-sm">
 				<div class="card-header text-center">
 					<h3 class="m-0">Total</h3>

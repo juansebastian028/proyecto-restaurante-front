@@ -5,7 +5,7 @@ import { Modifier } from 'src/app/interfaces/modifier';
 import { ConfigService } from 'src/app/services/config/config.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ModifierService {
   path: string = '';
@@ -14,27 +14,35 @@ export class ModifierService {
     this.path = this.config.path;
   }
 
-  getHeaders(){
-    return new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("auth_token")});
-  }
-  
-  getModifiers():Observable<Modifier[]>{
-    return this.http.get<Modifier[]>(`${this.path}/products/modifiers`, {headers: this.getHeaders()});
+  getHeaders() {
+    return new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('auth_token'),
+    });
   }
 
-  postModifier(modifier: Modifier):Observable<Modifier>{
-    return this.http.post<Modifier>(`${this.config.path}/products/modifiers`, modifier, { headers: this.getHeaders() });
+  getModifiers(): Observable<Modifier[]> {
+    return this.http.get<Modifier[]>(`${this.path}/products/modifiers`, {
+      headers: this.getHeaders(),
+    });
   }
 
-  putModifier(id:number, modifier: Modifier){
-    return this.http.put(`${this.path}/products/modifiers/${id}`, modifier, {headers: this.getHeaders()});
+  postModifier(modifier: Modifier): Observable<Modifier> {
+    return this.http.post<Modifier>(
+      `${this.config.path}/products/modifiers`,
+      modifier,
+      { headers: this.getHeaders() }
+    );
   }
 
-  deleteModifier(id:number){
-    return this.http.delete(`${this.path}/products/modifiers/${id}`, {headers: this.getHeaders()});
+  putModifier(id: number, modifier: Modifier) {
+    return this.http.put(`${this.path}/products/modifiers/${id}`, modifier, {
+      headers: this.getHeaders(),
+    });
   }
 
-  getModifierGroups():any{
-    return this.http.get(`${this.path}/products/group-modifiers`, {headers: this.getHeaders()});
+  deleteModifier(id: number) {
+    return this.http.delete(`${this.path}/products/modifiers/${id}`, {
+      headers: this.getHeaders(),
+    });
   }
 }

@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormLoginComponent } from './components/auth-forms/form-login/form-login.component';
@@ -20,12 +18,10 @@ import { RegisterComponent } from './pages/auth/register/register.component';
 import { UsersComponent } from './pages/users/users.component';
 import { TableComponent } from './components/table/table.component';
 import { MaterialModule } from './material/material.module';
-
 import { CardComponent } from './components/card/card.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { TabComponent } from './components/tab/tab.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
-
 import { HelperToggleService } from './services/helper-toggle/helper-toggle.service';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { ModalSelectCityComponent } from './components/modal-select-city/modal-select-city.component';
@@ -54,6 +50,7 @@ import { SelectBranchComponent } from './components/select-branch/select-branch.
 import { DynamicTabsDirective } from './components/tabs/dynamic-tabs.directive';
 import { ModalDeleteComponent } from './components/modal-delete/modal-delete.component';
 import { SearchProductsComponent } from './components/search-products/search-products.component';
+import { AuthService } from './services/auth/auth.service';
 
 
 @NgModule({
@@ -110,7 +107,7 @@ import { SearchProductsComponent } from './components/search-products/search-pro
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [ HelperToggleService, ConfigService ],
+  providers: [ HelperToggleService, ConfigService, AuthService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
